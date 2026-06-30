@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PLM019 Prototype</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="page-header">
+      <h1>PLM019 — GPC Data Setup</h1>
+      <p>Prototype detail page for PLM019 process flow.</p>
+    </header>
+
+    <div class="notice-card" style="margin-bottom: 24px;">
+      <strong>Prototype Notice:</strong>
+      <span>
+        This is a prototype and is not using the Shell Design System. The aim of this prototype is to gather feedback on the functional requirements from users.
+      </span>
+    </div>
+
+    <div class="proto-list" style="padding: 24px;">
+      <div class="proto-row" style="padding: 24px;">
+        <div class="row-top" style="margin-bottom: 16px; gap: 12px;">
+          <span class="row-title" style="font-size: 1.1rem; font-weight: 600;">Countries of Sale</span>
+          <span class="badge badge-draft">Draft</span>
+        </div>
+        <div class="row-desc" style="margin-bottom: 18px;">
+          A prototype page showing the PLM019 GPC data setup fields and the form layout.
+        </div>
+        <form class="data-form">
+          <label>
+            UPDATE COUNTRIES OF SALE FOR PRODUCT <span class="required">*</span>
+            <input type="text" placeholder="Enter value" />
+          </label>
+
+          <label>
+            COUNTRY OF SALE <span class="required">*</span>
+            <input type="text" placeholder="Enter country" />
+          </label>
+
+          <label>
+            COUNTRY SPECIFIC SALES TEXT <span class="required">*</span>
+            <textarea rows="4" placeholder="Enter sales text"></textarea>
+          </label>
+
+          <label>
+            LANGUAGE <span class="required">*</span>
+            <input type="text" placeholder="Enter language" />
+          </label>
+
+          <label>
+            SALEABLE PRODUCT COUNTRY OWNER <span class="required">*</span>
+            <input type="text" placeholder="Enter owner" />
+          </label>
+
+          <label>
+            SDS TYPE <span class="required">*</span>
+            <select>
+              <option>— Select —</option>
+              <option>Type A</option>
+              <option>Type B</option>
+            </select>
+          </label>
+        </form>
+      </div>
+    </div>
+
+    <a href="index.html" class="clear-btn" style="margin-top: 20px;">Back to prototypes</a>
+  </div>
+</body>
+</html>

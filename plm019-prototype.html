@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PLM019 Prototype</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .page-shell {
+      padding: 40px 24px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .accent-bar {
+      height: 4px;
+      background: var(--shell-yellow);
+      margin: -40px -24px 0;
+    }
+
+    .breadcrumb-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+      color: var(--text-tertiary);
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .breadcrumb-link {
+      color: var(--text-primary);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .breadcrumb-link:hover {
+      text-decoration: underline;
+    }
+
+    .badge {
+      display: inline-flex;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      background: var(--background-muted);
+      color: var(--text-subtle);
+    }
+
+    .page-header h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0 0 8px;
+    }
+
+    .page-header p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin: 0 0 32px;
+    }
+
+    .form-section {
+      margin-bottom: 32px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--shell-yellow);
+      margin-bottom: 20px;
+    }
+
+    .section-header h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0;
+      color: var(--text-primary);
+    }
+
+    .section-field-count {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      font-weight: 500;
+    }
+
+    .form-field {
+      margin-bottom: 16px;
+    }
+
+    .field-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: var(--text-primary);
+    }
+
+    .info-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #0066cc;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: bold;
+      cursor: help;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: inherit;
+      font-size: 0.875rem;
+      color: var(--text-primary);
+      background: white;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(0, 127, 162, 0.1);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      padding: 10px 24px;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--shell-yellow);
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      background: #e6a800;
+    }
+
+    .btn-secondary {
+      background: var(--background-surface);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--background-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="accent-bar"></div>
+  <div class="page-shell">
+    <div class="breadcrumb-row">
+      <a href="index.html" class="breadcrumb-link">All prototypes</a>
+      <span>/</span>
+      <span>PLM019 Prototype</span>
+      <span class="badge">Draft</span>
+      <span class="badge">Prototype</span>
+    </div>
+
+    <header class="page-header">
+      <h1>PLM019 — GPC Data Setup</h1>
+      <p>13 unique visible fields across 4 sections — no business logic</p>
+    </header>
+
+    <form>
+      <!-- Countries of Sale Section -->
+      <div class="form-section">
+        <div class="section-header">
+          <h2>Countries of Sale</h2>
+          <span class="section-field-count">6 fields</span>
+        </div>
+
+        <div class="form-field">
+          <label class="field-label">
+            UPDATE COUNTRIES OF SALE FOR PRODUCT
+            <span class="info-icon">i</span>
+          </label>
+          <input type="text" class="form-control" placeholder="" />
+        </div>
+
+        <div class="form-field">
+          <label class="field-label">
+            COUNTRY OF SALE
+            <span class="info-icon">i</span>
+          </label>
+          <input type="text" class="form-control" placeholder="" />
+        </div>
+
+        <div class="form-field">
+          <label class="field-label">
+            COUNTRY SPECIFIC SALES TEXT
+            <span class="info-icon">i</span>
+          </label>
+          <textarea class="form-control" placeholder=""></textarea>
+        </div>
+
+        <div class="form-field">
+          <label class="field-label">
+            LANGUAGE
+            <span class="info-icon">i</span>
+          </label>
+          <input type="text" class="form-control" placeholder="" />
+        </div>
+
+        <div class="form-field">
+          <label class="field-label">
+            SALEABLE PRODUCT COUNTRY OWNER
+            <span class="info-icon">i</span>
+          </label>
+          <input type="text" class="form-control" placeholder="" />
+        </div>
+
+        <div class="form-field">
+          <label class="field-label">
+            SDS TYPE
+            <span class="info-icon">i</span>
+          </label>
+          <select class="form-control">
+            <option>— Select —</option>
+            <option>Standard</option>
+            <option>Advanced</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Technical Standards Section -->
+      <div class="form-section">
+        <div class="section-header">
+          <h2>Technical Standards</h2>
+          <span class="section-field-count">3 fields</span>
+        </div>
+
+        <div class="form-field">
+          <label class="field-label">
+            UPDATE TECHNICAL STANDARDS FOR PRODUCT
+            <span class="info-icon">i</span>
+          </label>
+          <input type="text" class="form-control" placeholder="" />
+        </div>
+
+        <div class="form-field">
+          <label class="field-label">
+            STANDARD
+            <span class="info-icon">i</span>
+          </label>
+          <input type="text" class="form-control" placeholder="" />
+        </div>
+
+        <div class="form-field">
+          <label class="field-label">
+            STANDARD CODE
+            <span class="info-icon">i</span>
+          </label>
+          <input type="text" class="form-control" placeholder="" />
+        </div>
+      </div>
+
+      <!-- Region Data Section -->
+      <div class="form-section">
+        <div class="section-header">
+          <h2>Region Data</h2>
+          <span class="section-field-count">3 fields</span>
+        </div>
+
+        <div class="form-field">
+          <label class="field-label">
+            UPDATE REGION DATA FOR PRODUCT
+            <span class="info-icon">i</span>
+          </label>
+          <input type="text" class="form-control" placeholder="" />
+        </div>
+
+        <div class="form-field">
+          <label class="field-label">
+            REGION
+            <span class="info-icon">i</span>
+          </label>
+          <input type="text" class="form-control" placeholder="" />
+        </div>
+
+        <div class="form-field">
+          <label class="field-label">
+            REGION CODE
+            <span class="info-icon">i</span>
+          </label>
+          <input type="text" class="form-control" placeholder="" />
+        </div>
+      </div>
+
+      <!-- SKU Countries of Sale Section -->
+      <div class="form-section">
+        <div class="section-header">
+          <h2>SKU Countries of Sale</h2>
+          <span class="section-field-count">1 field</span>
+        </div>
+
+        <div class="form-field">
+          <label class="field-label">
+            UPDATE SKU COUNTRIES OF SALE
+            <span class="info-icon">i</span>
+          </label>
+          <input type="text" class="form-control" placeholder="" />
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="button-group">
+        <button type="button" class="btn btn-primary">Validate</button>
+        <button type="button" class="btn btn-secondary">Reset</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+/* Extra styles for PLM019 detail layout to match screenshot */
+.form-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin-bottom: 24px;
+  box-shadow: none;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 14px;
+}
+
+.section-label {
+  margin: 0 0 6px;
+  font-size: 0.9rem;
+  color: var(--text-subtle);
+  text-transform: none;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: var(--text-primary);
+}
+
+.field-count {
+  color: var(--text-tertiary);
+  font-size: 0.85rem;
+}
+
+.data-form {
+  display: grid;
+  gap: 12px;
+}
+
+.data-form label {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+}
+
+.data-form label .label-text {
+  width: 320px;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  font-weight: 600;
+  font-size: 0.78rem;
+}
+
+.data-form input,
+.data-form textarea,
+.data-form select {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--text-primary);
+}
+
+.info-dot {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #0d84a8;
+  color: white;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  margin-left: 6px;
+}
+
+.actions-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.btn-validate {
+  background: #f9d13a;
+  border: 1px solid rgba(0,0,0,0.08);
+  color: #111;
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.btn-reset {
+  background: #f3f4f6;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+/* Narrow layout adjustments to center the content similar to screenshot */
+.page-wrapper { max-width: 920px; }
