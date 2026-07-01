@@ -106,9 +106,20 @@
     .breadcrumb {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      font-size: 0.875rem;
+      gap: 12px;
+      font-size: 12px;
       color: var(--text-secondary);
+    }
+
+    .breadcrumb-path {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .breadcrumb-final {
+      font-weight: 700;
+      color: #292929;
     }
 
     .status-badge {
@@ -493,7 +504,9 @@
   <!-- Breadcrumb & Status -->
   <div class="header-meta">
     <div class="breadcrumb">
-      <span>PLM149 › Supply › US › All Products › SC1 › GPC Data Setup</span>
+      <div class="breadcrumb-path">
+        <span>PLM149 › Supply › US › All Products › SC1 › <span class="breadcrumb-final">GPC Data Setup</span></span>
+      </div>
       <span class="status-badge">Draft</span>
     </div>
   </div>
