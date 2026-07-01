@@ -373,36 +373,29 @@
       min-height: calc(100vh - 134px);
       background: white;
       width: 100%;
-      margin-top: 0;
     }
 
     .sidebar {
       width: 200px;
       background: white;
       border-right: 1px solid var(--border);
-      padding: 0 0 20px 0;
+      padding: 16px 0 0 0;
       overflow-y: auto;
-      position: relative;
-      z-index: 50;
     }
 
     .sidebar-section {
       margin-bottom: 0;
-      padding: 0;
-    }
-
-    .sidebar-section:first-child {
-      padding-top: 0;
     }
 
     .sidebar-title {
-      padding: 16px 16px 0 16px;
+      padding: 0 16px;
       font-size: 0.75rem;
       font-weight: 600;
       color: var(--text-tertiary);
       text-transform: uppercase;
       letter-spacing: 0.5px;
       margin-bottom: 4px;
+      margin-top: 12px;
     }
 
     .sidebar-item {
@@ -414,10 +407,6 @@
       cursor: pointer;
       transition: background 0.2s;
       border-left: 3px solid transparent;
-    }
-
-    .sidebar-section:first-child .sidebar-item {
-      padding-top: 12px;
     }
 
     .sidebar-item:hover {
@@ -442,15 +431,14 @@
       flex: 1;
       overflow-y: auto;
       width: 100%;
+      background: white;
     }
-
-    /* Product Tabs - removed, now in form header */
 
     /* Form Content */
     .form-content {
       padding: 32px 48px;
       background: white;
-      min-height: calc(100vh - 300px);
+      min-height: auto;
       margin: 0;
     }
 
