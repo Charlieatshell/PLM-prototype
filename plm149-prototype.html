@@ -69,12 +69,19 @@
     .sidebar-item {
       display: flex;
       align-items: center;
-      padding: 10px 16px;
+      padding: 8px 16px;
       font-size: 0.875rem;
       color: var(--text-secondary);
       cursor: pointer;
       transition: background 0.2s;
       border-left: 3px solid transparent;
+    }
+
+    .sidebar-item span:first-child {
+      width: 20px;
+      margin-right: 8px;
+      font-weight: 600;
+      color: var(--text-tertiary);
     }
 
     .sidebar-item:hover {
@@ -204,27 +211,38 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-bottom: 12px;
-      border-bottom: 2px solid var(--shell-yellow);
+      padding: 12px 16px;
+      background: #0066cc;
+      color: white;
+      border-radius: 4px;
       margin-bottom: 24px;
     }
 
     .section-header h2 {
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 600;
       margin: 0;
-      color: var(--text-primary);
+      color: white;
+    }
+
+    .section-expand-btn {
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 1rem;
     }
 
     .form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 24px;
+      gap: 0 32px;
     }
 
     .form-field {
       display: flex;
       flex-direction: column;
+      margin-bottom: 16px;
     }
 
     .field-label {
@@ -248,8 +266,9 @@
       width: 16px;
       height: 16px;
       border-radius: 50%;
-      background: #0066cc;
-      color: white;
+      background: transparent;
+      border: 1px solid #999;
+      color: #666;
       font-size: 0.65rem;
       font-weight: bold;
       cursor: help;
@@ -294,7 +313,7 @@
     <div class="sidebar">
       <div class="sidebar-section">
         <div class="sidebar-item active">
-          <div class="sidebar-icon">📋</div>
+          <span></span>
           <span>GPC Data Setup</span>
         </div>
       </div>
@@ -302,31 +321,31 @@
       <div class="sidebar-section">
         <div class="sidebar-title">Form Sections</div>
         <div class="sidebar-item">
-          <div class="sidebar-icon">1</div>
+          <span>1</span>
           <span>Naming</span>
         </div>
         <div class="sidebar-item">
-          <div class="sidebar-icon">2</div>
+          <span>2</span>
           <span>Classification</span>
         </div>
         <div class="sidebar-item">
-          <div class="sidebar-icon">3</div>
+          <span>3</span>
           <span>Country Specific</span>
         </div>
         <div class="sidebar-item">
-          <div class="sidebar-icon">4</div>
+          <span>4</span>
           <span>Technical Properties</span>
         </div>
         <div class="sidebar-item">
-          <div class="sidebar-icon">5</div>
+          <span>5</span>
           <span>SKU & Country Details</span>
         </div>
         <div class="sidebar-item">
-          <div class="sidebar-icon">6</div>
+          <span>6</span>
           <span>Country of Sale</span>
         </div>
         <div class="sidebar-item">
-          <div class="sidebar-icon">7</div>
+          <span>7</span>
           <span>Standard Data</span>
         </div>
       </div>
@@ -361,6 +380,7 @@
       <div class="form-content">
         <div class="section-header">
           <h2>Naming</h2>
+          <button class="section-expand-btn">⤢</button>
         </div>
 
         <div class="form-grid">
