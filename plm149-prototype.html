@@ -159,11 +159,11 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 24px;
+      padding: 16px 48px;
       background: white;
       border-bottom: 1px solid var(--border);
       position: sticky;
-      top: 134px;
+      top: 100px;
       z-index: 197;
     }
 
@@ -196,19 +196,21 @@
       gap: 12px;
       flex: 1;
       justify-content: center;
+      margin: 0 auto;
     }
 
     .product-label {
       font-size: 0.875rem;
       color: var(--text-primary);
       font-weight: 500;
+      margin-right: 8px;
     }
 
     .product-btn {
-      padding: 6px 12px;
+      padding: 6px 14px;
       background: var(--background-muted);
       border: none;
-      border-radius: 4px;
+      border-radius: 3px;
       font-size: 0.875rem;
       font-weight: 600;
       cursor: pointer;
@@ -425,56 +427,13 @@
       overflow-y: auto;
     }
 
-    /* Product Tabs */
-    .product-tabs {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 16px 32px;
-      background: white;
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 48;
-    }
-
-    .product-tabs-label {
-      color: var(--text-primary);
-      font-size: 0.875rem;
-      margin-right: 16px;
-      font-weight: 500;
-    }
-
-    .product-tab {
-      padding: 6px 12px;
-      background: var(--background-muted);
-      border: none;
-      border-radius: 4px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      cursor: pointer;
-      color: var(--text-primary);
-      transition: all 0.2s;
-    }
-
-    .product-tab.active {
-      background: #007fa2;
-      color: white;
-    }
-
-    .product-tab:hover {
-      background: #0066cc;
-      color: white;
-    }
+    /* Product Tabs - removed, now in form header */
 
     /* Form Content */
     .form-content {
-      padding: 32px;
+      padding: 32px 48px;
       background: white;
-      margin: 16px;
-      border-radius: 4px;
-      border: 1px solid var(--border);
+      min-height: calc(100vh - 300px);
     }
 
     .section-header {
@@ -678,15 +637,6 @@
 
     <!-- Main Content -->
     <div class="main-content">
-      <!-- Product Tabs -->
-      <div class="product-tabs">
-        <span class="product-tabs-label">Products</span>
-        <button class="product-tab active">P1</button>
-        <button class="product-tab">P2</button>
-        <button class="product-tab">P3</button>
-        <button class="product-tab">P4</button>
-      </div>
-
       <!-- Form Content -->
       <div class="form-content">
         <div class="section-header">
