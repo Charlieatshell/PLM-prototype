@@ -166,23 +166,33 @@
       justify-content: center;
       color: var(--text-secondary);
       font-size: 1rem;
+      border-radius: 4px;
+      transition: background 0.2s;
     }
 
-    .btn-primary {
+    .btn-icon:hover {
+      background: var(--background-muted);
+    }
+
+    .btn-help {
       padding: 8px 16px;
-      background: var(--shell-yellow);
-      border: none;
+      background: white;
+      border: 1px solid var(--border);
       border-radius: 4px;
       font-size: 0.875rem;
-      font-weight: 600;
       cursor: pointer;
-      color: #000;
+      color: var(--text-primary);
+      transition: background 0.2s;
+    }
+
+    .btn-help:hover {
+      background: var(--background-muted);
     }
 
     .product-tabs {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       gap: 8px;
       padding: 16px 32px;
       background: white;
@@ -192,9 +202,11 @@
       z-index: 49;
     }
 
-    .product-tabs-left {
-      display: flex;
-      gap: 8px;
+    .product-tabs-label {
+      color: var(--text-primary);
+      font-size: 0.875rem;
+      margin-right: 16px;
+      font-weight: 500;
     }
 
     .product-tab {
@@ -242,8 +254,15 @@
       gap: 8px;
     }
 
-    .section-badge {
-      display: none;
+    .p1-badge {
+      display: inline-flex;
+      padding: 2px 8px;
+      background: #e3f2fd;
+      color: #0066cc;
+      border-radius: 3px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      margin-right: 8px;
     }
 
     .section-expand-btn {
@@ -252,6 +271,17 @@
       color: var(--text-secondary);
       cursor: pointer;
       font-size: 1rem;
+    }
+
+    .p1-badge {
+      display: inline-flex;
+      padding: 2px 8px;
+      background: #e3f2fd;
+      color: #0066cc;
+      border-radius: 3px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      margin-right: 8px;
     }
 
     .form-grid {
@@ -381,28 +411,27 @@
             <span class="plm-tag">PLM149</span>
           </div>
           <div class="content-actions">
-            <button class="btn-icon">ℹ️</button>
-            <button class="btn-primary">Save</button>
+            <button class="btn-icon" title="Info">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="7"/><path d="M8 5.5v4M8 12v.5"/></svg>
+            </button>
+            <button class="btn-help">Help</button>
           </div>
         </div>
       </div>
 
       <!-- Product Tabs -->
       <div class="product-tabs">
-        <div class="product-tabs-left">
-          <button class="product-tab">Products</button>
-          <button class="product-tab active">P1</button>
-          <button class="product-tab">P2</button>
-          <button class="product-tab">P3</button>
-          <button class="product-tab">P4</button>
-        </div>
-        <button class="btn-primary">Save</button>
+        <span class="product-tabs-label">Products</span>
+        <button class="product-tab active">P1</button>
+        <button class="product-tab">P2</button>
+        <button class="product-tab">P3</button>
+        <button class="product-tab">P4</button>
       </div>
 
       <!-- Form Content -->
       <div class="form-content">
         <div class="section-header">
-          <h2>Naming</h2>
+          <h2><span class="p1-badge">P1</span>Naming</h2>
           <button class="section-expand-btn">⤢</button>
         </div>
 
