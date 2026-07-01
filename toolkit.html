@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PLM Toolkit Prototypes</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body.viewer-active {
+      overflow: hidden;
+    }
+
+    #view-prototype {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .viewer-topbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+      background: white;
+      flex-shrink: 0;
+      z-index: 100;
+    }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      color: var(--text-primary);
+      font-size: 0.875rem;
+      transition: background 0.2s;
+    }
+
+    .back-btn:hover {
+      background: var(--background-muted);
+    }
+
+    .viewer-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+    }
+
+    .viewer-tab-group {
+      display: flex;
+      gap: 8px;
+      margin-left: 16px;
+    }
+
+    .viewer-tab {
+      padding: 6px 12px;
+      background: none;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+
+    .viewer-tab.active {
+      background: var(--background-muted);
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .topbar-spacer {
+      flex: 1;
+    }
+
+    .feedback-toggle-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.875rem;
+      color: var(--text-primary);
+      transition: all 0.2s;
+    }
+
+    .feedback-toggle-btn:hover {
+      background: var(--background-muted);
+    }
+
+    .feedback-toggle-btn.active {
+      background: var(--background-muted);
+      font-weight: 600;
+    }
+
+    .viewer-body {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+      background: var(--background-surface);
+    }
+
+    #proto-iframe {
+      flex: 1;
+      border: none;
+      width: 100%;
+    }
+
+    #form-iframe,
+    #responses-iframe {
+      width: 100%;
+      border: none;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .feedback-panel {
+      width: 320px;
+      background: white;
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.3s;
+      z-index: 90;
+    }
+
+    .feedback-panel.open {
+      transform: translateX(0);
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .panel-tab-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    .panel-tab {
+      padding: 6px 12px;
+      background: none;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.8125rem;
+      cursor: pointer;
+      color: var(--text-secondary);
+    }
+
+    .panel-tab.active {
+      background: var(--background-muted);
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .panel-close-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+    }
+
+    .panel-content {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .task-progress-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .task-progress-text {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      font-weight: 600;
+      min-width: 40px;
+    }
+
+    .task-progress-track {
+      flex: 1;
+      height: 4px;
+      background: var(--background-muted);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .task-progress-fill {
+      height: 100%;
+      background: var(--shell-yellow);
+      transition: width 0.2s;
+    }
+
+    .task-list {
+      padding: 12px 0;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .task-item {
+      padding: 8px 16px;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .task-item:hover {
+      background: var(--background-muted);
+    }
+
+    .task-item.completed {
+      opacity: 0.6;
+    }
+
+    .task-item label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8125rem;
+      cursor: pointer;
+    }
+
+    .task-item input[type="checkbox"] {
+      cursor: pointer;
+    }
+
+    .task-empty {
+      padding: 24px 16px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    .panel-meta-row {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .panel-meta-row strong {
+      font-size: 0.875rem;
+      color: var(--text-primary);
+    }
+
+    .panel-meta-row span {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+    }
+
+    .panel-newtab-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #007fa2;
+      text-decoration: none;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+
+    .panel-newtab-link:hover {
+      text-decoration: underline;
+    }
+
+    .designs-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding: 12px;
+    }
+
+    .design-thumb {
+      position: relative;
+      cursor: pointer;
+      border-radius: 4px;
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      background: var(--background-muted);
+    }
+
+    .design-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .design-thumb-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 6px 8px;
+      font-size: 0.7rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Lightbox */
+    #lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #lightbox.open {
+      display: flex;
+    }
+
+    .lightbox-img-wrap {
+      position: relative;
+      width: 90%;
+      height: 90%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #lightbox-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      background: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 10px 15px;
+      border-radius: 4px;
+      transition: background 0.2s;
+      z-index: 10;
+    }
+
+    .lightbox-nav:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    .lightbox-prev {
+      left: 10px;
+    }
+
+    .lightbox-next {
+      right: 10px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 8px 12px;
+      border-radius: 4px;
+      z-index: 10;
+    }
+
+    .lightbox-footer {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 12px 16px;
+      border-radius: 4px;
+      font-size: 0.875rem;
+    }
+
+    .lightbox-counter {
+      margin-left: 8px;
+      opacity: 0.7;
+      font-size: 0.8rem;
+    }
+
+    .no-results {
+      padding: 40px 24px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- List View -->
+  <div id="view-list">
+    <div class="accent-bar"></div>
+    <div class="page-wrapper">
+      <header class="page-header">
+        <h1>Prototypes</h1>
+        <p>Browse, filter and review PLM Toolkit prototypes.</p>
+      </header>
+
+      <div class="toolbar">
+        <div class="search-box">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6.5" cy="6.5" r="5"/><path d="M10.5 10.5L15 15"/></svg>
+          <input type="text" id="search" placeholder="Search prototypes...">
+        </div>
+        <div class="multi-filter" id="filter-sc" data-field="sc" data-label="Scenario"><button type="button" class="multi-filter-btn">Scenario</button></div>
+        <div class="multi-filter" id="filter-region" data-field="region" data-label="Region"><button type="button" class="multi-filter-btn">Region</button></div>
+        <div class="multi-filter" id="filter-business" data-field="business" data-label="Business"><button type="button" class="multi-filter-btn">Business</button></div>
+        <div class="multi-filter" id="filter-role" data-field="role" data-label="Role"><button type="button" class="multi-filter-btn">Role</button></div>
+        <div class="multi-filter" id="filter-status" data-field="status" data-label="Status"><button type="button" class="multi-filter-btn">Status</button></div>
+        <div class="multi-filter" id="filter-release" data-field="release" data-label="Release"><button type="button" class="multi-filter-btn">Release</button></div>
+        <button class="clear-btn" id="clear-filters-btn" style="display: none;">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" width="12" height="12"><path d="M12 4L4 12M4 4l8 8"/></svg>
+          Clear filters
+        </button>
+      </div>
+
+      <div class="results-count" id="results-count">Loading...</div>
+      <div class="progress-bar-wrapper" id="progress-wrapper">
+        <span class="progress-text" id="progress-text">0 / 6 reviewed</span>
+        <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width: 0%"></div></div>
+        <button class="clear-history-btn" id="clear-history-btn" style="display: none;">Clear history</button>
+      </div>
+      <div class="proto-list" id="card-grid"></div>
+    </div>
+  </div>
+
+  <!-- Prototype Viewer -->
+  <div id="view-prototype" hidden>
+    <div class="accent-bar"></div>
+    <div class="viewer-topbar">
+      <button class="back-btn" onclick="closePrototype()">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" width="13" height="13"><path d="M10 13L5 8l5-5"/></svg>
+        All prototypes
+      </button>
+      <span class="viewer-title" id="viewer-title"></span>
+      <span id="viewer-status-badge" class="badge"></span>
+      <div class="viewer-tab-group" role="tablist">
+        <button class="viewer-tab active" id="tab-prototype-view" onclick="switchViewerTab('prototype')" role="tab" aria-selected="true">Prototype</button>
+      </div>
+      <div class="topbar-spacer"></div>
+      <button class="feedback-toggle-btn" id="feedback-toggle-btn" onclick="togglePanel('feedback')" style="display:none">
+        <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M2 2h12a1 1 0 011 1v8a1 1 0 01-1 1H6l-3 3v-3H2a1 1 0 01-1-1V3a1 1 0 011-1zm2 3v1h8V5H4zm0 3v1h5V8H4z"/></svg>
+        Feedback
+      </button>
+    </div>
+    <div class="viewer-body">
+      <iframe id="proto-iframe" title="Prototype viewer"></iframe>
+      <div class="feedback-panel" id="side-panel">
+        <div class="panel-header">
+          <div class="panel-tab-group">
+            <button class="panel-tab active" id="tab-feedback" onclick="switchPanelTab('feedback')">Feedback</button>
+          </div>
+          <button class="panel-close-btn" onclick="closePanel()">✕</button>
+        </div>
+        <div class="panel-content" id="panel-feedback">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--border);flex-shrink:0">
+            <div class="panel-meta-row">
+              <strong id="panel-proto-name"></strong>
+              <span id="panel-proto-meta"></span>
+            </div>
+            <a class="panel-newtab-link" id="panel-form-link" href="" target="_blank" rel="noopener noreferrer">
+              Open in new tab
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" width="11" height="11"><path d="M6 3H3a1 1 0 00-1 1v9a1 1 0 001 1h9a1 1 0 001-1v-3M9 2h5v5M8.5 8.5L14 2"/></svg>
+            </a>
+          </div>
+          <div style="padding:12px 16px;font-size:0.8125rem;color:var(--text-secondary);flex-shrink:0">
+            Feedback form will load below.
+          </div>
+          <iframe id="form-iframe" title="Feedback form"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" role="dialog" onclick="if(event.target===this)closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <div class="lightbox-img-wrap">
+      <button class="lightbox-nav lightbox-prev" id="lightbox-prev" onclick="lightboxNav(-1)">‹</button>
+      <img id="lightbox-img" src="" alt="">
+      <button class="lightbox-nav lightbox-next" id="lightbox-next" onclick="lightboxNav(1)">›</button>
+    </div>
+    <div class="lightbox-footer">
+      <span class="lightbox-label" id="lightbox-label"></span>
+      <span class="lightbox-counter" id="lightbox-counter"></span>
+    </div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = "plm-visited-prototypes";
+
+    const prototypes = [
+      {
+        name: "SC1-Supply-US-PLM149",
+        description: "GPC Data Setup — Sc. 1 New Product/SKU Set up for US all product types. Uses the PLM149 prototype shell with PBI 4386561 data and logic updates for US DOE/EPA codes, LIFO Pool, refinery OAS/EIA fields, and SKU density capture.",
+        sc: "SC1",
+        region: "US",
+        business: "Supply",
+        role: "PLM149",
+        plmRef: "PLM149",
+        release: "AR-2",
+        status: "Draft",
+        lastUpdated: "2026-06-16",
+        owner: "Darrell Chung",
+        url: "plm149-prototype.html"
+      },
+      {
+        name: "PLM019 Prototype",
+        description: "Prototype for PLM019 process flow.",
+        sc: "Core",
+        region: "Global",
+        business: "",
+        role: "PLM019",
+        plmRef: "PLM019",
+        release: "",
+        status: "Draft",
+        lastUpdated: "2026-03-25",
+        owner: "Darrell Chung",
+        url: "plm019-prototype.html"
+      },
+      {
+        name: "SC3-Supply-US-PLM019",
+        description: "PLM019 GPC Data Setup (US) — 13 fields across 4 sections.",
+        sc: "SC3",
+        region: "US",
+        business: "Supply",
+        role: "PLM019",
+        plmRef: "PLM019",
+        release: "AR-2",
+        status: "Draft",
+        lastUpdated: "2026-04-10",
+        owner: "Darrell Chung",
+        url: "plm019-prototype.html"
+      },
+      {
+        name: "SC1-Supply-WONA-PLM019 (All Products)",
+        description: "PLM019 GPC Team Actions & References — All Products.",
+        sc: "SC1",
+        region: "WONA",
+        business: "Supply",
+        role: "PLM019",
+        plmRef: "PLM019",
+        release: "AR-2",
+        status: "Draft",
+        lastUpdated: "2026-05-08",
+        owner: "Darrell Chung",
+        url: "plm019-prototype.html"
+      },
+      {
+        name: "SC1-Supply-WONA-PLM019 (DYE MRK)",
+        description: "PLM019 GPC Team Actions & References — DYE MRK, Non-Saleable ADD, Bitumen Additives.",
+        sc: "SC1",
+        region: "WONA",
+        business: "Supply",
+        role: "PLM019",
+        plmRef: "PLM019",
+        release: "AR-2",
+        status: "Draft",
+        lastUpdated: "2026-05-08",
+        owner: "Darrell Chung",
+        url: "plm019-prototype.html"
+      },
+      {
+        name: "SC1-Supply-WONA-PLM019 (Bitumen)",
+        description: "PLM019 GPC Team Actions & References — Bitumen (BIT).",
+        sc: "SC1",
+        region: "WONA",
+        business: "Supply",
+        role: "PLM019",
+        plmRef: "PLM019",
+        release: "AR-2",
+        status: "Draft",
+        lastUpdated: "2026-05-08",
+        owner: "Darrell Chung",
+        url: "plm019-prototype.html"
+      }
+    ];
+
+    function getVisited() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+      catch { return []; }
+    }
+
+    function markVisited(url) {
+      const visited = getVisited();
+      if (!visited.includes(url)) {
+        visited.push(url);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(visited));
+      }
+    }
+
+    function clearVisitedHistory() {
+      localStorage.removeItem(STORAGE_KEY);
+      render();
+    }
+
+    function updateProgress() {
+      const visited = getVisited();
+      const total = prototypes.length;
+      const count = prototypes.filter(p => visited.includes(p.url)).length;
+      document.getElementById("progress-text").textContent = count + " / " + total + " reviewed";
+      document.getElementById("progress-fill").style.width = total ? (count / total * 100) + "%" : "0%";
+      document.getElementById("clear-history-btn").style.display = count ? "inline" : "none";
+    }
+
+    function statusClass(status) {
+      return "badge-" + status.toLowerCase().replace(/\s+/g, "-");
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return "—";
+      return new Date(dateStr).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+    }
+
+    const FILTER_IDS = ["filter-sc","filter-region","filter-business","filter-role","filter-status","filter-release"];
+    const FILTER_FIELDS = ["sc","region","business","role","status","release"];
+
+    function getFilterSelected(id) {
+      const el = document.getElementById(id);
+      return Array.from(el.querySelectorAll("input:checked")).map(cb => cb.value);
+    }
+
+    function buildMultiFilter(container) {
+      const field = container.dataset.field;
+      const label = container.dataset.label;
+      const values = [...new Set(prototypes.map(p => p[field]).filter(Boolean))].sort();
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "multi-filter-btn";
+      btn.innerHTML = label;
+      const menu = document.createElement("div");
+      menu.className = "multi-filter-menu";
+      values.forEach(v => {
+        const opt = document.createElement("label");
+        opt.className = "multi-filter-option";
+        opt.innerHTML = '<input type="checkbox" value="' + v + '"> ' + v;
+        opt.querySelector("input").addEventListener("change", () => { updateFilterBtn(container); render(); });
+        menu.appendChild(opt);
+      });
+      container.appendChild(btn);
+      container.appendChild(menu);
+      btn.addEventListener("click", (e) => { e.stopPropagation(); toggleFilterMenu(container); });
+    }
+
+    function updateFilterBtn(container) {
+      const label = container.dataset.label;
+      const selected = getFilterSelected(container.id);
+      const btn = container.querySelector(".multi-filter-btn");
+      btn.innerHTML = selected.length ? label + ' <span class="filter-count">' + selected.length + "</span>" : label;
+    }
+
+    function toggleFilterMenu(container) {
+      const wasOpen = container.classList.contains("open");
+      document.querySelectorAll(".multi-filter.open").forEach(el => el.classList.remove("open"));
+      if (!wasOpen) container.classList.add("open");
+    }
+
+    document.addEventListener("click", () => {
+      document.querySelectorAll(".multi-filter.open").forEach(el => el.classList.remove("open"));
+    });
+
+    document.querySelectorAll(".multi-filter").forEach(el => {
+      el.addEventListener("click", e => e.stopPropagation());
+    });
+
+    function populateFilters() {
+      FILTER_IDS.forEach(id => buildMultiFilter(document.getElementById(id)));
+    }
+
+    function render() {
+      const search = document.getElementById("search").value.toLowerCase();
+      const fSc = getFilterSelected("filter-sc");
+      const fRegion = getFilterSelected("filter-region");
+      const fBusiness = getFilterSelected("filter-business");
+      const fRole = getFilterSelected("filter-role");
+      const fStatus = getFilterSelected("filter-status");
+      const fRelease = getFilterSelected("filter-release");
+
+      const filtered = prototypes
+        .filter(p => {
+          if (fSc.length && !fSc.includes(p.sc)) return false;
+          if (fRegion.length && !fRegion.includes(p.region)) return false;
+          if (fBusiness.length && !fBusiness.includes(p.business)) return false;
+          if (fRole.length && !fRole.includes(p.role)) return false;
+          if (fStatus.length && !fStatus.includes(p.status)) return false;
+          if (fRelease.length && !fRelease.includes(p.release)) return false;
+          if (search) {
+            const hay = [p.name, p.description, p.plmRef, p.sc, p.region, p.business, p.role, p.owner].join(" ").toLowerCase();
+            if (!hay.includes(search)) return false;
+          }
+          return true;
+        })
+        .sort((a, b) => (b.lastUpdated || "").localeCompare(a.lastUpdated || ""));
+
+      const hasActiveFilters = !!(search || fSc.length || fRegion.length || fBusiness.length || fRole.length || fStatus.length || fRelease.length);
+      document.getElementById("clear-filters-btn").style.display = hasActiveFilters ? "inline-flex" : "none";
+
+      const grid = document.getElementById("card-grid");
+      const countEl = document.getElementById("results-count");
+      countEl.textContent = filtered.length + " prototype" + (filtered.length !== 1 ? "s" : "");
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div class="no-results">No prototypes match your filters.</div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(p => {
+        const protoIndex = prototypes.indexOf(p);
+        const metaParts = [
+          p.sc ? `<span><span class="meta-label">Scenario</span> ${p.sc}</span>` : "",
+          p.region ? `<span><span class="meta-label">Region</span> ${p.region}</span>` : "",
+          p.business ? `<span><span class="meta-label">Business</span> ${p.business}</span>` : "",
+          p.role ? `<span><span class="meta-label">Role</span> ${p.role}</span>` : "",
+          p.plmRef ? `<span><span class="meta-label">PLM</span> ${p.plmRef}</span>` : "",
+          p.release ? `<span><span class="meta-label">Release</span> ${p.release}</span>` : "",
+          `<span><span class="meta-label">Owner</span> ${p.owner}</span>`,
+          `<span><span class="meta-label">Updated</span> ${formatDate(p.lastUpdated)}</span>`
+        ].filter(Boolean).join("");
+
+        const visitedBadge = getVisited().includes(p.url)
+          ? ' <span class="visited-check"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8.5l3.5 3.5 6.5-7"/></svg>Viewed</span>'
+          : "";
+
+        return `
+          <div class="proto-row">
+            <div class="row-top">
+              <span class="row-title"><button class="row-title-btn" onclick="openPrototypeByIndex(${protoIndex})">${p.name}</button></span>
+              <span class="badge ${statusClass(p.status)}">${p.status}</span>${visitedBadge}
+            </div>
+            <div class="row-desc">${p.description}</div>
+            <div class="row-meta">${metaParts}</div>
+          </div>`;
+      }).join("");
+      updateProgress();
+    }
+
+    populateFilters();
+    render();
+    document.getElementById("search").addEventListener("input", render);
+    document.getElementById("clear-filters-btn").addEventListener("click", () => {
+      document.getElementById("search").value = "";
+      FILTER_IDS.forEach(id => {
+        document.getElementById(id).querySelectorAll("input:checked").forEach(cb => { cb.checked = false; });
+        updateFilterBtn(document.getElementById(id));
+      });
+      render();
+    });
+    document.getElementById("clear-history-btn").addEventListener("click", clearVisitedHistory);
+
+    let _panelOpen = false;
+    let _currentProtoUrl = null;
+    let _currentPrototype = null;
+
+    function openPrototypeByIndex(index) {
+      const p = prototypes[index];
+      if (p) openPrototype(p.url, p);
+    }
+
+    function openPrototype(url, prototypeRecord) {
+      const p = prototypeRecord || prototypes.find(x => x.url === url);
+      if (!p) return;
+      _panelOpen = false;
+      _currentPrototype = p;
+      _currentProtoUrl = p.url;
+      if (p.url) markVisited(p.url);
+
+      document.getElementById("viewer-title").textContent = p.name;
+      const statusBadge = document.getElementById("viewer-status-badge");
+      statusBadge.className = "badge " + statusClass(p.status);
+      statusBadge.textContent = p.status;
+
+      document.getElementById("panel-proto-name").textContent = p.name;
+      document.getElementById("panel-proto-meta").textContent = [p.sc, p.region, p.business, p.release].filter(Boolean).join(" · ");
+
+      document.getElementById("side-panel").classList.remove("open");
+      document.getElementById("feedback-toggle-btn").classList.remove("active");
+
+      document.getElementById("proto-iframe").src = p.url;
+      document.getElementById("view-list").hidden = true;
+      document.getElementById("view-prototype").hidden = false;
+      document.body.classList.add("viewer-active");
+      window.scrollTo(0, 0);
+    }
+
+    function closePrototype() {
+      document.getElementById("proto-iframe").src = "";
+      document.getElementById("form-iframe").src = "";
+      document.getElementById("view-prototype").hidden = true;
+      document.getElementById("view-list").hidden = false;
+      document.body.classList.remove("viewer-active");
+      _panelOpen = false;
+      _currentProtoUrl = null;
+      _currentPrototype = null;
+      render();
+    }
+
+    function togglePanel(tab) {
+      if (_panelOpen) {
+        closePanel();
+      } else {
+        openPanel(tab);
+      }
+    }
+
+    function openPanel(tab) {
+      _panelOpen = true;
+      document.getElementById("side-panel").classList.add("open");
+      document.getElementById("feedback-toggle-btn").classList.add("active");
+    }
+
+    function closePanel() {
+      _panelOpen = false;
+      document.getElementById("side-panel").classList.remove("open");
+      document.getElementById("feedback-toggle-btn").classList.remove("active");
+    }
+
+    function switchPanelTab(tab) {
+      openPanel(tab);
+    }
+
+    function switchViewerTab(tab) {
+      // Placeholder for switching between prototype and requirements tabs
+    }
+  </script>
+</body>
+</html>
