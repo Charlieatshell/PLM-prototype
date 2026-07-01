@@ -7,209 +7,204 @@
   <link rel="stylesheet" href="styles.css" />
   <style>
     /* Import Shell Design System */
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
     .accent-bar {
       height: 4px;
       background: var(--shell-yellow);
     }
 
-    .breadcrumb-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.875rem;
-      color: var(--text-tertiary);
-      padding: 12px 24px;
-      border-bottom: 1px solid var(--border);
-      flex-wrap: wrap;
-    }
-
-    .breadcrumb-link {
-      color: var(--text-primary);
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .badge {
-      display: inline-flex;
-      padding: 2px 8px;
-      border-radius: 999px;
-      font-size: 0.6875rem;
-      font-weight: 600;
-      background: var(--background-muted);
-      color: var(--text-subtle);
-    }
-
-    .page-container {
-      display: flex;
-      min-height: calc(100vh - 100px);
-      background: var(--background-surface);
-    }
-
-    .sidebar {
-      width: 200px;
-      background: white;
-      border-right: 1px solid var(--border);
-      padding: 20px 0;
-      overflow-y: auto;
-    }
-
-    .sidebar-section {
-      margin-bottom: 0;
-    }
-
-    .sidebar-title {
-      padding: 0 16px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-tertiary);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 4px;
-    }
-
-    .sidebar-item {
-      display: flex;
-      align-items: center;
-      padding: 8px 16px;
-      font-size: 0.875rem;
-      color: var(--text-secondary);
-      cursor: pointer;
-      transition: background 0.2s;
-      border-left: 3px solid transparent;
-    }
-
-    .sidebar-item span:first-child {
-      width: 20px;
-      margin-right: 8px;
-      font-weight: 600;
-      color: var(--text-tertiary);
-    }
-
-    .sidebar-item:hover {
-      background: var(--background-muted);
-    }
-
-    .sidebar-item.active {
-      background: var(--background-muted);
-      color: var(--text-primary);
-      border-left-color: #007fa2;
-      font-weight: 600;
-    }
-
-    .sidebar-icon {
-      width: 20px;
-      height: 20px;
-      margin-right: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-    }
-
-    .main-content {
-      flex: 1;
-      overflow-y: auto;
-    }
-
-    .content-header {
-      background: white;
-      border-bottom: 1px solid var(--border);
-      padding: 20px 32px;
-      position: sticky;
-      top: 0;
-      z-index: 50;
-    }
-
-    .content-title-row {
+    /* Top Bar */
+    .top-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 16px;
+      padding: 12px 24px;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 200;
     }
 
-    .content-title {
+    .top-bar-left {
       display: flex;
       align-items: center;
       gap: 12px;
     }
 
-    .content-title h1 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin: 0;
+    .app-logo {
+      font-size: 1.5rem;
     }
 
-    .plm-tag {
-      display: inline-flex;
-      padding: 4px 12px;
-      background: #007fa2;
+    .app-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .app-category {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      font-weight: 500;
+    }
+
+    .app-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .top-bar-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .top-bar-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--text-secondary);
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+      color: var(--text-primary);
+    }
+
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #ff9800;
       color: white;
-      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 0.75rem;
       font-weight: 600;
     }
 
-    .content-actions {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .btn-icon {
-      width: 32px;
-      height: 32px;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-secondary);
-      font-size: 1rem;
-      border-radius: 4px;
-      transition: background 0.2s;
-    }
-
-    .btn-icon:hover {
-      background: var(--background-muted);
-    }
-
-    .btn-help {
-      padding: 8px 16px;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      font-size: 0.875rem;
-      cursor: pointer;
-      color: var(--text-primary);
-      transition: background 0.2s;
-    }
-
-    .btn-help:hover {
-      background: var(--background-muted);
-    }
-
-    .product-tabs {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 16px 32px;
+    /* Breadcrumb & Status */
+    .header-meta {
+      padding: 12px 24px;
       background: white;
       border-bottom: 1px solid var(--border);
       position: sticky;
-      top: 72px;
-      z-index: 49;
+      top: 56px;
+      z-index: 199;
     }
 
-    .product-tabs-label {
-      color: var(--text-primary);
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       font-size: 0.875rem;
-      margin-right: 16px;
+      color: var(--text-secondary);
+    }
+
+    .status-badge {
+      padding: 2px 8px;
+      background: var(--background-muted);
+      color: var(--text-primary);
+      border-radius: 3px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    /* Tab Navigation */
+    .tab-navigation {
+      display: flex;
+      gap: 0;
+      padding: 0 24px;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 100px;
+      z-index: 198;
+    }
+
+    .tab-btn {
+      padding: 12px 16px;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-primary);
+    }
+
+    .tab-btn.active {
+      color: var(--text-primary);
+      border-bottom-color: #ff9800;
+      font-weight: 600;
+    }
+
+    /* Form Header Sticky */
+    .form-header-sticky {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 134px;
+      z-index: 197;
+    }
+
+    .form-header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 200px;
+    }
+
+    .form-header-left h1 {
+      margin: 0;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .plm-badge {
+      padding: 2px 8px;
+      background: #e8f5e9;
+      color: #2e7d32;
+      border-radius: 3px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .form-header-center {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .product-label {
+      font-size: 0.875rem;
+      color: var(--text-primary);
       font-weight: 500;
     }
 
-    .product-tab {
+    .product-btn {
       padding: 6px 12px;
       background: var(--background-muted);
       border: none;
@@ -218,34 +213,66 @@
       font-weight: 600;
       cursor: pointer;
       color: var(--text-primary);
+      transition: all 0.2s;
     }
 
-    .product-tab.active {
-      background: #007fa2;
+    .product-btn.active {
+      background: #0066cc;
       color: white;
     }
 
-    .form-content {
-      padding: 32px;
+    .product-btn:hover {
+      background: #0066cc;
+      color: white;
+    }
+
+    .form-header-right {
+      min-width: 80px;
+      text-align: right;
+    }
+
+    .btn-save {
+      padding: 8px 16px;
       background: white;
-      margin: 20px 32px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text-primary);
+      transition: background 0.2s;
+    }
+
+    .btn-save:hover {
+      background: var(--background-muted);
+    }
+
+    /* Content Area */
+    .page-container {
+      padding: 32px 24px;
+      background: var(--background-surface);
+    }
+
+    .form-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
       border-radius: 4px;
       border: 1px solid var(--border);
+      padding: 32px;
     }
 
     .section-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px 16px;
-      background: transparent;
-      color: var(--text-primary);
-      border-radius: 4px;
+      padding: 0 0 12px 0;
       margin-bottom: 24px;
+      border-bottom: 2px solid var(--shell-yellow);
     }
 
     .section-header h2 {
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-weight: 600;
       margin: 0;
       color: var(--text-primary);
@@ -262,7 +289,6 @@
       border-radius: 3px;
       font-size: 0.65rem;
       font-weight: 700;
-      margin-right: 8px;
     }
 
     .section-expand-btn {
@@ -271,17 +297,6 @@
       color: var(--text-secondary);
       cursor: pointer;
       font-size: 1rem;
-    }
-
-    .p1-badge {
-      display: inline-flex;
-      padding: 2px 8px;
-      background: #e3f2fd;
-      color: #0066cc;
-      border-radius: 3px;
-      font-size: 0.65rem;
-      font-weight: 700;
-      margin-right: 8px;
     }
 
     .form-grid {
@@ -351,373 +366,164 @@
 <body>
   <div class="accent-bar"></div>
 
-  <div class="breadcrumb-row">
-    <a href="index.html" class="breadcrumb-link">All prototypes</a>
-    <span>/</span>
-    <span>SC1-Supply-US-PLM149</span>
-    <span class="badge">Draft</span>
-    <span class="badge">Prototype</span>
-  </div>
-
-  <div class="page-container">
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <div class="sidebar-section">
-        <div class="sidebar-item">
-          <span></span>
-          <span>GPC Data Setup</span>
-        </div>
-      </div>
-
-      <div class="sidebar-section">
-        <div class="sidebar-item active">
-          <span>1</span>
-          <span>Naming</span>
-        </div>
-        <div class="sidebar-item">
-          <span>2</span>
-          <span>Classification</span>
-        </div>
-        <div class="sidebar-item">
-          <span>3</span>
-          <span>Country Specific</span>
-        </div>
-        <div class="sidebar-item">
-          <span>4</span>
-          <span>Technical Properties</span>
-        </div>
-        <div class="sidebar-item">
-          <span>5</span>
-          <span>SKU & Country Details</span>
-        </div>
-        <div class="sidebar-item">
-          <span>6</span>
-          <span>Country of Sale</span>
-        </div>
-        <div class="sidebar-item">
-          <span>7</span>
-          <span>Standard Data</span>
-        </div>
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <div class="app-logo">📊</div>
+      <div class="app-info">
+        <div class="app-category">Trading and Supply</div>
+        <div class="app-title">PLM Toolkit - Fuels</div>
       </div>
     </div>
+    <div class="top-bar-right">
+      <button class="top-bar-btn">☀️</button>
+      <button class="top-bar-btn">⚙️</button>
+      <div class="user-profile">
+        <div class="user-avatar">JB</div>
+        <span>Joe Bloggs</span>
+      </div>
+    </div>
+  </div>
 
-    <!-- Main Content -->
-    <div class="main-content">
-      <!-- Header -->
-      <div class="content-header">
-        <div class="content-title-row">
-          <div class="content-title">
-            <h1>GPC Data Setup</h1>
-            <span class="plm-tag">PLM149</span>
-          </div>
-          <div class="content-actions">
-            <button class="btn-icon" title="Info">
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="7"/><path d="M8 5.5v4M8 12v.5"/></svg>
-            </button>
-            <button class="btn-help">Help</button>
-          </div>
-        </div>
+  <!-- Breadcrumb & Status -->
+  <div class="header-meta">
+    <div class="breadcrumb">
+      <span>PLM149 › Supply › US › All Products › SC1 › GPC Data Setup</span>
+      <span class="status-badge">Draft</span>
+    </div>
+  </div>
+
+  <!-- Tab Navigation -->
+  <div class="tab-navigation">
+    <button class="tab-btn">Request Setup</button>
+    <button class="tab-btn active">GPC Data Setup</button>
+    <button class="tab-btn">Request Review</button>
+  </div>
+
+  <!-- Form Header -->
+  <div class="form-header-sticky">
+    <div class="form-header-left">
+      <h1>GPC Data Setup</h1>
+      <span class="plm-badge">PLM149</span>
+    </div>
+    <div class="form-header-center">
+      <span class="product-label">Products</span>
+      <button class="product-btn active">P1</button>
+      <button class="product-btn">P2</button>
+      <button class="product-btn">P3</button>
+      <button class="product-btn">P4</button>
+    </div>
+    <div class="form-header-right">
+      <button class="btn-save">Save</button>
+    </div>
+  </div>
+
+  <!-- Content Area -->
+  <div class="page-container">
+    <div class="form-content">
+      <div class="section-header">
+        <h2><span class="p1-badge">P1</span>Naming</h2>
+        <button class="section-expand-btn">⤢</button>
       </div>
 
-      <!-- Product Tabs -->
-      <div class="product-tabs">
-        <span class="product-tabs-label">Products</span>
-        <button class="product-tab active">P1</button>
-        <button class="product-tab">P2</button>
-        <button class="product-tab">P3</button>
-        <button class="product-tab">P4</button>
-      </div>
-
-      <!-- Form Content -->
-      <div class="form-content">
-        <div class="section-header">
-          <h2><span class="p1-badge">P1</span>Naming</h2>
-          <button class="section-expand-btn">⤢</button>
-        </div>
-
-        <div class="form-grid">
-          <!-- Left Column -->
-          <div>
-            <div class="form-field">
-              <label class="field-label">
-                TASK <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <input type="text" class="form-control" placeholder="SC. 1 - New Product/SKU Set up" />
-            </div>
-
-            <div class="form-field">
-              <label class="field-label">
-                PRODUCT TYPE <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <select class="form-control">
-                <option>Select...</option>
-                <option>Type A</option>
-                <option>Type B</option>
-              </select>
-            </div>
-
-            <div class="form-field">
-              <label class="field-label">
-                INTERMEDIATE FULL NAME <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <input type="text" class="form-control" placeholder="Placeholder" />
-            </div>
-
-            <div class="form-field">
-              <label class="field-label">
-                CAS NUMBER
-                <span class="info-icon">i</span>
-              </label>
-              <input type="text" class="form-control" placeholder="Placeholder" />
-            </div>
-
-            <div class="form-field">
-              <label class="field-label">
-                GRADE <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <select class="form-control">
-                <option>Select...</option>
-                <option>Grade A</option>
-                <option>Grade B</option>
-              </select>
-            </div>
-
-            <div class="form-field">
-              <label class="field-label">
-                SULPHUR <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <select class="form-control">
-                <option>Select...</option>
-                <option>Low</option>
-                <option>High</option>
-              </select>
-            </div>
-
-            <div class="form-field">
-              <label class="field-label">
-                REGULATORY 1 <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <select class="form-control">
-                <option>Select...</option>
-              </select>
-            </div>
-
-            <div class="form-field">
-              <label class="field-label">
-                OXY TYPE & LIMIT <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <select class="form-control">
-                <option>Select...</option>
-              </select>
-            </div>
-
-            <div class="form-field">
-              <label class="field-label">
-                OTHER STATUS <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <select class="form-control">
-                <option>Select...</option>
-              </select>
-            </div>
-
-            <div class="form-field">
-              <label class="field-label">
-                SALEABLE PRODUCT NAME <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <input type="text" class="form-control" placeholder="United States" />
-            </div>
-
-            <div class="form-field">
-              <label class="field-label">
-                EXTERNAL NAME FOR MSDS <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <input type="text" class="form-control" placeholder="Placeholder text" />
-            </div>
-
-            <div class="form-field">
-              <label class="field-label">
-                SHORT NAME <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <input type="text" class="form-control" placeholder="Placeholder text" />
-            </div>
-
-            <div class="form-field">
-              <label class="field-label">
-                PRODUCT FAMILY <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <input type="text" class="form-control" placeholder="Unbranded/NOT SOLD" />
-            </div>
-
-            <div class="form-field">
-              <label class="field-label">
-                PRODUCT DESCRIPTOR <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <textarea class="form-control" placeholder="Placeholder"></textarea>
-            </div>
-
-            <div class="form-field">
-              <label class="field-label">
-                DATA OWNER <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <select class="form-control">
-                <option>Select...</option>
-              </select>
-            </div>
+      <div class="form-grid">
+        <!-- Left Column -->
+        <div>
+          <div class="form-field">
+            <label class="field-label">
+              TASK <span class="required">*</span>
+              <span class="info-icon">i</span>
+            </label>
+            <input type="text" class="form-control" placeholder="SC. 1 - New Product/SKU Set up" />
           </div>
 
-          <!-- Right Column -->
-          <div>
-            <div class="form-field">
-              <label class="field-label">
-                BRAND STATUS <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <select class="form-control">
-                <option>Select...</option>
-              </select>
-            </div>
+          <div class="form-field">
+            <label class="field-label">
+              PRODUCT TYPE <span class="required">*</span>
+              <span class="info-icon">i</span>
+            </label>
+            <select class="form-control">
+              <option>Select...</option>
+              <option>Type A</option>
+              <option>Type B</option>
+            </select>
+          </div>
 
-            <div class="form-field">
-              <label class="field-label">
-                COUNTRY NAME <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <select class="form-control">
-                <option>United States</option>
-              </select>
-            </div>
+          <div class="form-field">
+            <label class="field-label">
+              INTERMEDIATE FULL NAME <span class="required">*</span>
+              <span class="info-icon">i</span>
+            </label>
+            <input type="text" class="form-control" placeholder="Placeholder" />
+          </div>
 
-            <div class="form-field">
-              <label class="field-label">
-                MANUFACTURING LOCATION/VENDOR <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <textarea class="form-control" placeholder="Placeholder"></textarea>
-            </div>
+          <div class="form-field">
+            <label class="field-label">
+              CAS NUMBER
+              <span class="info-icon">i</span>
+            </label>
+            <input type="text" class="form-control" placeholder="Placeholder" />
+          </div>
 
-            <div class="form-field">
-              <label class="field-label">
-                OTHER TEXT
-                <span class="info-icon">i</span>
-              </label>
-              <input type="text" class="form-control" placeholder="Placeholder" />
-            </div>
+          <div class="form-field">
+            <label class="field-label">
+              GRADE <span class="required">*</span>
+              <span class="info-icon">i</span>
+            </label>
+            <select class="form-control">
+              <option>Select...</option>
+              <option>Grade A</option>
+              <option>Grade B</option>
+            </select>
+          </div>
+        </div>
 
-            <div class="form-field">
-              <label class="field-label">
-                OCTANE <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <select class="form-control">
-                <option>Select...</option>
-              </select>
-            </div>
+        <!-- Right Column -->
+        <div>
+          <div class="form-field">
+            <label class="field-label">
+              BRAND STATUS <span class="required">*</span>
+              <span class="info-icon">i</span>
+            </label>
+            <select class="form-control">
+              <option>Select...</option>
+            </select>
+          </div>
 
-            <div class="form-field">
-              <label class="field-label">
-                VISCOSITY <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <select class="form-control">
-                <option>Select...</option>
-              </select>
-            </div>
+          <div class="form-field">
+            <label class="field-label">
+              COUNTRY NAME <span class="required">*</span>
+              <span class="info-icon">i</span>
+            </label>
+            <select class="form-control">
+              <option>United States</option>
+            </select>
+          </div>
 
-            <div class="form-field">
-              <label class="field-label">
-                REGULATORY 2 <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <select class="form-control">
-                <option>Select...</option>
-              </select>
-            </div>
+          <div class="form-field">
+            <label class="field-label">
+              MANUFACTURING LOCATION/VENDOR <span class="required">*</span>
+              <span class="info-icon">i</span>
+            </label>
+            <textarea class="form-control" placeholder="Placeholder"></textarea>
+          </div>
 
-            <div class="form-field">
-              <label class="field-label">
-                RID INITIAL CONTENT'S LEVEL <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <select class="form-control">
-                <option>Select...</option>
-              </select>
-            </div>
+          <div class="form-field">
+            <label class="field-label">
+              OTHER TEXT
+              <span class="info-icon">i</span>
+            </label>
+            <input type="text" class="form-control" placeholder="Placeholder" />
+          </div>
 
-            <div class="form-field">
-              <label class="field-label">
-                WARNING STATUS <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <select class="form-control">
-                <option>Select...</option>
-              </select>
-            </div>
-
-            <div class="form-field">
-              <label class="field-label">
-                BULK PRODUCT NAME <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <input type="text" class="form-control" placeholder="U" />
-            </div>
-
-            <div class="form-field">
-              <label class="field-label">
-                SALES TEXT FOR INVOICES, BOL <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <input type="text" class="form-control" placeholder="Placeholder text" />
-            </div>
-
-            <div class="form-field">
-              <label class="field-label">
-                PRODUCT NAME <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <select class="form-control">
-                <option>No Brand</option>
-              </select>
-            </div>
-
-            <div class="form-field">
-              <label class="field-label">
-                BRAND CATEGORY <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <input type="text" class="form-control" placeholder="Unbranded Products" />
-            </div>
-
-            <div class="form-field">
-              <label class="field-label">
-                MATERIAL DESCRIPTION <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <textarea class="form-control" placeholder="Placeholder"></textarea>
-            </div>
-
-            <div class="form-field">
-              <label class="field-label">
-                DEPUTY OWNER <span class="required">*</span>
-                <span class="info-icon">i</span>
-              </label>
-              <select class="form-control">
-                <option>Select...</option>
-              </select>
-            </div>
+          <div class="form-field">
+            <label class="field-label">
+              OCTANE <span class="required">*</span>
+              <span class="info-icon">i</span>
+            </label>
+            <select class="form-control">
+              <option>Select...</option>
+            </select>
           </div>
         </div>
       </div>
