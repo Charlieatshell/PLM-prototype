@@ -860,5 +860,24 @@
       </div>
     </div>
   </div>
+
+  <script>
+    // Product button click handlers
+    const productButtons = document.querySelectorAll('.product-btn');
+    const badgeElement = document.querySelector('.p1-badge');
+
+    productButtons.forEach((button, index) => {
+      button.addEventListener('click', function() {
+        // Remove active class from all buttons
+        productButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // Add active class to clicked button
+        this.classList.add('active');
+        
+        // Update badge text (P1, P2, P3, P4)
+        badgeElement.textContent = `P${index + 1}`;
+      });
+    });
+  </script>
 </body>
 </html>
