@@ -1423,7 +1423,7 @@
   <script>
     // Product button click handlers
     const productButtons = document.querySelectorAll('.product-btn');
-    const badgeElement = document.querySelector('.p1-badge');
+    const badgeElements = document.querySelectorAll('.p1-badge');
 
     productButtons.forEach((button, index) => {
       button.addEventListener('click', function() {
@@ -1433,8 +1433,10 @@
         // Add active class to clicked button
         this.classList.add('active');
         
-        // Update badge text (P1, P2, P3, P4)
-        badgeElement.textContent = `P${index + 1}`;
+        // Update badge text (P1, P2, P3, P4) on all badge elements
+        badgeElements.forEach(badge => {
+          badge.textContent = `P${index + 1}`;
+        });
       });
     });
 
