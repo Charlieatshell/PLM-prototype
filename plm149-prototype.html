@@ -1444,6 +1444,12 @@
 
     sidebarItems.forEach((item, index) => {
       item.addEventListener('click', function() {
+        // Remove active class from all sidebar items
+        sidebarItems.forEach(sidebarItem => sidebarItem.classList.remove('active'));
+        
+        // Add active class to clicked item
+        this.classList.add('active');
+        
         // Hide all sections
         formSections.forEach(section => {
           section.style.display = 'none';
