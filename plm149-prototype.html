@@ -608,12 +608,14 @@
     <div class="main-content">
       <!-- Form Content -->
       <div class="form-content">
-        <div class="section-header">
-          <h2><span class="p1-badge">P1</span>Naming</h2>
-          <button class="section-expand-btn">⤢</button>
-        </div>
+        <!-- Naming Section -->
+        <div id="section-naming" class="form-section">
+          <div class="section-header">
+            <h2><span class="p1-badge">P1</span>Naming</h2>
+            <button class="section-expand-btn">⤢</button>
+          </div>
 
-        <div class="form-grid">
+          <div class="form-grid">
           <!-- Left Column -->
           <div>
             <div class="form-field">
@@ -1106,6 +1108,314 @@
             </div>
           </div>
         </div>
+        </div>
+        <!-- Classification Section -->
+        <div id="section-classification" class="form-section" style="display: none;">
+          <div class="section-header">
+            <h2><span class="p1-badge">P1</span>Classification</h2>
+            <button class="section-expand-btn">⤢</button>
+          </div>
+
+          <div class="form-grid">
+            <!-- Left Column -->
+            <div>
+              <div class="form-field">
+                <label class="field-label">
+                  PRODUCT CLASSIFICATION <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  SUB-CLASS <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" placeholder="Autofilled" />
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  SUB-GROUP <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" placeholder="Autofilled" />
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  EPC PRODUCT HIERARCHY CLASS 2 <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" placeholder="Autofilled" />
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  GRADE <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" placeholder="Autofilled" />
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  RVP GROUP <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" placeholder="Autofilled" />
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  QAS GRADE GROUP <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  QAS BIA GRADE ID <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  CUSTOMS TARIFF NUMBER <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" placeholder="Placeholder" />
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  REACH SCC <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Reach non-SCC</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  TIERING CLASSIFICATION <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Maingrade - Commodity</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  BLANK CELL <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>N/A</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  GRADE TYPE <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  US EPA CATEGORY CODE <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  BLANK <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>N/A</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  QAS BIA GRADE ID <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" placeholder="Placeholder text" />
+              </div>
+            </div>
+
+            <!-- Right Column -->
+            <div>
+              <div class="form-field">
+                <label class="field-label">
+                  CLASS <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" placeholder="Autofilled" />
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  GROUP <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" placeholder="Autofilled" />
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  SUB-SUB-GROUP <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" placeholder="Autofilled" />
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  EPC PRODUCT HIERARCHY CLASS 3 <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" placeholder="Autofilled" />
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  OXYGENATE/BIO-FUEL CONTENT <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" placeholder="Autofilled" />
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  IS THIS PRODUCT AT A REFINERY IN THE USCA <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  QAS BIA GRADE GROUP <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  IS IT EXCLUSIVELY 3RD PARTY PRODUCT <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  CURRENT STATUS <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  SECURITY CLASSIFICATION <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  IS PRODUCT TO BE SOLD TO CUSTOMER <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  BLANK CELL <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>N/A</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  US ODE PRODUCT CODE <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  LIFO POOL <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  DEX GRADE FOR 87T <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" placeholder="Placeholder text" />
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  BLANK CELL <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" placeholder="Placeholder text" />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1125,6 +1435,25 @@
         
         // Update badge text (P1, P2, P3, P4)
         badgeElement.textContent = `P${index + 1}`;
+      });
+    });
+
+    // Sidebar section switching
+    const sidebarItems = document.querySelectorAll('.sidebar-item');
+    const formSections = document.querySelectorAll('.form-section');
+
+    sidebarItems.forEach((item, index) => {
+      item.addEventListener('click', function() {
+        // Hide all sections
+        formSections.forEach(section => {
+          section.style.display = 'none';
+        });
+
+        // Show the selected section (index + 1 = section number)
+        const targetSection = document.getElementById(`section-${index === 0 ? 'naming' : index === 1 ? 'classification' : 'section-' + (index + 1)}`);
+        if (targetSection) {
+          targetSection.style.display = '';
+        }
       });
     });
   </script>
