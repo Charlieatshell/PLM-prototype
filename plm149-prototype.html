@@ -1450,7 +1450,8 @@
         });
 
         // Show the selected section (index + 1 = section number)
-        const targetSection = document.getElementById(`section-${index === 0 ? 'naming' : index === 1 ? 'classification' : 'section-' + (index + 1)}`);
+        const sectionNames = ['naming', 'classification', 'country-specific', 'technical-properties', 'sku-country-details', 'country-of-sale', 'standard-data'];
+        const targetSection = document.getElementById(`section-${sectionNames[index]}`);
         if (targetSection) {
           targetSection.style.display = '';
         }
