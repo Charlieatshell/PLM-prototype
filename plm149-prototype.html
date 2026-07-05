@@ -1929,6 +1929,70 @@
             </table>
           </div>
         </div>
+
+        <!-- SKU & Country Details Section -->
+        <div id="section-sku-country-details" class="form-section" style="display: none;">
+          <div class="section-header">
+            <h2><span class="p1-badge">P1</span>SKU & Country Details</h2>
+            <button class="section-expand-btn">⤢</button>
+          </div>
+
+          <div class="form-grid">
+            <!-- Left Column -->
+            <div>
+              <div class="form-field">
+                <label class="field-label">
+                  BRAND STATUS <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" value="BF" disabled style="background-color: #F5F5F5;" />
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  SKU CODE <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" value="SKU-12345" disabled style="background-color: #F5F5F5;" />
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  DENSITY TYPE <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+<option value="">Select</option>
+<option value="density-25">Density [kg/m³ @ 25°C]</option>
+<option value="api-gravity">API Gravity</option>
+</select>
+              </div>
+            </div>
+
+            <!-- Right Column -->
+            <div>
+              <div class="form-field">
+                <label class="field-label">
+                  PACK TYPE <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+<option value="">Select</option>
+<option value="bulk" selected>Bulk</option>
+<option value="packaged">Packaged</option>
+</select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  DENSITY VALUE <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="number" class="form-control" placeholder="Numeric value" />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
