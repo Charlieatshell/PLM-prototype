@@ -1636,7 +1636,6 @@
               <thead>
                 <tr>
                   <th>Constituent of Concern</th>
-                  <th>CAS Number</th>
                   <th>Min % <span class="required">*</span></th>
                   <th>Max % <span class="required">*</span></th>
                   <th>Typical %</th>
@@ -1646,14 +1645,13 @@
               <tbody>
                 <tr>
                   <td><input type="text" class="form-control" placeholder="Constituent name" /></td>
-                  <td><input type="text" class="form-control" placeholder="CAS #" /></td>
                   <td><input type="number" class="form-control" placeholder="Min %" /></td>
                   <td><input type="number" class="form-control" placeholder="Max %" /></td>
                   <td><input type="number" class="form-control" placeholder="Typical %" /></td>
                   <td class="action-cell"><button type="button" class="delete-row-btn" title="Delete row">✕</button></td>
                 </tr>
                 <tr class="add-row">
-                  <td colspan="6">
+                  <td colspan="5">
                     <button type="button" class="add-constituent-btn">+ Add Constituent</button>
                   </td>
                 </tr>
@@ -1770,7 +1768,6 @@
         const newRow = document.createElement('tr');
         newRow.innerHTML = `
           <td><input type="text" class="form-control" placeholder="Constituent name" /></td>
-          <td><input type="text" class="form-control" placeholder="CAS #" /></td>
           <td><input type="number" class="form-control" placeholder="Min %" /></td>
           <td><input type="number" class="form-control" placeholder="Max %" /></td>
           <td><input type="number" class="form-control" placeholder="Typical %" /></td>
