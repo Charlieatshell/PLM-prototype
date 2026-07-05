@@ -568,6 +568,34 @@
       background: #f9f9f9;
     }
 
+    .action-cell {
+      text-align: center;
+      padding: 12px 6px;
+    }
+
+    .delete-row-btn {
+      background: none;
+      border: 1px solid #ff6900;
+      border-radius: 2px;
+      color: #ff6900;
+      font-size: 1.25rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0 6px;
+      line-height: 1;
+      transition: all 0.2s ease;
+    }
+
+    .delete-row-btn:hover {
+      background: #fff4f0;
+      border-color: #ff5500;
+      color: #ff5500;
+    }
+
+    .delete-row-btn:active {
+      background: #ffe8dd;
+    }
+
     .add-ingredient-btn {
       width: 100%;
       padding: 10px 12px;
@@ -1532,54 +1560,50 @@
             <button class="section-expand-btn">⤢</button>
           </div>
 
-          <div class="form-grid">
-            <!-- Left Column -->
-            <div>
-              <div class="form-field">
-                <label class="field-label">
-                  EXACT COMPOSITION <span class="required">*</span>
-                  <span class="info-icon">i</span>
-                </label>
-                <table class="composition-table">
-                  <thead>
-                    <tr>
-                      <th>Exact Composition</th>
-                      <th>Min % <span class="required">*</span></th>
-                      <th>Max % <span class="required">*</span></th>
-                      <th>Typical %</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><input type="text" class="form-control" value="Benzene" /></td>
-                      <td><input type="number" class="form-control" value="5" /></td>
-                      <td><input type="number" class="form-control" value="10" /></td>
-                      <td><input type="number" class="form-control" value="7" /></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" class="form-control" value="Ethanol" /></td>
-                      <td><input type="number" class="form-control" value="1" /></td>
-                      <td><input type="number" class="form-control" value="5" /></td>
-                      <td><input type="number" class="form-control" value="3" /></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" class="form-control" value="Toluene" /></td>
-                      <td><input type="number" class="form-control" value="20" /></td>
-                      <td><input type="number" class="form-control" value="40" /></td>
-                      <td><input type="number" class="form-control" value="30" /></td>
-                    </tr>
-                    <tr class="add-row">
-                      <td colspan="4">
-                        <button type="button" class="add-ingredient-btn">+ Add Ingredient</button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <!-- Right Column -->
-            <div></div>
+          <div class="form-field" style="grid-column: 1 / -1;">
+            <label class="field-label">
+              EXACT COMPOSITION <span class="required">*</span>
+              <span class="info-icon">i</span>
+            </label>
+            <table class="composition-table">
+              <thead>
+                <tr>
+                  <th>Exact Composition</th>
+                  <th>Min % <span class="required">*</span></th>
+                  <th>Max % <span class="required">*</span></th>
+                  <th>Typical %</th>
+                  <th style="width: 40px; text-align: center;">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input type="text" class="form-control" value="Benzene" /></td>
+                  <td><input type="number" class="form-control" value="5" /></td>
+                  <td><input type="number" class="form-control" value="10" /></td>
+                  <td><input type="number" class="form-control" value="7" /></td>
+                  <td class="action-cell"><button type="button" class="delete-row-btn" title="Delete row">✕</button></td>
+                </tr>
+                <tr>
+                  <td><input type="text" class="form-control" value="Ethanol" /></td>
+                  <td><input type="number" class="form-control" value="1" /></td>
+                  <td><input type="number" class="form-control" value="5" /></td>
+                  <td><input type="number" class="form-control" value="3" /></td>
+                  <td class="action-cell"><button type="button" class="delete-row-btn" title="Delete row">✕</button></td>
+                </tr>
+                <tr>
+                  <td><input type="text" class="form-control" value="Toluene" /></td>
+                  <td><input type="number" class="form-control" value="20" /></td>
+                  <td><input type="number" class="form-control" value="40" /></td>
+                  <td><input type="number" class="form-control" value="30" /></td>
+                  <td class="action-cell"><button type="button" class="delete-row-btn" title="Delete row">✕</button></td>
+                </tr>
+                <tr class="add-row">
+                  <td colspan="5">
+                    <button type="button" class="add-ingredient-btn">+ Add Ingredient</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -1632,6 +1656,25 @@
       });
     });
 
+    // Function to attach delete handlers to delete buttons
+    function attachDeleteHandlers() {
+      const deleteButtons = document.querySelectorAll('.delete-row-btn');
+      deleteButtons.forEach(btn => {
+        // Remove existing listeners by cloning
+        const newBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(newBtn, btn);
+      });
+      
+      // Re-query and attach new listeners
+      document.querySelectorAll('.delete-row-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const row = this.closest('tr');
+          row.remove();
+        });
+      });
+    }
+
     // Add Ingredient button handler
     const addIngredientBtn = document.querySelector('.add-ingredient-btn');
     if (addIngredientBtn) {
@@ -1641,19 +1684,26 @@
         const tbody = table.querySelector('tbody');
         const addRow = table.querySelector('.add-row');
         
-        // Create new row with empty inputs
+        // Create new row with empty inputs and delete button
         const newRow = document.createElement('tr');
         newRow.innerHTML = `
           <td><input type="text" class="form-control" placeholder="Ingredient name" /></td>
           <td><input type="number" class="form-control" placeholder="Min %" /></td>
           <td><input type="number" class="form-control" placeholder="Max %" /></td>
           <td><input type="number" class="form-control" placeholder="Typical %" /></td>
+          <td class="action-cell"><button type="button" class="delete-row-btn" title="Delete row">✕</button></td>
         `;
         
         // Insert before the add row
         tbody.insertBefore(newRow, addRow);
+        
+        // Attach delete handlers to all buttons
+        attachDeleteHandlers();
       });
     }
+
+    // Initial attachment of delete handlers
+    attachDeleteHandlers();
   </script>
 </body>
 </html>
