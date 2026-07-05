@@ -507,6 +507,84 @@
       resize: vertical;
       min-height: 80px;
     }
+
+    /* Composition Table */
+    .composition-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      overflow: hidden;
+      font-size: 0.875rem;
+    }
+
+    .composition-table thead {
+      background: #f5f5f5;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .composition-table th {
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+      color: var(--text-primary);
+      border-right: 1px solid #e0e0e0;
+    }
+
+    .composition-table th:last-child {
+      border-right: none;
+    }
+
+    .composition-table td {
+      padding: 12px;
+      border-right: 1px solid #e0e0e0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .composition-table td:last-child {
+      border-right: none;
+    }
+
+    .composition-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .composition-table input.form-control {
+      width: 100%;
+      padding: 6px 8px;
+      border: 1px solid #e0e0e0;
+      border-radius: 2px;
+      font-size: 0.875rem;
+    }
+
+    .composition-table input.form-control:focus {
+      outline: none;
+      border-color: #007fa2;
+      box-shadow: 0 0 0 3px rgba(0, 127, 162, 0.1);
+    }
+
+    .composition-table .add-row {
+      background: #f9f9f9;
+    }
+
+    .add-ingredient-btn {
+      width: 100%;
+      padding: 10px 12px;
+      background: white;
+      border: 1px dashed #007fa2;
+      border-radius: 3px;
+      color: #007fa2;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.875rem;
+      transition: all 0.2s;
+    }
+
+    .add-ingredient-btn:hover {
+      background: #f0f8fc;
+      border-style: solid;
+    }
   </style>
 </head>
 <body>
@@ -1446,6 +1524,64 @@
             <div></div>
           </div>
         </div>
+
+        <!-- Technical Properties Section -->
+        <div id="section-technical-properties" class="form-section" style="display: none;">
+          <div class="section-header">
+            <h2><span class="p1-badge">P1</span>Technical Properties</h2>
+            <button class="section-expand-btn">⤢</button>
+          </div>
+
+          <div class="form-grid">
+            <!-- Left Column -->
+            <div>
+              <div class="form-field">
+                <label class="field-label">
+                  EXACT COMPOSITION <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <table class="composition-table">
+                  <thead>
+                    <tr>
+                      <th>Exact Composition</th>
+                      <th>Min % <span class="required">*</span></th>
+                      <th>Max % <span class="required">*</span></th>
+                      <th>Typical %</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><input type="text" class="form-control" value="Benzene" /></td>
+                      <td><input type="number" class="form-control" value="5" /></td>
+                      <td><input type="number" class="form-control" value="10" /></td>
+                      <td><input type="number" class="form-control" value="7" /></td>
+                    </tr>
+                    <tr>
+                      <td><input type="text" class="form-control" value="Ethanol" /></td>
+                      <td><input type="number" class="form-control" value="1" /></td>
+                      <td><input type="number" class="form-control" value="5" /></td>
+                      <td><input type="number" class="form-control" value="3" /></td>
+                    </tr>
+                    <tr>
+                      <td><input type="text" class="form-control" value="Toluene" /></td>
+                      <td><input type="number" class="form-control" value="20" /></td>
+                      <td><input type="number" class="form-control" value="40" /></td>
+                      <td><input type="number" class="form-control" value="30" /></td>
+                    </tr>
+                    <tr class="add-row">
+                      <td colspan="4">
+                        <button type="button" class="add-ingredient-btn">+ Add Ingredient</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Right Column -->
+            <div></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1495,6 +1631,29 @@
         }
       });
     });
+
+    // Add Ingredient button handler
+    const addIngredientBtn = document.querySelector('.add-ingredient-btn');
+    if (addIngredientBtn) {
+      addIngredientBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const table = this.closest('table');
+        const tbody = table.querySelector('tbody');
+        const addRow = table.querySelector('.add-row');
+        
+        // Create new row with empty inputs
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+          <td><input type="text" class="form-control" placeholder="Ingredient name" /></td>
+          <td><input type="number" class="form-control" placeholder="Min %" /></td>
+          <td><input type="number" class="form-control" placeholder="Max %" /></td>
+          <td><input type="number" class="form-control" placeholder="Typical %" /></td>
+        `;
+        
+        // Insert before the add row
+        tbody.insertBefore(newRow, addRow);
+      });
+    }
   </script>
 </body>
 </html>
