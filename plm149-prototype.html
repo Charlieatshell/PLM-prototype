@@ -503,6 +503,11 @@
       color: var(--text-secondary);
     }
 
+    select.form-control {
+      width: 100%;
+      padding: 8px 12px;
+    }
+
     textarea.form-control {
       resize: vertical;
       min-height: 80px;
@@ -1598,24 +1603,24 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><select class="form-control"><option value="Benzene" selected>Benzene</option></select></td>
+                  <td><select class="form-control"><option value="">Select</option><option value="Benzene" selected>Benzene</option></select></td>
                   <td><input type="number" class="form-control" value="5" /></td>
                   <td><input type="number" class="form-control" value="10" /></td>
-                  <td><select class="form-control"><option value="7" selected>7</option></select></td>
+                  <td><select class="form-control"><option value="">Select</option><option value="7" selected>7</option></select></td>
                   <td class="action-cell"><button type="button" class="delete-row-btn" title="Delete row">✕</button></td>
                 </tr>
                 <tr>
-                  <td><select class="form-control"><option value="Ethanol" selected>Ethanol</option></select></td>
+                  <td><select class="form-control"><option value="">Select</option><option value="Ethanol" selected>Ethanol</option></select></td>
                   <td><input type="number" class="form-control" value="1" /></td>
                   <td><input type="number" class="form-control" value="5" /></td>
-                  <td><select class="form-control"><option value="3" selected>3</option></select></td>
+                  <td><select class="form-control"><option value="">Select</option><option value="3" selected>3</option></select></td>
                   <td class="action-cell"><button type="button" class="delete-row-btn" title="Delete row">✕</button></td>
                 </tr>
                 <tr>
-                  <td><select class="form-control"><option value="Toluene" selected>Toluene</option></select></td>
+                  <td><select class="form-control"><option value="">Select</option><option value="Toluene" selected>Toluene</option></select></td>
                   <td><input type="number" class="form-control" value="20" /></td>
                   <td><input type="number" class="form-control" value="40" /></td>
-                  <td><select class="form-control"><option value="30" selected>30</option></select></td>
+                  <td><select class="form-control"><option value="">Select</option><option value="30" selected>30</option></select></td>
                   <td class="action-cell"><button type="button" class="delete-row-btn" title="Delete row">✕</button></td>
                 </tr>
                 <tr class="add-row">
@@ -1644,10 +1649,10 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><select class="form-control" placeholder="Constituent name"><option value=""></option></select></td>
+                  <td><select class="form-control"><option value="">Select</option></select></td>
                   <td><input type="number" class="form-control" placeholder="Min %" /></td>
                   <td><input type="number" class="form-control" placeholder="Max %" /></td>
-                  <td><select class="form-control"><option value=""></option></select></td>
+                  <td><select class="form-control"><option value="">Select</option></select></td>
                   <td class="action-cell"><button type="button" class="delete-row-btn" title="Delete row">✕</button></td>
                 </tr>
                 <tr class="add-row">
@@ -1676,154 +1681,154 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><input type="text" class="form-control" value="Boiling Range [°C]" readonly /></td>
+                  <td>Boiling Range [°C]</td>
                   <td><input type="number" class="form-control" value="10" /></td>
                   <td><input type="number" class="form-control" value="100" /></td>
                   <td><input type="number" class="form-control" /></td>
-                  <td><select class="form-control"><option selected>Dropdown</option></select></td>
+                  <td><select class="form-control"><option value="">Select</option><option selected>Dropdown</option></select></td>
                 </tr>
                 <tr>
-                  <td><input type="text" class="form-control" value="Flash Point [°C]" readonly /></td>
+                  <td>Flash Point [°C]</td>
                   <td><input type="number" class="form-control" value="0" /></td>
                   <td><input type="number" class="form-control" value="23" /></td>
                   <td><input type="number" class="form-control" /></td>
-                  <td><select class="form-control"><option selected>Dropdown</option></select></td>
+                  <td><select class="form-control"><option value="">Select</option><option selected>Dropdown</option></select></td>
                 </tr>
                 <tr>
-                  <td><input type="text" class="form-control" value="Freezing Point [°C]" readonly /></td>
+                  <td>Freezing Point [°C]</td>
                   <td><input type="number" class="form-control" value="0" /></td>
                   <td><input type="number" class="form-control" value="0" /></td>
                   <td><input type="number" class="form-control" /></td>
-                  <td><select class="form-control"><option selected>Unspecified</option></select></td>
+                  <td><select class="form-control"><option value="">Select</option><option selected>Unspecified</option></select></td>
                 </tr>
                 <tr>
-                  <td><input type="text" class="form-control" value="Pour Point [°C]" readonly /></td>
+                  <td>Pour Point [°C]</td>
                   <td><input type="number" class="form-control" value="-50" /></td>
                   <td><input type="number" class="form-control" value="35" /></td>
                   <td><input type="number" class="form-control" /></td>
                   <td><input type="text" class="form-control" value="ASTM D5950 / ISO 3016" /></td>
                 </tr>
                 <tr>
-                  <td><input type="text" class="form-control" value="Vapour Pressure [kPa @ 38°C]" readonly /></td>
+                  <td>Vapour Pressure [kPa @ 38°C]</td>
                   <td><input type="number" class="form-control" value="0" /></td>
                   <td><input type="number" class="form-control" value="0" /></td>
                   <td><input type="number" class="form-control" /></td>
-                  <td><select class="form-control"><option selected>Unspecified</option></select></td>
+                  <td><select class="form-control"><option value="">Select</option><option selected>Unspecified</option></select></td>
                 </tr>
                 <tr>
-                  <td><input type="text" class="form-control" value="Vapour Pressure [kPa @ 50°C]" readonly /></td>
+                  <td>Vapour Pressure [kPa @ 50°C]</td>
                   <td><input type="number" class="form-control" value="0" /></td>
                   <td><input type="number" class="form-control" value="0" /></td>
                   <td><input type="number" class="form-control" /></td>
-                  <td><select class="form-control"><option selected>Unspecified</option></select></td>
+                  <td><select class="form-control"><option value="">Select</option><option selected>Unspecified</option></select></td>
                 </tr>
                 <tr>
-                  <td><input type="text" class="form-control" value="Viscosity [mm²/s @ 20°C]" readonly /></td>
+                  <td>Viscosity [mm²/s @ 20°C]</td>
                   <td><input type="number" class="form-control" value="3" /></td>
                   <td><input type="number" class="form-control" value="8" /></td>
                   <td><input type="number" class="form-control" /></td>
-                  <td><select class="form-control"><option selected>Unspecified</option></select></td>
+                  <td><select class="form-control"><option value="">Select</option><option selected>Unspecified</option></select></td>
                 </tr>
                 <tr>
-                  <td><input type="text" class="form-control" value="Viscosity [mm²/s @ 40°C]" readonly /></td>
+                  <td>Viscosity [mm²/s @ 40°C]</td>
                   <td><input type="number" class="form-control" value="3" /></td>
                   <td><input type="number" class="form-control" value="1000" /></td>
                   <td><input type="number" class="form-control" /></td>
-                  <td><select class="form-control"><option selected>Unspecified</option></select></td>
+                  <td><select class="form-control"><option value="">Select</option><option selected>Unspecified</option></select></td>
                 </tr>
                 <tr>
-                  <td><input type="text" class="form-control" value="Viscosity [mm²/s @ 50°C]" readonly /></td>
+                  <td>Viscosity [mm²/s @ 50°C]</td>
                   <td><input type="number" class="form-control" value="0" /></td>
                   <td><input type="number" class="form-control" value="0" /></td>
                   <td><input type="number" class="form-control" /></td>
-                  <td><select class="form-control"><option selected>Unspecified</option></select></td>
+                  <td><select class="form-control"><option value="">Select</option><option selected>Unspecified</option></select></td>
                 </tr>
                 <tr>
-                  <td><input type="text" class="form-control" value="Total Aromatic Content %" readonly /></td>
+                  <td>Total Aromatic Content %</td>
                   <td><input type="number" class="form-control" value="0" /></td>
                   <td><input type="number" class="form-control" value="0" /></td>
                   <td><input type="number" class="form-control" /></td>
-                  <td><select class="form-control"><option selected>Unspecified</option></select></td>
+                  <td><select class="form-control"><option value="">Select</option><option selected>Unspecified</option></select></td>
                 </tr>
                 <tr>
-                  <td><input type="text" class="form-control" value="Colour" readonly /></td>
+                  <td>Colour</td>
                   <td><input type="text" class="form-control" value="Brown to Black" /></td>
                   <td><input type="text" class="form-control" /></td>
                   <td><input type="text" class="form-control" /></td>
-                  <td><select class="form-control"><option selected>Unspecified</option></select></td>
+                  <td><select class="form-control"><option value="">Select</option><option selected>Unspecified</option></select></td>
                 </tr>
                 <tr>
-                  <td><input type="text" class="form-control" value="Odour" readonly /></td>
+                  <td>Odour</td>
                   <td><input type="text" class="form-control" value="Hydrocarbon" /></td>
                   <td><input type="text" class="form-control" /></td>
                   <td><input type="text" class="form-control" /></td>
-                  <td><select class="form-control"><option selected>Unspecified</option></select></td>
+                  <td><select class="form-control"><option value="">Select</option><option selected>Unspecified</option></select></td>
                 </tr>
                 <tr>
-                  <td><input type="text" class="form-control" value="State of Matter (Ambient)" readonly /></td>
+                  <td>State of Matter (Ambient)</td>
                   <td><input type="text" class="form-control" value="Liquid" /></td>
                   <td><input type="text" class="form-control" /></td>
                   <td><input type="text" class="form-control" /></td>
-                  <td><select class="form-control"><option selected>Unspecified</option></select></td>
+                  <td><select class="form-control"><option value="">Select</option><option selected>Unspecified</option></select></td>
                 </tr>
                 <tr>
-                  <td><input type="text" class="form-control" value="Form (Delivered)" readonly /></td>
+                  <td>Form (Delivered)</td>
                   <td><input type="text" class="form-control" value="Liquid" /></td>
                   <td><input type="text" class="form-control" /></td>
                   <td><input type="text" class="form-control" /></td>
-                  <td><select class="form-control"><option selected>Unspecified</option></select></td>
+                  <td><select class="form-control"><option value="">Select</option><option selected>Unspecified</option></select></td>
                 </tr>
                 <tr>
-                  <td><input type="text" class="form-control" value="Density [kg/m³ @ 15°C]" readonly /></td>
+                  <td>Density [kg/m³ @ 15°C]</td>
                   <td><input type="number" class="form-control" value="800" /></td>
                   <td><input type="number" class="form-control" value="800" /></td>
                   <td><input type="number" class="form-control" /></td>
-                  <td><select class="form-control"><option selected>Unspecified</option></select></td>
+                  <td><select class="form-control"><option value="">Select</option><option selected>Unspecified</option></select></td>
                 </tr>
                 <tr>
-                  <td><input type="text" class="form-control" value="Density [kg/m³ @ 70°C]" readonly /></td>
+                  <td>Density [kg/m³ @ 70°C]</td>
                   <td><input type="text" class="form-control" placeholder="Value" /></td>
                   <td><input type="text" class="form-control" /></td>
                   <td><input type="text" class="form-control" /></td>
-                  <td><select class="form-control"><option selected>Unspecified</option></select></td>
+                  <td><select class="form-control"><option value="">Select</option><option selected>Unspecified</option></select></td>
                 </tr>
                 <tr>
-                  <td><input type="text" class="form-control" value="Relative Vapour Density (air = 1)" readonly /></td>
+                  <td>Relative Vapour Density (air = 1)</td>
                   <td><input type="text" class="form-control" placeholder="Value" /></td>
                   <td><input type="text" class="form-control" /></td>
                   <td><input type="text" class="form-control" /></td>
-                  <td><select class="form-control"><option selected>Unspecified</option></select></td>
+                  <td><select class="form-control"><option value="">Select</option><option selected>Unspecified</option></select></td>
                 </tr>
                 <tr>
-                  <td><input type="text" class="form-control" value="RON Number" readonly /></td>
+                  <td>RON Number</td>
                   <td><input type="text" class="form-control" placeholder="Value" /></td>
                   <td><input type="text" class="form-control" /></td>
                   <td><input type="text" class="form-control" /></td>
-                  <td><select class="form-control"><option selected>Unspecified</option></select></td>
+                  <td><select class="form-control"><option value="">Select</option><option selected>Unspecified</option></select></td>
                 </tr>
                 <tr>
-                  <td><input type="text" class="form-control" value="Crystalizing Point" readonly /></td>
+                  <td>Crystalizing Point</td>
                   <td><input type="text" class="form-control" placeholder="Value" /></td>
                   <td><input type="text" class="form-control" /></td>
                   <td><input type="text" class="form-control" /></td>
-                  <td><select class="form-control"><option selected>Unspecified</option></select></td>
+                  <td><select class="form-control"><option value="">Select</option><option selected>Unspecified</option></select></td>
                 </tr>
                 <tr>
-                  <td><input type="text" class="form-control" value="Softening Point" readonly /></td>
+                  <td>Softening Point</td>
                   <td><input type="text" class="form-control" placeholder="Value" /></td>
                   <td><input type="text" class="form-control" /></td>
                   <td><input type="text" class="form-control" /></td>
-                  <td><select class="form-control"><option selected>Unspecified</option></select></td>
+                  <td><select class="form-control"><option value="">Select</option><option selected>Unspecified</option></select></td>
                 </tr>
                 <tr>
-                  <td><input type="text" class="form-control" value="Needle Penetration (0.1mm) EN 1426" readonly /></td>
+                  <td>Needle Penetration (0.1mm) EN 1426</td>
                   <td><input type="text" class="form-control" placeholder="Value" /></td>
                   <td><input type="text" class="form-control" /></td>
                   <td><input type="text" class="form-control" /></td>
-                  <td><select class="form-control"><option selected>Unspecified</option></select></td>
+                  <td><select class="form-control"><option value="">Select</option><option selected>Unspecified</option></select></td>
                 </tr>
                 <tr>
-                  <td><input type="text" class="form-control" value="Density [kg/m³ @ 15°C] (User Input)" readonly /></td>
+                  <td>Density [kg/m³ @ 15°C] (User Input)</td>
                   <td><input type="text" class="form-control" /></td>
                   <td><input type="text" class="form-control" /></td>
                   <td><input type="text" class="form-control" /></td>
@@ -1914,10 +1919,10 @@
         // Create new row with empty inputs and delete button
         const newRow = document.createElement('tr');
         newRow.innerHTML = `
-          <td><select class="form-control"><option value="" placeholder="Ingredient name"></option></select></td>
+          <td><select class="form-control"><option value="">Select</option></select></td>
           <td><input type="number" class="form-control" placeholder="Min %" /></td>
           <td><input type="number" class="form-control" placeholder="Max %" /></td>
-          <td><select class="form-control"><option value=""></option></select></td>
+          <td><select class="form-control"><option value="">Select</option></select></td>
           <td class="action-cell"><button type="button" class="delete-row-btn" title="Delete row">✕</button></td>
         `;
         
@@ -1941,10 +1946,10 @@
         // Create new row with empty inputs and delete button
         const newRow = document.createElement('tr');
         newRow.innerHTML = `
-          <td><select class="form-control"><option value="" placeholder="Constituent name"></option></select></td>
+          <td><select class="form-control"><option value="">Select</option></select></td>
           <td><input type="number" class="form-control" placeholder="Min %" /></td>
           <td><input type="number" class="form-control" placeholder="Max %" /></td>
-          <td><select class="form-control"><option value=""></option></select></td>
+          <td><select class="form-control"><option value="">Select</option></select></td>
           <td class="action-cell"><button type="button" class="delete-row-btn" title="Delete row">✕</button></td>
         `;
         
