@@ -647,6 +647,51 @@
       background: #f0f8fc;
       border-style: solid;
     }
+
+    .field-with-buttons {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .field-with-buttons .form-control {
+      flex: 1;
+    }
+
+    .field-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    button.add-field-btn,
+    button.remove-field-btn {
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      color: #333;
+      font-weight: 600;
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    button.add-field-btn:hover,
+    button.remove-field-btn:hover {
+      background: #f5f5f5;
+      border-color: #999;
+    }
+
+    button.add-field-btn:active,
+    button.remove-field-btn:active {
+      background: #e8e8e8;
+    }
   </style>
 </head>
 <body>
@@ -1106,9 +1151,10 @@
                 COUNTRY NAME <span class="required">*</span>
                 <span class="info-icon">i</span>
               </label>
-              <select class="form-control">
-                <option>Select...</option>
-                <option>EU</option>
+              <div class="field-with-buttons">
+                <select class="form-control">
+                  <option>Select...</option>
+                  <option>EU</option>
                 <option>Global, Not US</option>
                 <option>Global</option>
                 <option>Afghanistan</option>
@@ -1332,6 +1378,11 @@
                 <option>Zambia</option>
                 <option>Zimbabwe</option>
               </select>
+                <div class="field-buttons">
+                  <button type="button" class="add-field-btn" title="Add field">+</button>
+                  <button type="button" class="remove-field-btn" title="Remove field">−</button>
+                </div>
+              </div>
             </div>
 
             <div class="form-field">
