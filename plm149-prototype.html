@@ -1007,7 +1007,41 @@
                 PRODUCT FAMILY <span class="required">*</span>
                 <span class="info-icon">i</span>
               </label>
-              <input type="text" class="form-control" placeholder="Unbranded/NOT SOLD" />
+              <select class="form-control">
+                <option>Select...</option>
+                <option>Active Clean Technology</option>
+                <option>Aerojet</option>
+                <option>Bituseal</option>
+                <option>Caribit</option>
+                <option>Cariphalte</option>
+                <option>Caritop</option>
+                <option>Diesel Extra</option>
+                <option>Factory Fill - Generic Fuels</option>
+                <option>Flintkote</option>
+                <option>FreshAir</option>
+                <option>Fuel Economy</option>
+                <option>FuelSave</option>
+                <option>Generic Products (Fuels)</option>
+                <option>Generic Products (LPG)</option>
+                <option>Mellowphalt</option>
+                <option>Mexphalte</option>
+                <option>Multiphalte</option>
+                <option>Pura</option>
+                <option>Shell</option>
+                <option>Shell GTL Fuel</option>
+                <option>Shell Racing Fuels</option>
+                <option>Spramex</option>
+                <option>Spramul</option>
+                <option>Thermo</option>
+                <option>Third Party Branded</option>
+                <option>Tixophalte</option>
+                <option>Unbranded NOT SOLD</option>
+                <option>Unbranded Products (Bitumen)</option>
+                <option>Unbranded Products (Fuels)</option>
+                <option>Unleaded Extra</option>
+                <option>V-Power</option>
+                <option>V-Power Racing</option>
+              </select>
             </div>
 
             <div class="form-field">
@@ -1562,7 +1596,13 @@
                 BRAND CATEGORY <span class="required">*</span>
                 <span class="info-icon">i</span>
               </label>
-              <input type="text" class="form-control" placeholder="Unbranded Products" />
+              <select class="form-control">
+                <option>Select...</option>
+                <option>Factory Fill Products</option>
+                <option>Shell Branded Products</option>
+                <option>Third Party Branded</option>
+                <option>Unbranded Products</option>
+              </select>
             </div>
 
             <div class="form-field">
@@ -2639,6 +2679,158 @@
 
     // Initial attachment of delete handlers
     attachDeleteHandlers();
+
+    // Product Name to Product Family & Brand Category Mapping
+    const productMapping = {
+      "ACT": { family: "Active Clean Technology", category: "Shell Branded Products" },
+      "AeroJet": { family: "Aerojet", category: "Shell Branded Products" },
+      "Asphalt Resurfacer": { family: "Flintkote", category: "Shell Branded Products" },
+      "AVCAT Military Aviation Kerosine": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "AVTAG Military Aviation Kerosine": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "AVTUR Military Aviation Kerosine": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Bitumen": { family: "Unbranded Products (Bitumen)", category: "Unbranded Products" },
+      "Bitumen Emulsion": { family: "Unbranded Products (Bitumen)", category: "Unbranded Products" },
+      "Bitumen Paints & Primer": { family: "Unbranded Products (Bitumen)", category: "Unbranded Products" },
+      "Bituseal": { family: "Bituseal", category: "Shell Branded Products" },
+      "Caribit": { family: "Caribit", category: "Shell Branded Products" },
+      "Cariphalte": { family: "Cariphalte", category: "Shell Branded Products" },
+      "Cariphalte DA": { family: "Cariphalte", category: "Shell Branded Products" },
+      "Cariphalte DM": { family: "Cariphalte", category: "Shell Branded Products" },
+      "Cariphalte Fuelsafe": { family: "Cariphalte", category: "Shell Branded Products" },
+      "Cariphalte OPA": { family: "Cariphalte", category: "Shell Branded Products" },
+      "Cariphalte PG": { family: "Cariphalte", category: "Shell Branded Products" },
+      "Caritop CB": { family: "Caritop", category: "Unbranded Products" },
+      "Cutback": { family: "Unbranded Products (Bitumen)", category: "Unbranded Products" },
+      "Diesel Extra": { family: "Diesel Extra", category: "Shell Branded Products" },
+      "Diesoline": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Diesoline Ultra": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Dual Purpose Civil Aviation Kerosine": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Emulsion": { family: "Unbranded Products (Bitumen)", category: "Unbranded Products" },
+      "Factory Fill - Generic Fuels": { family: "Factory Fill - Generic Fuels", category: "Factory Fill Products" },
+      "Flintkote": { family: "Flintkote", category: "Shell Branded Products" },
+      "Flintkote 3": { family: "Flintkote", category: "Shell Branded Products" },
+      "Flintkote 5": { family: "Flintkote", category: "Shell Branded Products" },
+      "Flintkote Aluminium": { family: "Flintkote", category: "Shell Branded Products" },
+      "Flintkote Colourflex": { family: "Flintkote", category: "Shell Branded Products" },
+      "Flintkote Decoralt": { family: "Flintkote", category: "Shell Branded Products" },
+      "Flintkote Hydroguard": { family: "Flintkote", category: "Shell Branded Products" },
+      "Flintkote Primer": { family: "Flintkote", category: "Shell Branded Products" },
+      "Flintkote Ultra": { family: "Flintkote", category: "Shell Branded Products" },
+      "FreshAir": { family: "FreshAir", category: "Shell Branded Products" },
+      "Fuel Economy Diesel (or FED)": { family: "Fuel Economy", category: "Shell Branded Products" },
+      "Fuel Economy Mogas (or FEM)": { family: "Fuel Economy", category: "Shell Branded Products" },
+      "FuelSave Diesel": { family: "FuelSave", category: "Shell Branded Products" },
+      "FuelSave Unleaded": { family: "FuelSave", category: "Shell Branded Products" },
+      "High Lead, High Octane Aviation Gasoline": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Jet A": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Jet A-1": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Jet B": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Lead Replacement Petrol": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "LNG": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Local Marine Diesel Bunker": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Local Branded Products (Fuels)": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Local Marine High Sulphur RFO Bunker": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Local Marine Low Sulphur RFO Bunker": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Low Lead High Octane Aviation Gasoline": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Low Lead, Low Octane Aviation Gasoline": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "LPG Generic": { family: "Generic Products (LPG)", category: "Shell Branded Products" },
+      "Mellowphalt": { family: "Mellowphalt", category: "Shell Branded Products" },
+      "Mexphalte": { family: "Mexphalte", category: "Shell Branded Products" },
+      "Mexphalte AM2": { family: "Mexphalte", category: "Shell Branded Products" },
+      "Mexphalte C": { family: "Mexphalte", category: "Shell Branded Products" },
+      "Mexphalte CP2": { family: "Mexphalte", category: "Shell Branded Products" },
+      "Mexphalte Fuelsafe": { family: "Mexphalte", category: "Shell Branded Products" },
+      "Mexphalte HVS": { family: "Mexphalte", category: "Shell Branded Products" },
+      "Mexphalte P3": { family: "Mexphalte", category: "Shell Branded Products" },
+      "Multiphalte": { family: "Multiphalte", category: "Shell Branded Products" },
+      "Multiphalte HM": { family: "Multiphalte", category: "Shell Branded Products" },
+      "No Brand": { family: "Unbranded NOT SOLD", category: "Unbranded Products" },
+      "NovaChip": { family: "Unbranded Products (Bitumen)", category: "Unbranded Products" },
+      "Other": { family: "Unbranded Products (Bitumen)", category: "Unbranded Products" },
+      "Pura": { family: "Pura", category: "Shell Branded Products" },
+      "Shell BioLNG": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Shell Butagas": { family: "Shell", category: "Shell Branded Products" },
+      "Shell Butagaz": { family: "Shell", category: "Shell Branded Products" },
+      "Shell Gas": { family: "Shell", category: "Shell Branded Products" },
+      "Shell GTL Fuel": { family: "Shell GTL Fuel", category: "Shell Branded Products" },
+      "Shell GTL Fuel Alpine": { family: "Shell GTL Fuel", category: "Shell Branded Products" },
+      "Shell GTL Fuel Heating": { family: "Shell GTL Fuel", category: "Shell Branded Products" },
+      "Shell GTL Fuel Marine": { family: "Shell GTL Fuel", category: "Shell Branded Products" },
+      "Shell GTL Fuel Off-Road": { family: "Shell GTL Fuel", category: "Shell Branded Products" },
+      "Shell Indoor Kart Fuel": { family: "Shell Racing Fuels", category: "Shell Branded Products" },
+      "Shell International Diesel Bunker": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Shell International RFO Bunker": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Shell LNG": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Shell Moto Cross Fuel": { family: "Shell Racing Fuels", category: "Shell Branded Products" },
+      "Shell Motorcycle GP Fuel": { family: "Shell Racing Fuels", category: "Shell Branded Products" },
+      "Shell Propagas": { family: "Shell", category: "Shell Branded Products" },
+      "Shell Propagaz": { family: "Shell", category: "Shell Branded Products" },
+      "Shell Race Car Fuel": { family: "Shell Racing Fuels", category: "Shell Branded Products" },
+      "Shell Racing Fuels": { family: "Shell Racing Fuels", category: "Shell Branded Products" },
+      "Shell Racing Kart Fuel": { family: "Shell Racing Fuels", category: "Shell Branded Products" },
+      "Shell Superbike Fuel": { family: "Shell Racing Fuels", category: "Shell Branded Products" },
+      "Special Application Gasoline": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Spramex": { family: "Spramex", category: "Shell Branded Products" },
+      "Spramul": { family: "Spramul", category: "Shell Branded Products" },
+      "Thermo": { family: "Thermo", category: "Shell Branded Products" },
+      "Thermo Eco Ultra": { family: "Thermo", category: "Shell Branded Products" },
+      "Thermo Premium": { family: "Thermo", category: "Shell Branded Products" },
+      "Third Party Branded": { family: "Third Party Branded", category: "Third Party Branded" },
+      "Tixophalte": { family: "Tixophalte", category: "Shell Branded Products" },
+      "Tixophalte Wet": { family: "Tixophalte", category: "Shell Branded Products" },
+      "Unbranded Products (Bitumen)": { family: "Unbranded Products (Bitumen)", category: "Unbranded Products" },
+      "Unbranded Products (Fuels) Generic": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Unleaded Extra (or ULX)": { family: "Unleaded Extra", category: "Shell Branded Products" },
+      "Unleaded, Low Octane Aviation Gasoline": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "V-Power": { family: "V-Power", category: "Shell Branded Products" },
+      "V-Power Diesel": { family: "V-Power", category: "Shell Branded Products" },
+      "V-Power Racing": { family: "V-Power Racing", category: "Shell Branded Products" }
+    };
+
+    // Handle Product Name change
+    const productNameSelects = document.querySelectorAll('select.form-control');
+    
+    productNameSelects.forEach(select => {
+      // Find if this is the PRODUCT NAME select by checking its label
+      const label = select.closest('.form-field')?.querySelector('.field-label');
+      if (label && label.textContent.includes('PRODUCT NAME')) {
+        select.addEventListener('change', function() {
+          const selectedProduct = this.value;
+          if (selectedProduct && productMapping[selectedProduct]) {
+            const mapping = productMapping[selectedProduct];
+            
+            // Find Product Family and Brand Category dropdowns
+            const formFields = document.querySelectorAll('.form-field');
+            let productFamilySelect = null;
+            let brandCategorySelect = null;
+            
+            formFields.forEach(field => {
+              const fieldLabel = field.querySelector('.field-label');
+              if (fieldLabel) {
+                if (fieldLabel.textContent.includes('PRODUCT FAMILY')) {
+                  productFamilySelect = field.querySelector('select.form-control');
+                }
+                if (fieldLabel.textContent.includes('BRAND CATEGORY')) {
+                  brandCategorySelect = field.querySelector('select.form-control');
+                }
+              }
+            });
+            
+            // Update Product Family
+            if (productFamilySelect) {
+              productFamilySelect.value = mapping.family;
+              productFamilySelect.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+            
+            // Update Brand Category
+            if (brandCategorySelect) {
+              brandCategorySelect.value = mapping.category;
+              brandCategorySelect.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+          }
+        });
+      }
+    });
   </script>
 </body>
 </html>
