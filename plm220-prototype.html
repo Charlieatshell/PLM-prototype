@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<!-- Cache bust: 2026-07-06T14:59:00Z -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PLM222 GPC Data Setup</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Import Shell Design System */
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .accent-bar {
+      height: 4px;
+      background: var(--shell-yellow);
+    }
+
+    /* Top Bar */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 24px;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 200;
+    }
+
+    .top-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .app-logo {
+      font-size: 1.5rem;
+    }
+
+    .pecten-mark {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #fcb813 0 56%, #ff6900 57% 100%);
+      flex-shrink: 0;
+    }
+
+    .app-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .app-category {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      font-weight: 500;
+    }
+
+    .app-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .top-bar-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .top-bar-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--text-secondary);
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+      color: var(--text-primary);
+    }
+
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #ff9800;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    /* Breadcrumb & Status */
+    .header-meta {
+      height: 36px;
+      padding: 12px 24px;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 56px;
+      z-index: 199;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .breadcrumb-path {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .breadcrumb-final {
+      font-weight: 700;
+      color: #292929;
+    }
+
+    .status-badge {
+      padding: 2px 8px;
+      background: var(--background-muted);
+      color: var(--text-primary);
+      border-radius: 3px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    /* Tab Navigation */
+    .tab-navigation {
+      display: flex;
+      gap: 0;
+      padding: 0 24px;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 100px;
+      z-index: 198;
+    }
+
+    .tab-btn {
+      padding: 12px 16px;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-primary);
+    }
+
+    .tab-btn.active {
+      color: var(--text-primary);
+      border-bottom-color: #ff9800;
+      font-weight: 600;
+    }
+
+    /* Form Header Sticky */
+    .form-header-sticky {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 92px;
+      z-index: 198;
+      width: 100%;
+    }
+
+    .form-header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: auto;
+    }
+
+    .form-header-left h1 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      white-space: nowrap;
+    }
+
+    .plm-badge {
+      padding: 2px 8px;
+      background: #e8f5e9;
+      color: #2e7d32;
+      border-radius: 3px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .form-header-center {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+      justify-content: center;
+      margin: 0 auto;
+    }
+
+    .product-label {
+      font-size: 0.875rem;
+      color: var(--text-primary);
+      font-weight: 500;
+      margin-right: 8px;
+    }
+
+    .product-btn {
+      padding: 6px 14px;
+      background: var(--background-muted);
+      border: none;
+      border-radius: 3px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text-primary);
+      transition: all 0.2s;
+    }
+
+    .product-btn.active {
+      background: #007fa2;
+      color: white;
+    }
+
+    .product-btn:hover {
+      background: #007fa2;
+      color: white;
+    }
+
+    .form-header-right {
+      min-width: auto;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .btn-save {
+      padding: 8px 16px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text-primary);
+      transition: background 0.2s;
+    }
+
+    .btn-save:hover {
+      background: var(--background-muted);
+    }
+
+    /* Content Area */
+    .p1-badge {
+      display: inline-flex;
+      padding: 2px 8px;
+      background: #007fa2;
+      color: white;
+      border-radius: 3px;
+      font-size: 0.65rem;
+      font-weight: 700;
+    }
+
+    .section-expand-btn {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    /* Content Area */
+    .page-container {
+      display: flex;
+      min-height: calc(100vh - 134px);
+      background: #f5f5f5;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      padding: 0;
+    }
+
+    .sidebar {
+      width: 200px;
+      background: white;
+      border-right: 1px solid var(--border);
+      padding: 0;
+      overflow-y: auto;
+      z-index: 1;
+      margin: 0;
+    }
+
+    .sidebar-section {
+      margin-bottom: 0;
+      padding: 16px 0 0 0;
+    }
+
+    .sidebar-section:first-child {
+      padding-top: 0;
+    }
+
+    .sidebar-title {
+      padding: 12px 16px 4px 16px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin: 0 0 4px 0;
+    }
+
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      height: 56px;
+      padding: 8px 16px;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: background 0.2s;
+      border-left: 3px solid transparent;
+      margin: 0;
+    }
+
+    .sidebar-section:first-child .sidebar-item:first-child {
+      padding-top: 12px;
+    }
+
+    .sidebar-item:hover {
+      background: var(--background-muted);
+    }
+
+    .sidebar-item.active {
+      background: rgba(0, 127, 162, 0.15);
+      color: var(--text-primary);
+      border-left-color: #007fa2;
+      font-weight: 600;
+    }
+
+    .sidebar-item.active span:first-child {
+      background: #007fa2;
+      color: #ffffff;
+      border: none;
+    }
+
+    .sidebar-item span:first-child {
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
+      margin-right: 8px;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      border-radius: 50%;
+      border: 2px solid #d0d0d0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+    }
+
+    .main-content {
+      flex: 1;
+      overflow-y: auto;
+      width: 100%;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 24px 48px;
+    }
+
+    /* Form Content */
+    .form-content {
+      width: 100%;
+      padding: 32px;
+      background: white;
+      margin: 0;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 0 12px 0;
+      margin-bottom: 24px;
+      border-bottom: 2px solid #007fa2;
+    }
+
+    .section-header h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .p1-badge {
+      display: inline-flex;
+      padding: 2px 8px;
+      background: #007fa2;
+      color: white;
+      border-radius: 3px;
+      font-size: 0.65rem;
+      font-weight: 700;
+    }
+
+    .section-expand-btn {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px 32px !important;
+      width: 100%;
+    }
+
+    .form-grid > div {
+      min-width: 0;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+
+
+
+    .field-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: var(--text-primary);
+    }
+
+    .required {
+      color: #d32f2f;
+    }
+
+    .info-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: transparent;
+      border: 1px solid #999;
+      color: #666;
+      font-size: 0.65rem;
+      font-weight: bold;
+      cursor: help;
+      flex-shrink: 0;
+    }
+
+    .form-control {
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 0.875rem;
+      color: var(--text-primary);
+      background: white;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: #007fa2;
+      box-shadow: 0 0 0 3px rgba(0, 127, 162, 0.1);
+    }
+
+    .form-control:disabled {
+      background: #f5f5f5;
+      cursor: not-allowed;
+      color: var(--text-secondary);
+    }
+
+    select.form-control {
+      width: 100%;
+      padding: 8px 12px;
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    /* Composition Table */
+    .composition-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      font-size: 0.875rem;
+    }
+
+    .composition-table thead {
+      background: #f5f5f5;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .composition-table th {
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+      color: var(--text-primary);
+      border-right: 1px solid #e0e0e0;
+    }
+
+    .composition-table th:last-child {
+      border-right: none;
+    }
+
+    .composition-table td {
+      padding: 12px;
+      border-right: 1px solid #e0e0e0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .composition-table td:last-child {
+      border-right: none;
+    }
+
+    .composition-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .composition-table input.form-control {
+      width: 100%;
+      padding: 6px 8px;
+      border: 1px solid #e0e0e0;
+      border-radius: 2px;
+      font-size: 0.875rem;
+    }
+
+    .composition-table input.form-control:focus {
+      outline: none;
+      border-color: #007fa2;
+      box-shadow: 0 0 0 3px rgba(0, 127, 162, 0.1);
+    }
+
+    .composition-table .add-row {
+      background: #f9f9f9;
+    }
+
+    .action-cell {
+      text-align: center;
+      padding: 12px 6px;
+    }
+
+    .delete-row-btn {
+      background: none;
+      border: 1.5px solid #757575;
+      border-radius: 50%;
+      color: #757575;
+      font-size: 0.65rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+      padding: 0;
+      line-height: 20px;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .delete-row-btn:hover {
+      background: #f5f5f5;
+      border-color: #424242;
+      color: #424242;
+    }
+
+    .delete-row-btn:active {
+      background: #e8e8e8;
+    }
+
+    button.add-ingredient-btn {
+      width: 100%;
+      padding: 10px 12px;
+      background: white;
+      border: 1px dashed #007fa2;
+      border-radius: 3px;
+      color: #007fa2;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.875rem;
+      transition: all 0.2s;
+    }
+
+    button.add-ingredient-btn:hover {
+      background: #f0f8fc;
+      border-style: solid;
+    }
+
+    button.add-constituent-btn {
+      width: 100%;
+      padding: 10px 12px;
+      background: white;
+      border: 1px dashed #007fa2;
+      border-radius: 3px;
+      color: #007fa2;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.875rem;
+      transition: all 0.2s;
+    }
+
+    button.add-constituent-btn:hover {
+      background: #f0f8fc;
+      border-style: solid;
+    }
+
+    .field-with-buttons {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      width: 100%;
+    }
+
+    .field-with-buttons .form-control {
+      flex: 1;
+    }
+
+    .field-buttons {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      flex-shrink: 0;
+      align-items: center;
+    }
+
+    button.add-field-btn,
+    button.remove-field-btn {
+      width: 40px;
+      height: 100%;
+      min-height: 36px;
+      padding: 0;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      color: #333;
+      font-weight: 300;
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    button.add-field-btn:hover,
+    button.remove-field-btn:hover {
+      background: #f5f5f5;
+      border-color: #999;
+    }
+
+    button.add-field-btn:active,
+    button.remove-field-btn:active {
+      background: #e8e8e8;
+    }
+
+    button.remove-field-btn:disabled {
+      background: #f5f5f5;
+      border-color: #ddd;
+      color: #ccc;
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    button.remove-field-btn:disabled:hover {
+      background: #f5f5f5;
+      border-color: #ddd;
+    }
+
+    .country-rows-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .country-row {
+      display: flex;
+      gap: 8px;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .country-row .form-control {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="accent-bar"></div>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <div class="pecten-mark"></div>
+      <div class="app-info">
+        <div class="app-category">Trading and Supply</div>
+        <div class="app-title">PLM Toolkit - Fuels</div>
+      </div>
+    </div>
+    <div class="top-bar-right">
+      <div class="user-profile">
+        <div class="user-avatar">JB</div>
+        <span>Joe Bloggs</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breadcrumb & Status -->
+  <div class="header-meta">
+    <div class="breadcrumb">
+      <div class="breadcrumb-path">
+        <span>PLM222 › Supply › US › All Products › SC1 › <span class="breadcrumb-final">GPC Data Setup</span></span>
+      </div>
+      <span class="status-badge">Draft</span>
+    </div>
+  </div>
+
+  <!-- Tab Navigation -->
+  <div class="tab-navigation">
+    <button class="tab-btn">Request Setup</button>
+    <button class="tab-btn active">GPC Data Setup</button>
+    <button class="tab-btn">Request Review</button>
+  </div>
+
+  <!-- Form Header -->
+  <div class="form-header-sticky">
+    <div class="form-header-left">
+      <h1>GPC Data Setup</h1>
+      <span class="plm-badge">PLM222</span>
+    </div>
+    <div class="form-header-center">
+      <span class="product-label">Products</span>
+      <button class="product-btn active">P1</button>
+      <button class="product-btn">P2</button>
+      <button class="product-btn">P3</button>
+      <button class="product-btn">P4</button>
+    </div>
+    <div class="form-header-right">
+      <button class="btn-save">Save</button>
+    </div>
+  </div>
+
+  <!-- Page Container with Sidebar -->
+  <div class="page-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-title" style="padding: 12px 16px 8px 16px; font-size: 0.875rem; font-weight: 600; text-transform: none;">GPC Data Setup</div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-item active">
+          <span>1</span>
+          <span>CTN</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Form Content -->
+      <div class="form-content">
+        <!-- CTN Section -->
+        <div id="section-ctn" class="form-section">
+          <div class="section-header">
+            <h2><span class="p1-badge">P1</span>CTN</h2>
+            <button class="section-expand-btn">⤢</button>
+          </div>
+
+          <div class="form-grid">
+            <!-- Left Column -->
+            <div>
+              <div class="form-field">
+                <label class="field-label">FORM STATUS <span class="required">*</span></label>
+                <input type="text" class="form-control" value="Complete CTN/ED Codes" disabled style="background-color: #F5F5F5;" />
+              </div>
+              <div class="form-field">
+                <label class="field-label">SP CODES IF NOT AUTOMATED <span class="required">*</span></label>
+                <input type="text" class="form-control" placeholder="" />
+              </div>
+              <div class="form-field">
+                <label class="field-label">SP CODE <span class="required">*</span></label>
+                <input type="text" class="form-control" value="auto-filled" disabled style="background-color: #F5F5F5;" />
+              </div>
+              <div class="form-field">
+                <label class="field-label">PRODUCT NAME <span class="required">*</span></label>
+                <input type="text" class="form-control" value="auto-filled" disabled style="background-color: #F5F5F5;" />
+              </div>
+            </div>
+            <!-- Right Column -->
+            <div>
+              <div class="form-field">
+                <label class="field-label">DATA COMPLETE? <span class="required">*</span></label>
+                <input type="text" class="form-control" value="Yes" disabled style="background-color: #F5F5F5;" />
+              </div>
+              <div class="form-field">
+                <label class="field-label">SP TEMP <span class="required">*</span></label>
+                <input type="text" class="form-control" value="auto-filled" disabled style="background-color: #F5F5F5;" />
+              </div>
+              <div class="form-field">
+                <label class="field-label">COB (FO PROVIDED) <span class="required">*</span></label>
+                <input type="text" class="form-control" value="Fuels" disabled style="background-color: #F5F5F5;" />
+              </div>
+              <div class="form-field">
+                <label class="field-label">CONFIRMED COUNTRIES <span class="required">*</span></label>
+                <input type="text" class="form-control" value="AE, DE, FR, BR" disabled style="background-color: #F5F5F5;" />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-field" style="grid-column: 1 / -1; margin-top: 8px; margin-bottom: 40px;">
+            <label class="field-label">CTN CODES</label>
+            <div style="border: 1px solid #e0e0e0; border-radius: 4px; overflow: hidden;">
+            <table class="composition-table">
+              <thead>
+                <tr>
+                  <th>Country</th>
+                  <th>Code</th>
+                  <th>CTN Code</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Utd. Arab Emir.</td><td>AE</td><td><input type="text" class="form-control" /></td></tr>
+                <tr><td>Austria</td><td>AT</td><td><input type="text" class="form-control" /></td></tr>
+                <tr><td>Australia</td><td>AU</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Belgium</td><td>BE</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Bulgaria</td><td>BG</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Canada</td><td>CA</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Canada Fuels</td><td>CA</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Canada Lubes Bulk</td><td>CA</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Canada Lubes Retail &lt;5 ltr</td><td>CA</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Switzerland</td><td>CH</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>China</td><td>CN</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Czech Republic</td><td>CZ</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Germany</td><td>DE</td><td><input type="text" class="form-control" /></td></tr>
+                <tr><td>Denmark</td><td>DK</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Egypt</td><td>EG</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Spain</td><td>ES</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Finland</td><td>FI</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>France</td><td>FR</td><td><input type="text" class="form-control" /></td></tr>
+                <tr><td>United Kingdom</td><td>UK</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Hong Kong</td><td>HK</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Hungary</td><td>HU</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Indonesia</td><td>ID</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>India</td><td>IN</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Italy</td><td>IT</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Japan</td><td>JP</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Luxembourg</td><td>LU</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Macau</td><td>MO</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Mexico</td><td>MX</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Malaysia</td><td>MY</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Netherlands</td><td>NL</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Norway</td><td>NO</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Oman</td><td>OM</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Philippines</td><td>PH</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Pakistan</td><td>PK</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Pakistan Fuels</td><td>PK</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Pakistan Lubes &lt;10 ltr</td><td>PK</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Pakistan Lubes &gt;10 ltr</td><td>PK</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Pakistan Lubes Bulk</td><td>PK</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Poland</td><td>PL</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Russian Fed.</td><td>RU</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Sweden</td><td>SE</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Singapore</td><td>SG</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Slovenia</td><td>SI</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Slovakia</td><td>SK</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Thailand</td><td>TH</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Turkey</td><td>TR</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>USA</td><td>US</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>South Africa</td><td>ZA</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>South Africa Fuels</td><td>ZA</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>South Africa Lubes Non Retail</td><td>ZA</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>South Africa Lubes Retail</td><td>ZA</td><td><input type="text" class="form-control" value="99999999" /></td></tr>
+                <tr><td>Argentina</td><td>AR</td><td><input type="text" class="form-control" value="00000000" /></td></tr>
+                <tr><td>Brazil</td><td>BR</td><td><input type="text" class="form-control" value="00000000" /></td></tr>
+                <tr><td>Colombia</td><td>CO</td><td><input type="text" class="form-control" value="00000000" /></td></tr>
+                <tr><td>South Korea</td><td>KR</td><td><input type="text" class="form-control" value="00000000" /></td></tr>
+                <tr><td>Trinidad &amp; Tobago</td><td>TT</td><td><input type="text" class="form-control" value="00000000" /></td></tr>
+                <tr><td>Taiwan</td><td>TW</td><td><input type="text" class="form-control" value="00000000" /></td></tr>
+                <tr><td>Venezuela</td><td>VE</td><td><input type="text" class="form-control" value="00000000" /></td></tr>
+                <tr><td>Vietnam</td><td>VN</td><td><input type="text" class="form-control" value="00000000" /></td></tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <!-- Left Column -->
+            <div>
+              <div class="form-field">
+                <label class="field-label">DEX GRADE <span class="required">*</span></label>
+                <input type="text" class="form-control" />
+              </div>
+              <div class="form-field">
+                <label class="field-label">CUST ATTR 1 <span class="required">*</span></label>
+                <input type="text" class="form-control" />
+              </div>
+              <div class="form-field">
+                <label class="field-label">CUST ATTR 3 <span class="required">*</span></label>
+                <input type="text" class="form-control" />
+              </div>
+              <div class="form-field">
+                <label class="field-label">CUST ATTR 5 <span class="required">*</span></label>
+                <input type="text" class="form-control" />
+              </div>
+              <div class="form-field">
+                <label class="field-label">CUST ATTR 7 <span class="required">*</span></label>
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+            <!-- Right Column -->
+            <div>
+              <div class="form-field">
+                <label class="field-label">FREETEXT <span class="required">*</span></label>
+                <input type="text" class="form-control" />
+              </div>
+              <div class="form-field">
+                <label class="field-label">CUST ATTR 2 <span class="required">*</span></label>
+                <input type="text" class="form-control" />
+              </div>
+              <div class="form-field">
+                <label class="field-label">CUST ATTR 4 <span class="required">*</span></label>
+                <input type="text" class="form-control" />
+              </div>
+              <div class="form-field">
+                <label class="field-label">CUST ATTR 6 <span class="required">*</span></label>
+                <input type="text" class="form-control" />
+              </div>
+              <div class="form-field">
+                <label class="field-label">DEX &amp; ATT <span class="required">*</span></label>
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Product button click handlers
+    const productButtons = document.querySelectorAll('.product-btn');
+
+    productButtons.forEach((button, index) => {
+      button.addEventListener('click', function() {
+        // Remove active class from all buttons
+        productButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // Add active class to clicked button
+        this.classList.add('active');
+        
+        // Query all badge elements fresh and update them
+        const badgeElements = document.querySelectorAll('.p1-badge');
+        badgeElements.forEach(badge => {
+          badge.textContent = `P${index + 1}`;
+        });
+      });
+    });
+
+    // Sidebar section switching
+    const sidebarItems = document.querySelectorAll('.sidebar-item');
+    const formSections = document.querySelectorAll('.form-section');
+
+    sidebarItems.forEach((item, index) => {
+      item.addEventListener('click', function() {
+        // Remove active class from all sidebar items
+        sidebarItems.forEach(sidebarItem => sidebarItem.classList.remove('active'));
+        
+        // Add active class to clicked item
+        this.classList.add('active');
+        
+        // Hide all sections
+        formSections.forEach(section => {
+          section.style.display = 'none';
+        });
+
+        // Show the selected section (index + 1 = section number)
+        const sectionNames = ['naming', 'classification', 'country-specific', 'technical-properties', 'sku-country-details', 'country-of-sale', 'standard-data', 'region'];
+        const targetSection = document.getElementById(`section-${sectionNames[index]}`);
+        if (targetSection) {
+          targetSection.style.display = '';
+        }
+      });
+    });
+
+    // Function to attach delete handlers to delete buttons
+    function attachDeleteHandlers() {
+      const deleteButtons = document.querySelectorAll('.delete-row-btn');
+      deleteButtons.forEach(btn => {
+        // Remove existing listeners by cloning
+        const newBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(newBtn, btn);
+      });
+      
+      // Re-query and attach new listeners
+      document.querySelectorAll('.delete-row-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const row = this.closest('tr');
+          row.remove();
+        });
+      });
+    }
+
+    // Add Ingredient button handler
+    const addIngredientBtn = document.querySelector('.add-ingredient-btn');
+    if (addIngredientBtn) {
+      addIngredientBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const table = this.closest('table');
+        const tbody = table.querySelector('tbody');
+        const addRow = table.querySelector('.add-row');
+        
+        // Create new row with empty inputs and delete button
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+          <td><select class="form-control">
+<option value="">Select</option>
+</select></td>
+          <td><input type="number" class="form-control" placeholder="Min %" /></td>
+          <td><input type="number" class="form-control" placeholder="Max %" /></td>
+          <td><select class="form-control">
+<option value="">Select</option>
+</select></td>
+          <td class="action-cell"><button type="button" class="delete-row-btn" title="Delete row">✕</button></td>
+        `;
+        
+        // Insert before the add row
+        tbody.insertBefore(newRow, addRow);
+        
+        // Attach delete handlers to all buttons
+        attachDeleteHandlers();
+      });
+    }
+
+    // Add Constituent button handler
+    const addConstituentBtn = document.querySelector('.add-constituent-btn');
+    if (addConstituentBtn) {
+      addConstituentBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const table = this.closest('table');
+        const tbody = table.querySelector('tbody');
+        const addRow = table.querySelector('.add-row');
+        
+        // Create new row with empty inputs and delete button
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+          <td><select class="form-control">
+<option value="">Select</option>
+</select></td>
+          <td><input type="number" class="form-control" placeholder="Min %" /></td>
+          <td><input type="number" class="form-control" placeholder="Max %" /></td>
+          <td><select class="form-control">
+<option value="">Select</option>
+</select></td>
+          <td class="action-cell"><button type="button" class="delete-row-btn" title="Delete row">✕</button></td>
+        `;
+        
+        // Insert before the add row
+        tbody.insertBefore(newRow, addRow);
+        
+        // Attach delete handlers to all buttons
+        attachDeleteHandlers();
+      });
+    }
+
+    // Initial attachment of delete handlers
+    attachDeleteHandlers();
+
+    // Product Name to Product Family & Brand Category Mapping
+    const productMapping = {
+      "ACT": { family: "Active Clean Technology", category: "Shell Branded Products" },
+      "AeroJet": { family: "Aerojet", category: "Shell Branded Products" },
+      "Asphalt Resurfacer": { family: "Flintkote", category: "Shell Branded Products" },
+      "AVCAT Military Aviation Kerosine": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "AVTAG Military Aviation Kerosine": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "AVTUR Military Aviation Kerosine": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Bitumen": { family: "Unbranded Products (Bitumen)", category: "Unbranded Products" },
+      "Bitumen Emulsion": { family: "Unbranded Products (Bitumen)", category: "Unbranded Products" },
+      "Bitumen Paints & Primer": { family: "Unbranded Products (Bitumen)", category: "Unbranded Products" },
+      "Bituseal": { family: "Bituseal", category: "Shell Branded Products" },
+      "Caribit": { family: "Caribit", category: "Shell Branded Products" },
+      "Cariphalte": { family: "Cariphalte", category: "Shell Branded Products" },
+      "Cariphalte DA": { family: "Cariphalte", category: "Shell Branded Products" },
+      "Cariphalte DM": { family: "Cariphalte", category: "Shell Branded Products" },
+      "Cariphalte Fuelsafe": { family: "Cariphalte", category: "Shell Branded Products" },
+      "Cariphalte OPA": { family: "Cariphalte", category: "Shell Branded Products" },
+      "Cariphalte PG": { family: "Cariphalte", category: "Shell Branded Products" },
+      "Caritop CB": { family: "Caritop", category: "Unbranded Products" },
+      "Cutback": { family: "Unbranded Products (Bitumen)", category: "Unbranded Products" },
+      "Diesel Extra": { family: "Diesel Extra", category: "Shell Branded Products" },
+      "Diesoline": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Diesoline Ultra": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Dual Purpose Civil Aviation Kerosine": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Emulsion": { family: "Unbranded Products (Bitumen)", category: "Unbranded Products" },
+      "Factory Fill - Generic Fuels": { family: "Factory Fill - Generic Fuels", category: "Factory Fill Products" },
+      "Flintkote": { family: "Flintkote", category: "Shell Branded Products" },
+      "Flintkote 3": { family: "Flintkote", category: "Shell Branded Products" },
+      "Flintkote 5": { family: "Flintkote", category: "Shell Branded Products" },
+      "Flintkote Aluminium": { family: "Flintkote", category: "Shell Branded Products" },
+      "Flintkote Colourflex": { family: "Flintkote", category: "Shell Branded Products" },
+      "Flintkote Decoralt": { family: "Flintkote", category: "Shell Branded Products" },
+      "Flintkote Hydroguard": { family: "Flintkote", category: "Shell Branded Products" },
+      "Flintkote Primer": { family: "Flintkote", category: "Shell Branded Products" },
+      "Flintkote Ultra": { family: "Flintkote", category: "Shell Branded Products" },
+      "FreshAir": { family: "FreshAir", category: "Shell Branded Products" },
+      "Fuel Economy Diesel (or FED)": { family: "Fuel Economy", category: "Shell Branded Products" },
+      "Fuel Economy Mogas (or FEM)": { family: "Fuel Economy", category: "Shell Branded Products" },
+      "FuelSave Diesel": { family: "FuelSave", category: "Shell Branded Products" },
+      "FuelSave Unleaded": { family: "FuelSave", category: "Shell Branded Products" },
+      "High Lead, High Octane Aviation Gasoline": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Jet A": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Jet A-1": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Jet B": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Lead Replacement Petrol": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "LNG": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Local Marine Diesel Bunker": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Local Branded Products (Fuels)": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Local Marine High Sulphur RFO Bunker": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Local Marine Low Sulphur RFO Bunker": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Low Lead High Octane Aviation Gasoline": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Low Lead, Low Octane Aviation Gasoline": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "LPG Generic": { family: "Generic Products (LPG)", category: "Shell Branded Products" },
+      "Mellowphalt": { family: "Mellowphalt", category: "Shell Branded Products" },
+      "Mexphalte": { family: "Mexphalte", category: "Shell Branded Products" },
+      "Mexphalte AM2": { family: "Mexphalte", category: "Shell Branded Products" },
+      "Mexphalte C": { family: "Mexphalte", category: "Shell Branded Products" },
+      "Mexphalte CP2": { family: "Mexphalte", category: "Shell Branded Products" },
+      "Mexphalte Fuelsafe": { family: "Mexphalte", category: "Shell Branded Products" },
+      "Mexphalte HVS": { family: "Mexphalte", category: "Shell Branded Products" },
+      "Mexphalte P3": { family: "Mexphalte", category: "Shell Branded Products" },
+      "Multiphalte": { family: "Multiphalte", category: "Shell Branded Products" },
+      "Multiphalte HM": { family: "Multiphalte", category: "Shell Branded Products" },
+      "No Brand": { family: "Unbranded NOT SOLD", category: "Unbranded Products" },
+      "NovaChip": { family: "Unbranded Products (Bitumen)", category: "Unbranded Products" },
+      "Other": { family: "Unbranded Products (Bitumen)", category: "Unbranded Products" },
+      "Pura": { family: "Pura", category: "Shell Branded Products" },
+      "Shell BioLNG": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Shell Butagas": { family: "Shell", category: "Shell Branded Products" },
+      "Shell Butagaz": { family: "Shell", category: "Shell Branded Products" },
+      "Shell Gas": { family: "Shell", category: "Shell Branded Products" },
+      "Shell GTL Fuel": { family: "Shell GTL Fuel", category: "Shell Branded Products" },
+      "Shell GTL Fuel Alpine": { family: "Shell GTL Fuel", category: "Shell Branded Products" },
+      "Shell GTL Fuel Heating": { family: "Shell GTL Fuel", category: "Shell Branded Products" },
+      "Shell GTL Fuel Marine": { family: "Shell GTL Fuel", category: "Shell Branded Products" },
+      "Shell GTL Fuel Off-Road": { family: "Shell GTL Fuel", category: "Shell Branded Products" },
+      "Shell Indoor Kart Fuel": { family: "Shell Racing Fuels", category: "Shell Branded Products" },
+      "Shell International Diesel Bunker": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Shell International RFO Bunker": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Shell LNG": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Shell Moto Cross Fuel": { family: "Shell Racing Fuels", category: "Shell Branded Products" },
+      "Shell Motorcycle GP Fuel": { family: "Shell Racing Fuels", category: "Shell Branded Products" },
+      "Shell Propagas": { family: "Shell", category: "Shell Branded Products" },
+      "Shell Propagaz": { family: "Shell", category: "Shell Branded Products" },
+      "Shell Race Car Fuel": { family: "Shell Racing Fuels", category: "Shell Branded Products" },
+      "Shell Racing Fuels": { family: "Shell Racing Fuels", category: "Shell Branded Products" },
+      "Shell Racing Kart Fuel": { family: "Shell Racing Fuels", category: "Shell Branded Products" },
+      "Shell Superbike Fuel": { family: "Shell Racing Fuels", category: "Shell Branded Products" },
+      "Special Application Gasoline": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Spramex": { family: "Spramex", category: "Shell Branded Products" },
+      "Spramul": { family: "Spramul", category: "Shell Branded Products" },
+      "Thermo": { family: "Thermo", category: "Shell Branded Products" },
+      "Thermo Eco Ultra": { family: "Thermo", category: "Shell Branded Products" },
+      "Thermo Premium": { family: "Thermo", category: "Shell Branded Products" },
+      "Third Party Branded": { family: "Third Party Branded", category: "Third Party Branded" },
+      "Tixophalte": { family: "Tixophalte", category: "Shell Branded Products" },
+      "Tixophalte Wet": { family: "Tixophalte", category: "Shell Branded Products" },
+      "Unbranded Products (Bitumen)": { family: "Unbranded Products (Bitumen)", category: "Unbranded Products" },
+      "Unbranded Products (Fuels) Generic": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Unleaded Extra (or ULX)": { family: "Unleaded Extra", category: "Shell Branded Products" },
+      "Unleaded, Low Octane Aviation Gasoline": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "V-Power": { family: "V-Power", category: "Shell Branded Products" },
+      "V-Power Diesel": { family: "V-Power", category: "Shell Branded Products" },
+      "V-Power Racing": { family: "V-Power Racing", category: "Shell Branded Products" }
+    };
+
+    // Handle Product Name change
+    const productNameSelects = document.querySelectorAll('select.form-control');
+    
+    productNameSelects.forEach(select => {
+      // Find if this is the PRODUCT NAME select by checking its label
+      const label = select.closest('.form-field')?.querySelector('.field-label');
+      if (label && label.textContent.includes('PRODUCT NAME')) {
+        select.addEventListener('change', function() {
+          const selectedProduct = this.value;
+          if (selectedProduct && productMapping[selectedProduct]) {
+            const mapping = productMapping[selectedProduct];
+            
+            // Find Product Family and Brand Category dropdowns
+            const formFields = document.querySelectorAll('.form-field');
+            let productFamilySelect = null;
+            let brandCategorySelect = null;
+            
+            formFields.forEach(field => {
+              const fieldLabel = field.querySelector('.field-label');
+              if (fieldLabel) {
+                if (fieldLabel.textContent.includes('PRODUCT FAMILY')) {
+                  productFamilySelect = field.querySelector('select.form-control');
+                }
+                if (fieldLabel.textContent.includes('BRAND CATEGORY')) {
+                  brandCategorySelect = field.querySelector('select.form-control');
+                }
+              }
+            });
+            
+            // Update Product Family
+            if (productFamilySelect) {
+              productFamilySelect.value = mapping.family;
+              productFamilySelect.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+            
+            // Update Brand Category
+            if (brandCategorySelect) {
+              brandCategorySelect.value = mapping.category;
+              brandCategorySelect.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+          }
+        });
+      }
+    });
+
+    // Country Name Row Management
+    const countryRowsContainer = document.getElementById('countryRowsContainer');
+    if (countryRowsContainer) {
+      const countryOptions = Array.from(document.querySelector('.country-select').options).map(opt => ({
+        value: opt.value,
+        text: opt.text
+      }));
+
+      function updateRemoveButtons() {
+        const rows = countryRowsContainer.querySelectorAll('.country-row');
+        rows.forEach((row, index) => {
+          const removeBtn = row.querySelector('.remove-field-btn');
+          if (rows.length === 1) {
+            removeBtn.disabled = true;
+          } else {
+            removeBtn.disabled = false;
+          }
+        });
+      }
+
+      function attachCountryRowHandlers() {
+        countryRowsContainer.querySelectorAll('.add-field-btn').forEach(btn => {
+          btn.removeEventListener('click', addCountryRow);
+          btn.addEventListener('click', addCountryRow);
+        });
+
+        countryRowsContainer.querySelectorAll('.remove-field-btn').forEach(btn => {
+          btn.removeEventListener('click', removeCountryRow);
+          btn.addEventListener('click', removeCountryRow);
+        });
+      }
+
+      function addCountryRow(e) {
+        e.preventDefault();
+        const newRow = document.createElement('div');
+        newRow.className = 'country-row';
+        newRow.innerHTML = `
+          <select class="form-control country-select">
+            ${countryOptions.map(opt => `<option value="${opt.value}">${opt.text}</option>`).join('')}
+          </select>
+          <div class="field-buttons">
+            <button type="button" class="add-field-btn" title="Add field">+</button>
+            <button type="button" class="remove-field-btn" title="Remove field">−</button>
+          </div>
+        `;
+        countryRowsContainer.appendChild(newRow);
+        attachCountryRowHandlers();
+        updateRemoveButtons();
+      }
+
+      function removeCountryRow(e) {
+        e.preventDefault();
+        const rows = countryRowsContainer.querySelectorAll('.country-row');
+        if (rows.length > 1) {
+          e.target.closest('.country-row').remove();
+          attachCountryRowHandlers();
+          updateRemoveButtons();
+        }
+      }
+
+      attachCountryRowHandlers();
+      updateRemoveButtons();
+    }
+  </script>
+</body>
+</html>
+<!-- refresh -->
+
+<!-- Cache bust: 1783355109 -->
+<!-- Force rebuild: 1783355454 -->
+<!-- Force rebuild: 1783355668 -->
+<!-- Force rebuild: 1783355969 -->
+<!-- Force rebuild: 1783356102 -->
+<!-- Force rebuild: 1783356571 -->
+<!-- Force rebuild: 1783357218 -->
+<!-- Force rebuild: 1783359402 -->
+<!-- Force rebuild: 1783359633 -->
+<!-- Force rebuild: 1783359808 -->
+<!-- Force rebuild: 1783360115 -->
+<!-- Force rebuild: 1783360539 -->
+<!-- Force rebuild: 1783360840 -->
+<!-- Force rebuild: 1783362070 -->
+<!-- Force rebuild: 1783529726 -->
