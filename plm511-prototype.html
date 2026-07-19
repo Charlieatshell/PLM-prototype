@@ -802,12 +802,12 @@
           </div>
 
           <div style="padding: 20px 0;">
-            <!-- Row 1: Saleable Product Introduction with Status -->
-            <div style="margin-bottom: 30px;">
-              <label class="field-label" style="font-size: 1rem; font-weight: 600;">
-                Saleable Product Introduction
+            <!-- Row 1: Saleable Product Introduction Status -->
+            <div class="form-field" style="margin-bottom: 30px;">
+              <label class="field-label">
+                Saleable Product Introduction Status
               </label>
-              <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: #666;">Status: Pending approval</p>
+              <p id="status-display" style="margin: 6px 0 0 0; font-size: 0.8125rem; color: var(--text-primary); font-weight: 500;">Pending approval</p>
             </div>
 
             <!-- Row 2: Comments Text Field -->
@@ -815,13 +815,18 @@
               <label class="field-label">
                 Comments
               </label>
-              <textarea class="form-control" placeholder="Enter your comments here..." style="min-height: 120px;"></textarea>
+              <textarea id="comments-field" class="form-control" placeholder="Enter your comments here..." style="min-height: 120px;"></textarea>
             </div>
 
             <!-- Row 3: Approve and Reject Buttons -->
-            <div style="display: flex; gap: 12px;">
-              <button class="btn-approve" style="background-color: #FFC600; color: #292929; border: 1px solid #FFC600; padding: 8px 16px; border-radius: 4px; font-size: 0.875rem; font-weight: 600; cursor: pointer;">Approve</button>
-              <button class="btn-reject" style="background-color: transparent; color: #DD1D21; border: 1px solid #DD1D21; padding: 8px 16px; border-radius: 4px; font-size: 0.875rem; font-weight: 600; cursor: pointer;">Reject</button>
+            <div id="button-group" style="display: flex; gap: 12px;">
+              <button id="btn-approve" class="btn-approve" style="background-color: #FFC600; color: #292929; border: 1px solid #FFC600; padding: 8px 16px; border-radius: 4px; font-size: 0.875rem; font-weight: 600; cursor: pointer;">Approve</button>
+              <button id="btn-reject" class="btn-reject" style="background-color: transparent; color: #DD1D21; border: 1px solid #DD1D21; padding: 8px 16px; border-radius: 4px; font-size: 0.875rem; font-weight: 600; cursor: pointer;">Reject</button>
+            </div>
+
+            <!-- Download Excel Button (hidden initially) -->
+            <div id="download-group" style="display: none; gap: 12px;">
+              <button id="btn-download" class="btn-download" style="background-color: #FFC600; color: #292929; border: 1px solid #FFC600; padding: 8px 16px; border-radius: 4px; font-size: 0.875rem; font-weight: 600; cursor: pointer;">Download Excel</button>
             </div>
           </div>
         </div>
@@ -831,6 +836,33 @@
   </div>
 
   <script>
+    // Request Review form handlers
+    const btnApprove = document.getElementById('btn-approve');
+    const btnReject = document.getElementById('btn-reject');
+    const commentsField = document.getElementById('comments-field');
+    const statusDisplay = document.getElementById('status-display');
+    const buttonGroup = document.getElementById('button-group');
+    const downloadGroup = document.getElementById('download-group');
+    const btnDownload = document.getElementById('btn-download');
+
+    btnApprove.addEventListener('click', function() {
+      statusDisplay.textContent = 'Approved';
+      commentsField.value = '';
+      commentsField.placeholder = 'Approval comments';
+      commentsField.disabled = true;
+      buttonGroup.style.display = 'none';
+      downloadGroup.style.display = 'flex';
+    });
+
+    btnReject.addEventListener('click', function() {
+      statusDisplay.textContent = 'Rejected';
+      commentsField.value = '';
+      commentsField.placeholder = 'Rejection comments';
+      commentsField.disabled = true;
+      buttonGroup.style.display = 'none';
+      downloadGroup.style.display = 'none';
+    });
+
     // Product button click handlers
     const productButtons = document.querySelectorAll('.product-btn');
 
