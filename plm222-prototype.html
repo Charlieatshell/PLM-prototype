@@ -795,6 +795,13 @@
           <span>CTN</span>
         </div>
       </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-item">
+          <span>2</span>
+          <span>Country Coverage</span>
+        </div>
+      </div>
     </div>
 
     <!-- Main Content -->
@@ -842,6 +849,23 @@
                 <label class="field-label">COB (FO PROVIDED) <span class="required">*</span></label>
                 <input type="text" class="form-control" value="Fuels" disabled style="background-color: #F5F5F5;" />
               </div>
+              <div class="form-field">
+                <label class="field-label">COB (FO PROVIDED) <span class="required">*</span></label>
+                <input type="text" class="form-control" value="Fuels" disabled style="background-color: #F5F5F5;" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Country Coverage Section -->
+        <div id="section-country-coverage" class="form-section" style="display: none;">
+          <div class="section-header">
+            <h2><span class="p1-badge">P1</span>Country Coverage</h2>
+            <button class="section-expand-btn">⤢</button>
+          </div>
+
+          <div class="form-grid">
+            <div>
               <div class="form-field">
                 <label class="field-label">CONFIRMED COUNTRIES <span class="required">*</span></label>
                 <input type="text" class="form-control" value="AE, DE, FR, BR" disabled style="background-color: #F5F5F5;" />
@@ -1027,6 +1051,7 @@
     // Sidebar section switching
     const sidebarItems = document.querySelectorAll('.sidebar-item');
     const formSections = document.querySelectorAll('.form-section');
+    const pageContainers = document.querySelectorAll('.page-container');
 
     sidebarItems.forEach((item, index) => {
       item.addEventListener('click', function() {
@@ -1036,19 +1061,42 @@
         // Add active class to clicked item
         this.classList.add('active');
         
-        // Hide all sections
+        // Hide all page containers and sections
+        pageContainers.forEach(container => {
+          container.style.display = 'none';
+        });
         formSections.forEach(section => {
           section.style.display = 'none';
         });
 
-        // Show the selected section (index + 1 = section number)
-        const sectionNames = ['naming', 'classification', 'country-specific', 'technical-properties', 'sku-country-details', 'country-of-sale', 'standard-data', 'region'];
-        const targetSection = document.getElementById(`section-${sectionNames[index]}`);
-        if (targetSection) {
-          targetSection.style.display = '';
+        // Show the selected page container and section
+        if (index === 0) {
+          // CTN tab - show first page container and CTN section
+          pageContainers[0].style.display = '';
+          const ctnSection = document.getElementById('section-ctn');
+          if (ctnSection) {
+            ctnSection.style.display = '';
+          }
+        } else if (index === 1) {
+          // Country Coverage tab - show first page container and country coverage section
+          pageContainers[0].style.display = '';
+          const countryCoverageSection = document.getElementById('section-country-coverage');
+          if (countryCoverageSection) {
+            countryCoverageSection.style.display = '';
+          }
         }
       });
     });
+
+    // Initialize: show CTN by default
+    const firstCtnSection = document.getElementById('section-ctn');
+    if (firstCtnSection) {
+      firstCtnSection.style.display = '';
+    }
+    const countryCoverageSection = document.getElementById('section-country-coverage');
+    if (countryCoverageSection) {
+      countryCoverageSection.style.display = 'none';
+    }
 
     // Function to attach delete handlers to delete buttons
     function attachDeleteHandlers() {
