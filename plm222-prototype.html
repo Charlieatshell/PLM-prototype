@@ -1,0 +1,3983 @@
+<!DOCTYPE html>
+<!-- Cache bust: 2026-07-06T14:59:00Z -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PLM222 GPC Data Setup</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Import Shell Design System */
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .accent-bar {
+      height: 4px;
+      background: var(--shell-yellow);
+    }
+
+    /* Top Bar */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 24px;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 200;
+    }
+
+    .top-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .app-logo {
+      font-size: 1.5rem;
+    }
+
+    .pecten-mark {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #fcb813 0 56%, #ff6900 57% 100%);
+      flex-shrink: 0;
+    }
+
+    .app-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .app-category {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      font-weight: 500;
+    }
+
+    .app-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .top-bar-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .top-bar-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--text-secondary);
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+      color: var(--text-primary);
+    }
+
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #ff9800;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    /* Breadcrumb & Status */
+    .header-meta {
+      height: 36px;
+      padding: 12px 24px;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 56px;
+      z-index: 199;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .breadcrumb-path {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .breadcrumb-final {
+      font-weight: 700;
+      color: #292929;
+    }
+
+    .status-badge {
+      padding: 2px 8px;
+      background: var(--background-muted);
+      color: var(--text-primary);
+      border-radius: 3px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    /* Tab Navigation */
+    .tab-navigation {
+      display: flex;
+      gap: 0;
+      padding: 0 24px;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 100px;
+      z-index: 198;
+    }
+
+    .tab-btn {
+      padding: 12px 16px;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-primary);
+    }
+
+    .tab-btn.active {
+      color: var(--text-primary);
+      border-bottom-color: #ff9800;
+      font-weight: 600;
+    }
+
+    /* Form Header Sticky */
+    .form-header-sticky {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 92px;
+      z-index: 198;
+      width: 100%;
+    }
+
+    .form-header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: auto;
+    }
+
+    .form-header-left h1 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      white-space: nowrap;
+    }
+
+    .plm-badge {
+      padding: 2px 8px;
+      background: #e8f5e9;
+      color: #2e7d32;
+      border-radius: 3px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .form-header-center {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+      justify-content: center;
+      margin: 0 auto;
+    }
+
+    .product-label {
+      font-size: 0.875rem;
+      color: var(--text-primary);
+      font-weight: 500;
+      margin-right: 8px;
+    }
+
+    .product-btn {
+      padding: 6px 14px;
+      background: var(--background-muted);
+      border: none;
+      border-radius: 3px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text-primary);
+      transition: all 0.2s;
+    }
+
+    .product-btn.active {
+      background: #007fa2;
+      color: white;
+    }
+
+    .product-btn:hover {
+      background: #007fa2;
+      color: white;
+    }
+
+    .form-header-right {
+      min-width: auto;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .btn-save {
+      padding: 8px 16px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text-primary);
+      transition: background 0.2s;
+    }
+
+    .btn-save:hover {
+      background: var(--background-muted);
+    }
+
+    /* Content Area */
+    .p1-badge {
+      display: inline-flex;
+      padding: 2px 8px;
+      background: #007fa2;
+      color: white;
+      border-radius: 3px;
+      font-size: 0.65rem;
+      font-weight: 700;
+    }
+
+    .section-expand-btn {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    /* Content Area */
+    .page-container {
+      display: flex;
+      min-height: calc(100vh - 134px);
+      background: #f5f5f5;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      padding: 0;
+    }
+
+    .sidebar {
+      width: 200px;
+      background: white;
+      border-right: 1px solid var(--border);
+      padding: 0;
+      overflow-y: auto;
+      z-index: 1;
+      margin: 0;
+    }
+
+    .sidebar-section {
+      margin-bottom: 0;
+      padding: 16px 0 0 0;
+    }
+
+    .sidebar-section:first-child {
+      padding-top: 0;
+    }
+
+    .sidebar-title {
+      padding: 12px 16px 4px 16px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin: 0 0 4px 0;
+    }
+
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      height: 56px;
+      padding: 8px 16px;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: background 0.2s;
+      border-left: 3px solid transparent;
+      margin: 0;
+    }
+
+    .sidebar-section:first-child .sidebar-item:first-child {
+      padding-top: 12px;
+    }
+
+    .sidebar-item:hover {
+      background: var(--background-muted);
+    }
+
+    .sidebar-item.active {
+      background: rgba(0, 127, 162, 0.15);
+      color: var(--text-primary);
+      border-left-color: #007fa2;
+      font-weight: 600;
+    }
+
+    .sidebar-item.active span:first-child {
+      background: #007fa2;
+      color: #ffffff;
+      border: none;
+    }
+
+    .sidebar-item span:first-child {
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
+      margin-right: 8px;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      border-radius: 50%;
+      border: 2px solid #d0d0d0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+    }
+
+    .main-content {
+      flex: 1;
+      overflow-y: auto;
+      width: 100%;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 24px 48px;
+    }
+
+    /* Form Content */
+    .form-content {
+      width: 100%;
+      padding: 32px;
+      background: white;
+      margin: 0;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 0 12px 0;
+      margin-bottom: 24px;
+      border-bottom: 2px solid #007fa2;
+    }
+
+    .section-header h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .p1-badge {
+      display: inline-flex;
+      padding: 2px 8px;
+      background: #007fa2;
+      color: white;
+      border-radius: 3px;
+      font-size: 0.65rem;
+      font-weight: 700;
+    }
+
+    .section-expand-btn {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px 32px !important;
+      width: 100%;
+    }
+
+    .form-grid > div {
+      min-width: 0;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+
+
+
+    .field-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: var(--text-primary);
+    }
+
+    .required {
+      color: #d32f2f;
+    }
+
+    .info-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: transparent;
+      border: 1px solid #999;
+      color: #666;
+      font-size: 0.65rem;
+      font-weight: bold;
+      cursor: help;
+      flex-shrink: 0;
+    }
+
+    .form-control {
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 0.875rem;
+      color: var(--text-primary);
+      background: white;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: #007fa2;
+      box-shadow: 0 0 0 3px rgba(0, 127, 162, 0.1);
+    }
+
+    .form-control:disabled {
+      background: #f5f5f5;
+      cursor: not-allowed;
+      color: var(--text-secondary);
+    }
+
+    select.form-control {
+      width: 100%;
+      padding: 8px 12px;
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    /* Composition Table */
+    .composition-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      overflow: hidden;
+      font-size: 0.875rem;
+    }
+
+    .composition-table thead {
+      background: #f5f5f5;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .composition-table th {
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+      color: var(--text-primary);
+      border-right: 1px solid #e0e0e0;
+    }
+
+    .composition-table th:last-child {
+      border-right: none;
+    }
+
+    .composition-table td {
+      padding: 12px;
+      border-right: 1px solid #e0e0e0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .composition-table td:last-child {
+      border-right: none;
+    }
+
+    .composition-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .composition-table input.form-control {
+      width: 100%;
+      padding: 6px 8px;
+      border: 1px solid #e0e0e0;
+      border-radius: 2px;
+      font-size: 0.875rem;
+    }
+
+    .composition-table input.form-control:focus {
+      outline: none;
+      border-color: #007fa2;
+      box-shadow: 0 0 0 3px rgba(0, 127, 162, 0.1);
+    }
+
+    .composition-table .add-row {
+      background: #f9f9f9;
+    }
+
+    .action-cell {
+      text-align: center;
+      padding: 12px 6px;
+    }
+
+    .delete-row-btn {
+      background: none;
+      border: 1.5px solid #757575;
+      border-radius: 50%;
+      color: #757575;
+      font-size: 0.65rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+      padding: 0;
+      line-height: 20px;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .delete-row-btn:hover {
+      background: #f5f5f5;
+      border-color: #424242;
+      color: #424242;
+    }
+
+    .delete-row-btn:active {
+      background: #e8e8e8;
+    }
+
+    button.add-ingredient-btn {
+      width: 100%;
+      padding: 10px 12px;
+      background: white;
+      border: 1px dashed #007fa2;
+      border-radius: 3px;
+      color: #007fa2;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.875rem;
+      transition: all 0.2s;
+    }
+
+    button.add-ingredient-btn:hover {
+      background: #f0f8fc;
+      border-style: solid;
+    }
+
+    button.add-constituent-btn {
+      width: 100%;
+      padding: 10px 12px;
+      background: white;
+      border: 1px dashed #007fa2;
+      border-radius: 3px;
+      color: #007fa2;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.875rem;
+      transition: all 0.2s;
+    }
+
+    button.add-constituent-btn:hover {
+      background: #f0f8fc;
+      border-style: solid;
+    }
+
+    .field-with-buttons {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      width: 100%;
+    }
+
+    .field-with-buttons .form-control {
+      flex: 1;
+    }
+
+    .field-buttons {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      flex-shrink: 0;
+      align-items: center;
+    }
+
+    button.add-field-btn,
+    button.remove-field-btn {
+      width: 40px;
+      height: 100%;
+      min-height: 36px;
+      padding: 0;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      color: #333;
+      font-weight: 300;
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    button.add-field-btn:hover,
+    button.remove-field-btn:hover {
+      background: #f5f5f5;
+      border-color: #999;
+    }
+
+    button.add-field-btn:active,
+    button.remove-field-btn:active {
+      background: #e8e8e8;
+    }
+
+    button.remove-field-btn:disabled {
+      background: #f5f5f5;
+      border-color: #ddd;
+      color: #ccc;
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    button.remove-field-btn:disabled:hover {
+      background: #f5f5f5;
+      border-color: #ddd;
+    }
+
+    .country-rows-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .country-row {
+      display: flex;
+      gap: 8px;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .country-row .form-control {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="accent-bar"></div>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <div class="pecten-mark"></div>
+      <div class="app-info">
+        <div class="app-category">Trading and Supply</div>
+        <div class="app-title">PLM Toolkit - Fuels</div>
+      </div>
+    </div>
+    <div class="top-bar-right">
+      <div class="user-profile">
+        <div class="user-avatar">JB</div>
+        <span>Joe Bloggs</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breadcrumb & Status -->
+  <div class="header-meta">
+    <div class="breadcrumb">
+      <div class="breadcrumb-path">
+        <span>PLM222 › Supply › WONA › All Products › SC1 › <span class="breadcrumb-final">GPC Data Setup</span></span>
+      </div>
+      <span class="status-badge">Draft</span>
+    </div>
+  </div>
+
+  <!-- Tab Navigation -->
+  <div class="tab-navigation">
+    <button class="tab-btn">Request Setup</button>
+    <button class="tab-btn active">GPC Data Setup</button>
+    <button class="tab-btn">Request Review</button>
+  </div>
+
+  <!-- Form Header -->
+  <div class="form-header-sticky">
+    <div class="form-header-left">
+      <h1>GPC Data Setup</h1>
+      <span class="plm-badge">PLM222</span>
+    </div>
+    <div class="form-header-center">
+      <span class="product-label">Products</span>
+      <button class="product-btn active">P1</button>
+      <button class="product-btn">P2</button>
+      <button class="product-btn">P3</button>
+      <button class="product-btn">P4</button>
+    </div>
+    <div class="form-header-right">
+      <button class="btn-save">Save</button>
+    </div>
+  </div>
+
+  <!-- Page Container with Sidebar -->
+  <div class="page-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-title" style="padding: 12px 16px 8px 16px; font-size: 0.875rem; font-weight: 600; text-transform: none;">GPC Data Setup</div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-item active">
+          <span>1</span>
+          <span>Naming</span>
+        </div>
+        <div class="sidebar-item">
+          <span>2</span>
+          <span>Classification</span>
+        </div>
+        <div class="sidebar-item">
+          <span>3</span>
+          <span>Country Specific</span>
+        </div>
+        <div class="sidebar-item">
+          <span>4</span>
+          <span>Technical Properties</span>
+        </div>
+        <div class="sidebar-item">
+          <span>5</span>
+          <span>SKU & Country Details</span>
+        </div>
+        <div class="sidebar-item">
+          <span>6</span>
+          <span>Country of Sale</span>
+        </div>
+        <div class="sidebar-item">
+          <span>7</span>
+          <span>Standard Data</span>
+        </div>
+        <div class="sidebar-item">
+          <span>8</span>
+          <span>Region</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Form Content -->
+      <div class="form-content">
+        <!-- Naming Section -->
+        <div id="section-naming" class="form-section">
+          <div class="section-header">
+            <h2><span class="p1-badge">P1</span>Naming</h2>
+            <button class="section-expand-btn">⤢</button>
+          </div>
+
+          <div class="form-grid">
+          <!-- Left Column -->
+          <div>
+            <div class="form-field">
+              <label class="field-label">
+                TASK <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <input type="text" class="form-control" placeholder="SC. 1 - New Product/SKU Set up" disabled />
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                PRODUCT TYPE <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <select class="form-control">
+                <option>Select...</option>
+                <option>AGO</option>
+                <option>AVG</option>
+                <option>BTL</option>
+                <option>CNG</option>
+                <option>CTL</option>
+                <option>DHO</option>
+                <option>DPK</option>
+                <option>ETOH</option>
+                <option>FAME</option>
+                <option>GTL</option>
+                <option>H2</option>
+                <option>HVO</option>
+                <option>IGO</option>
+                <option>JET</option>
+                <option>KER</option>
+                <option>LNG</option>
+                <option>LPG</option>
+                <option>MFO</option>
+                <option>MGO</option>
+                <option>RFO</option>
+                <option>RNG</option>
+                <option>ULG</option>
+                <option>XTL</option>
+                <option>ALK</option>
+                <option>BFED</option>
+                <option>BSOIL</option>
+                <option>BTEX</option>
+                <option>BZHC</option>
+                <option>C1</option>
+                <option>C2</option>
+                <option>C2E</option>
+                <option>C3</option>
+                <option>C3E</option>
+                <option>C4</option>
+                <option>C4E</option>
+                <option>CHEM</option>
+                <option>COGO</option>
+                <option>COKE</option>
+                <option>CUT</option>
+                <option>DME</option>
+                <option>E85</option>
+                <option>ETBE</option>
+                <option>FCCG</option>
+                <option>FO</option>
+                <option>GO</option>
+                <option>HCCG</option>
+                <option>HCO</option>
+                <option>HDRD</option>
+                <option>HGO</option>
+                <option>HOMC</option>
+                <option>ISOM</option>
+                <option>LCCG</option>
+                <option>LCO</option>
+                <option>LGO</option>
+                <option>LLCO</option>
+                <option>LR</option>
+                <option>MEOH</option>
+                <option>MTBE</option>
+                <option>NAPH</option>
+                <option>PYGAS</option>
+                <option>RAF</option>
+                <option>REFM</option>
+                <option>RFYG</option>
+                <option>SLOPS</option>
+                <option>SLURRY</option>
+                <option>SULPH</option>
+                <option>TRMIX</option>
+                <option>VGO</option>
+                <option>VO</option>
+                <option>VRES</option>
+                <option>VSBR</option>
+                <option>WAX</option>
+                <option>XOM</option>
+                <option>PVN</option>
+                <option>HPN</option>
+                <option>IND</option>
+                <option>OXD</option>
+                <option>COA</option>
+                <option>FLX</option>
+                <option>SYN</option>
+                <option>PMB</option>
+                <option>SWEET</option>
+                <option>SOUR</option>
+                <option>SYNTH</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                INTERMEDIATE FULL NAME <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <textarea class="form-control" placeholder="Placeholder"></textarea>
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                CAS NUMBER
+                <span class="info-icon">i</span>
+              </label>
+              <textarea class="form-control" placeholder="Placeholder"></textarea>
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                GRADE <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <select class="form-control">
+                <option>Select...</option>
+                <option>RUL</option>
+                <option>MUL</option>
+                <option>PUL</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                SULPHUR <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <select class="form-control">
+                <option>Select...</option>
+                <option>5ppmS</option>
+                <option>10ppmS</option>
+                <option>15ppmS</option>
+                <option>50ppmS</option>
+                <option>80ppmS</option>
+                <option>150ppmS</option>
+                <option>500ppmS</option>
+                <option>1000ppmS</option>
+                <option>0.15%S</option>
+                <option>0.18%S</option>
+                <option>0.20%S</option>
+                <option>0.25%S</option>
+                <option>0.30%S</option>
+                <option>0.50%S</option>
+                <option>0.7%S</option>
+                <option>0.75%S</option>
+                <option>0.8%S</option>
+                <option>0.9%S</option>
+                <option>1.0%S</option>
+                <option>1.5%S</option>
+                <option>2.0%S</option>
+                <option>2.5%S</option>
+                <option>3.0%S</option>
+                <option>4.0%S</option>
+                <option>4.5%S</option>
+                <option>5.0%S</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                REGULATORY 1 <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <select class="form-control">
+                <option>Select...</option>
+                <option>VOC</option>
+                <option>VOC1</option>
+                <option>VOC2</option>
+                <option>NVOC</option>
+                <option>RVP7.0</option>
+                <option>RVP7.2</option>
+                <option>RVP>7.8</option>
+                <option>RVP7.8</option>
+                <option>RVP8.0</option>
+                <option>RVP8.8</option>
+                <option>RVP9.0</option>
+                <option>HVP</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                OXY TYPE & LIMIT <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <select class="form-control">
+                <option>Select...</option>
+                <option>Ether 0.0-0.05</option>
+                <option>Ether 0.0-2.7</option>
+                <option>Ether 1.5-2.7</option>
+                <option>Ether 1.8-2.7</option>
+                <option>Ether 2.7-2.9</option>
+                <option>EtOH 2.0-2.6</option>
+                <option>EtOH 2.7-3.4</option>
+                <option>EtOH 3.5-4.0</option>
+                <option>AnyOxy 2.0Min</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                DYED STATUS <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <select class="form-control">
+                <option>Select...</option>
+                <option>Dye</option>
+                <option>Udy</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                SALEABLE PRODUCT NAME <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <input type="text" class="form-control" placeholder="United States" />
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                EXTERNAL NAME FOR MSDS <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <input type="text" class="form-control" placeholder="Placeholder text" />
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                SHORT NAME <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <input type="text" class="form-control" placeholder="Placeholder text" />
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                PRODUCT FAMILY <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <select class="form-control">
+                <option>Select...</option>
+                <option>Active Clean Technology</option>
+                <option>Aerojet</option>
+                <option>Bituseal</option>
+                <option>Caribit</option>
+                <option>Cariphalte</option>
+                <option>Caritop</option>
+                <option>Diesel Extra</option>
+                <option>Factory Fill - Generic Fuels</option>
+                <option>Flintkote</option>
+                <option>FreshAir</option>
+                <option>Fuel Economy</option>
+                <option>FuelSave</option>
+                <option>Generic Products (Fuels)</option>
+                <option>Generic Products (LPG)</option>
+                <option>Mellowphalt</option>
+                <option>Mexphalte</option>
+                <option>Multiphalte</option>
+                <option>Pura</option>
+                <option>Shell</option>
+                <option>Shell GTL Fuel</option>
+                <option>Shell Racing Fuels</option>
+                <option>Spramex</option>
+                <option>Spramul</option>
+                <option>Thermo</option>
+                <option>Third Party Branded</option>
+                <option>Tixophalte</option>
+                <option>Unbranded NOT SOLD</option>
+                <option>Unbranded Products (Bitumen)</option>
+                <option>Unbranded Products (Fuels)</option>
+                <option>Unleaded Extra</option>
+                <option>V-Power</option>
+                <option>V-Power Racing</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                PRODUCT DESCRIPTOR <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <textarea class="form-control" placeholder="Placeholder"></textarea>
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                DATA OWNER <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <select class="form-control">
+                <option>Select...</option>
+                <option>Barre, Yasmin</option>
+                <option>Dolinska, Monika J</option>
+                <option>Kelly, Frances</option>
+                <option>Mengwasser, John H</option>
+                <option>Munsterman, Erwin H</option>
+                <option>O Breham, Gandalf</option>
+                <option>Plonka, Marta M</option>
+                <option>Son, Edward E</option>
+                <option>Szablicka, Monika</option>
+                <option>Smith, Alastair G</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div>
+            <div class="form-field">
+              <label class="field-label">
+                BRAND STATUS <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <select class="form-control">
+                <option>Select...</option>
+                <option>BF</option>
+                <option>SH</option>
+                <option>SB</option>
+                <option>TP</option>
+                <option>GN</option>
+                <option>BR</option>
+                <option>SS</option>
+                <option>NGM</option>
+                <option>UB</option>
+                <option>NP</option>
+                <option>ADD</option>
+                <option>MRK</option>
+                <option>DYE</option>
+                <option>INT</option>
+                <option>CRU</option>
+                <option>CON</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                COUNTRY NAME <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <div class="country-rows-container" id="countryRowsContainer">
+                <div class="country-row">
+                  <select class="form-control country-select">
+                    <option>Select...</option>
+                    <option>EU</option>
+                    <option>Global, Not US</option>
+                    <option>Global</option>
+                    <option>Afghanistan</option>
+                    <option>Albania</option>
+                    <option>Algeria</option>
+                    <option>American Samoa</option>
+                    <option>Andorra</option>
+                    <option>Angola</option>
+                    <option>Anguilla</option>
+                    <option>Antarctica</option>
+                    <option>Antigua and Barbuda</option>
+                    <option>Argentina</option>
+                    <option>Armenia</option>
+                    <option>Aruba</option>
+                    <option>Australia</option>
+                    <option>Austria</option>
+                    <option>Azerbaijan</option>
+                    <option>Bahamas</option>
+                    <option>Bahrain</option>
+                    <option>Bangladesh</option>
+                    <option>Barbados</option>
+                    <option>Belarus</option>
+                    <option>Belgium</option>
+                    <option>Belize</option>
+                    <option>Benin</option>
+                    <option>Bermuda</option>
+                    <option>Bhutan</option>
+                    <option>Bolivia</option>
+                    <option>Bosnia and Herzegovina</option>
+                    <option>Botswana</option>
+                    <option>Bouvet Island</option>
+                    <option>Brazil</option>
+                    <option>British Indian Ocean Territory</option>
+                    <option>British Virgin Islands</option>
+                    <option>Brunei Darussalam</option>
+                    <option>Bulgaria</option>
+                    <option>Burkina Faso</option>
+                    <option>Burundi</option>
+                    <option>Cambodia</option>
+                    <option>Cameroon</option>
+                    <option>Canada</option>
+                    <option>Cape Verde</option>
+                    <option>Cayman Islands</option>
+                    <option>Central African Republic</option>
+                    <option>Chad</option>
+                    <option>Chile</option>
+                    <option>China</option>
+                    <option>Christmas Island</option>
+                    <option>Cocos (Keeling) Islands</option>
+                    <option>Colombia</option>
+                    <option>Comoros</option>
+                    <option>Congo</option>
+                    <option>Congo, Democratic Republic</option>
+                    <option>Cook Islands</option>
+                    <option>Costa Rica</option>
+                    <option>Cote D'Ivoire (Ivory Coast)</option>
+                    <option>Croatia</option>
+                    <option>Cuba</option>
+                    <option>Cyprus</option>
+                    <option>Czech Republic</option>
+                    <option>Czechoslovakia</option>
+                    <option>Denmark</option>
+                    <option>Djibouti</option>
+                    <option>Dominica</option>
+                    <option>Dominican Republic</option>
+                    <option>East Germany</option>
+                    <option>Eastern Europe</option>
+                    <option>Ecuador</option>
+                    <option>Egypt</option>
+                    <option>El Salvador</option>
+                    <option>Equatorial Guinea</option>
+                    <option>Eritrea</option>
+                    <option>Estonia</option>
+                    <option>Ethiopia</option>
+                    <option>Falkland Islands</option>
+                    <option>Faroe Islands</option>
+                    <option>Fiji</option>
+                    <option>Finland</option>
+                    <option>Former Soviet Union</option>
+                    <option>Former Yugoslavia</option>
+                    <option>France</option>
+                    <option>French Guiana</option>
+                    <option>French Polynesia</option>
+                    <option>French Southern Territories</option>
+                    <option>Gabon</option>
+                    <option>Gambia</option>
+                    <option>Georgia</option>
+                    <option>Germany</option>
+                    <option>Ghana</option>
+                    <option>Gibraltar</option>
+                    <option>Greece</option>
+                    <option>Greenland</option>
+                    <option>Grenada</option>
+                    <option>Guadeloupe</option>
+                    <option>Guam</option>
+                    <option>Guatemala</option>
+                    <option>Guernsey</option>
+                    <option>Guinea</option>
+                    <option>Guinea-Bissau</option>
+                    <option>Guyana</option>
+                    <option>Haiti</option>
+                    <option>Heard and McDonald Islands</option>
+                    <option>Honduras</option>
+                    <option>Hong Kong</option>
+                    <option>Hungary</option>
+                    <option>Iceland</option>
+                    <option>India</option>
+                    <option>Indonesia</option>
+                    <option>Iran</option>
+                    <option>Iraq</option>
+                    <option>Ireland</option>
+                    <option>Isle of Man</option>
+                    <option>Israel</option>
+                    <option>Italy</option>
+                    <option>Jamaica</option>
+                    <option>Japan</option>
+                    <option>Jersey</option>
+                    <option>Jordan</option>
+                    <option>Kazakhstan</option>
+                    <option>Kenya</option>
+                    <option>Kiribati</option>
+                    <option>Korea (North)</option>
+                    <option>Korea (South)</option>
+                    <option>Kuwait</option>
+                    <option>Kyrgyzstan</option>
+                    <option>Laos</option>
+                    <option>Latvia</option>
+                    <option>Lebanon</option>
+                    <option>Lesotho</option>
+                    <option>Liberia</option>
+                    <option>Libya</option>
+                    <option>Liechtenstein</option>
+                    <option>Lithuania</option>
+                    <option>Luxembourg</option>
+                    <option>Macau</option>
+                    <option>Macedonia</option>
+                    <option>Madagascar</option>
+                    <option>Malawi</option>
+                    <option>Malaysia</option>
+                    <option>Maldives</option>
+                    <option>Mali</option>
+                    <option>Malta</option>
+                    <option>Martinique</option>
+                    <option>Mauritania</option>
+                    <option>Mauritius</option>
+                    <option>Mayotte</option>
+                    <option>Mexico</option>
+                    <option>Micronesia</option>
+                    <option>Moldova</option>
+                    <option>Monaco</option>
+                    <option>Mongolia</option>
+                    <option>Montserrat</option>
+                    <option>Morocco</option>
+                    <option>Mozambique</option>
+                    <option>Myanmar</option>
+                    <option>Namibia</option>
+                    <option>Nauru</option>
+                    <option>Nepal</option>
+                    <option>Netherlands</option>
+                    <option>Netherlands Antilles</option>
+                    <option>Neutral Zone</option>
+                    <option>New Caledonia</option>
+                    <option>New Zealand</option>
+                    <option>Nicaragua</option>
+                    <option>Niger</option>
+                    <option>Nigeria</option>
+                    <option>Niue</option>
+                    <option>Norfolk Island</option>
+                    <option>Northern Mariana Islands</option>
+                    <option>Norway</option>
+                    <option>Oman</option>
+                    <option>Pakistan</option>
+                    <option>Palau</option>
+                    <option>Panama</option>
+                    <option>Papua New Guinea</option>
+                    <option>Paraguay</option>
+                    <option>Peoples's Democratic Rebulic of Laos</option>
+                    <option>Peru</option>
+                    <option>Philippines</option>
+                    <option>Pitcairn Island</option>
+                    <option>Poland</option>
+                    <option>Portugal</option>
+                    <option>Puerto Rico</option>
+                    <option>Qatar</option>
+                    <option>Republic of Korea</option>
+                    <option>Republic of Moldova</option>
+                    <option>Reunion</option>
+                    <option>Romania</option>
+                    <option>Russian Federation</option>
+                    <option>Rwanda</option>
+                    <option>Saint Helena</option>
+                    <option>Samoa</option>
+                    <option>Sao Tome and Principe</option>
+                    <option>Saudi Arabia</option>
+                    <option>Senegal</option>
+                    <option>Seychelles</option>
+                    <option>Sierra Leone</option>
+                    <option>Singapore</option>
+                    <option>Slovakia</option>
+                    <option>Slovenia</option>
+                    <option>Solomon Islands</option>
+                    <option>Somalia</option>
+                    <option>South Africa</option>
+                    <option>South Georgia and The South Sandwich Islands</option>
+                    <option>Spain</option>
+                    <option>Sri Lanka</option>
+                    <option>St. Kitts and Nevis</option>
+                    <option>St. Lucia</option>
+                    <option>St. Pierre and Miquelon</option>
+                    <option>St. Vincent and The Grenadines</option>
+                    <option>Sudan</option>
+                    <option>Suriname</option>
+                    <option>Svalbard and Jan Mayen</option>
+                    <option>Swaziland</option>
+                    <option>Sweden</option>
+                    <option>Switzerland</option>
+                    <option>Syrian Arab Republic</option>
+                    <option>Taiwan, Province Of China</option>
+                    <option>Tajikistan</option>
+                    <option>Thailand</option>
+                    <option>The Former Yugoslav Republic of Macedonia</option>
+                    <option>Togo</option>
+                    <option>Tokelau</option>
+                    <option>Tonga</option>
+                    <option>Trinidad and Tobago</option>
+                    <option>Tunisia</option>
+                    <option>Turkey</option>
+                    <option>Turkmenistan</option>
+                    <option>Tuvalu</option>
+                    <option>Uganda</option>
+                    <option>Ukraine</option>
+                    <option>United Arab Emirates</option>
+                    <option>United Kingdom</option>
+                    <option>United Republic of Tanzania</option>
+                    <option>United States</option>
+                    <option>United States Minor Outlying Islands</option>
+                    <option>Uruguay</option>
+                    <option>US Virgin Islands</option>
+                    <option>Uzbekistan</option>
+                    <option>Vanuatu</option>
+                    <option>Venezuela</option>
+                    <option>Vietnam</option>
+                    <option>Wallis and Fortuna Islands</option>
+                    <option>Western Sahara</option>
+                    <option>Yemen</option>
+                    <option>Zambia</option>
+                    <option>Zimbabwe</option>
+                  </select>
+                  <div class="field-buttons">
+                    <button type="button" class="add-field-btn" title="Add field">+</button>
+                    <button type="button" class="remove-field-btn" title="Remove field" disabled>−</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                MANUFACTURING LOCATION/VENDOR <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <textarea class="form-control" placeholder="Placeholder"></textarea>
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                OTHER TEXT
+                <span class="info-icon">i</span>
+              </label>
+              <textarea class="form-control" placeholder="Placeholder"></textarea>
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                OCTANE <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <select class="form-control">
+                <option>Select...</option>
+                <option>83.5</option>
+                <option>85</option>
+                <option>86</option>
+                <option>87</option>
+                <option>88</option>
+                <option>89</option>
+                <option>90</option>
+                <option>91</option>
+                <option>92</option>
+                <option>93</option>
+                <option>94</option>
+                <option>95</option>
+                <option>96</option>
+                <option>97</option>
+                <option>98</option>
+                <option>99</option>
+                <option>100</option>
+                <option>101</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                VISCOSITY <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <select class="form-control">
+                <option>Select...</option>
+                <option>10</option>
+                <option>20</option>
+                <option>40</option>
+                <option>100</option>
+                <option>150</option>
+                <option>180</option>
+                <option>380</option>
+                <option>400</option>
+                <option>500</option>
+                <option>600</option>
+                <option>700</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                REGULATORY 2 <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <select class="form-control">
+                <option>Select...</option>
+                <option>Conv</option>
+                <option>ConvOxy</option>
+                <option>CBOB</option>
+                <option>RFG</option>
+                <option>RBOB</option>
+                <option>CARB</option>
+                <option>CARBOB</option>
+                <option>AZRBOB</option>
+                <option>CBG-AZ</option>
+                <option>CBG-NV</option>
+                <option>LVBOB</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                BIO INITIAL CONTENT % LEVEL <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <select class="form-control">
+                <option>Select...</option>
+                <option>0</option>
+                <option>B0</option>
+                <option>B0.5</option>
+                <option>B1</option>
+                <option>B1</option>
+                <option>B10</option>
+                <option>B2 3</option>
+                <option>B3</option>
+                <option>B4</option>
+                <option>B5</option>
+                <option>B20</option>
+                <option>B30</option>
+                <option>B35</option>
+                <option>B40</option>
+                <option>B50</option>
+                <option>B6</option>
+                <option>B7</option>
+                <option>B8</option>
+                <option>B9</option>
+                <option>B99</option>
+                <option>B100</option>
+                <option>E0</option>
+                <option>E10</option>
+                <option>E12</option>
+                <option>E15</option>
+                <option>E20</option>
+                <option>E5</option>
+                <option>E7</option>
+                <option>E85</option>
+                <option>E100</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                MARKING STATUS <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <select class="form-control">
+                <option>Select...</option>
+                <option>Mkd</option>
+                <option>Umk</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                BULK PRODUCT NAME <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <input type="text" class="form-control" placeholder="U" />
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                SALES TEXT FOR INVOICES, BOL <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <input type="text" class="form-control" placeholder="Placeholder text" />
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                PRODUCT NAME <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <select class="form-control">
+                <option>Select...</option>
+                <option>ACT</option>
+                <option>AeroJet</option>
+                <option>Asphalt Resurfacer</option>
+                <option>AVCAT Military Aviation Kerosine</option>
+                <option>AVTAG Military Aviation Kerosine</option>
+                <option>AVTUR Military Aviation Kerosine</option>
+                <option>Bitumen</option>
+                <option>Bitumen Emulsion</option>
+                <option>Bitumen Paints & Primer</option>
+                <option>Bituseal</option>
+                <option>Caribit</option>
+                <option>Cariphalte</option>
+                <option>Cariphalte DA</option>
+                <option>Cariphalte DM</option>
+                <option>Cariphalte Fuelsafe</option>
+                <option>Cariphalte OPA</option>
+                <option>Cariphalte PG</option>
+                <option>Caritop CB</option>
+                <option>Cutback</option>
+                <option>Diesel Extra</option>
+                <option>Diesoline</option>
+                <option>Diesoline Ultra</option>
+                <option>Dual Purpose Civil Aviation Kerosine</option>
+                <option>Emulsion</option>
+                <option>Factory Fill - Generic Fuels</option>
+                <option>Flintkote</option>
+                <option>Flintkote 3</option>
+                <option>Flintkote 5</option>
+                <option>Flintkote Aluminium</option>
+                <option>Flintkote Colourflex</option>
+                <option>Flintkote Decoralt</option>
+                <option>Flintkote Hydroguard</option>
+                <option>Flintkote Primer</option>
+                <option>Flintkote Ultra</option>
+                <option>FreshAir</option>
+                <option>Fuel Economy Diesel (or FED)</option>
+                <option>Fuel Economy Mogas (or FEM)</option>
+                <option>FuelSave Diesel</option>
+                <option>FuelSave Unleaded</option>
+                <option>High Lead, High Octane Aviation Gasoline</option>
+                <option>Jet A</option>
+                <option>Jet A-1</option>
+                <option>Jet B</option>
+                <option>Lead Replacement Petrol</option>
+                <option>LNG</option>
+                <option>Local Marine Diesel Bunker</option>
+                <option>Local Branded Products (Fuels)</option>
+                <option>Local Marine High Sulphur RFO Bunker</option>
+                <option>Local Marine Low Sulphur RFO Bunker</option>
+                <option>Low Lead High Octane Aviation Gasoline</option>
+                <option>Low Lead, Low Octane Aviation Gasoline</option>
+                <option>LPG Generic</option>
+                <option>Mellowphalt</option>
+                <option>Mexphalte</option>
+                <option>Mexphalte AM2</option>
+                <option>Mexphalte C</option>
+                <option>Mexphalte CP2</option>
+                <option>Mexphalte Fuelsafe</option>
+                <option>Mexphalte HVS</option>
+                <option>Mexphalte P3</option>
+                <option>Multiphalte</option>
+                <option>Multiphalte HM</option>
+                <option>No Brand</option>
+                <option>NovaChip</option>
+                <option>Other</option>
+                <option>Pura</option>
+                <option>Shell BioLNG</option>
+                <option>Shell Butagas</option>
+                <option>Shell Butagaz</option>
+                <option>Shell Gas</option>
+                <option>Shell GTL Fuel</option>
+                <option>Shell GTL Fuel Alpine</option>
+                <option>Shell GTL Fuel Heating</option>
+                <option>Shell GTL Fuel Marine</option>
+                <option>Shell GTL Fuel Off-Road</option>
+                <option>Shell Indoor Kart Fuel</option>
+                <option>Shell International Diesel Bunker</option>
+                <option>Shell International RFO Bunker</option>
+                <option>Shell LNG</option>
+                <option>Shell Moto Cross Fuel</option>
+                <option>Shell Motorcycle GP Fuel</option>
+                <option>Shell Propagas</option>
+                <option>Shell Propagaz</option>
+                <option>Shell Race Car Fuel</option>
+                <option>Shell Racing Fuels</option>
+                <option>Shell Racing Kart Fuel</option>
+                <option>Shell Superbike Fuel</option>
+                <option>Special Application Gasoline</option>
+                <option>Spramex</option>
+                <option>Spramul</option>
+                <option>Thermo</option>
+                <option>Thermo Eco Ultra</option>
+                <option>Thermo Premium</option>
+                <option>Third Party Branded</option>
+                <option>Tixophalte</option>
+                <option>Tixophalte Wet</option>
+                <option>Unbranded Products (Bitumen)</option>
+                <option>Unbranded Products (Fuels) Generic</option>
+                <option>Unleaded Extra (or ULX)</option>
+                <option>Unleaded, Low Octane Aviation Gasoline</option>
+                <option>V-Power</option>
+                <option>V-Power Diesel</option>
+                <option>V-Power Racing</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                BRAND CATEGORY <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <select class="form-control">
+                <option>Select...</option>
+                <option>Factory Fill Products</option>
+                <option>Shell Branded Products</option>
+                <option>Third Party Branded</option>
+                <option>Unbranded Products</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                MATERIAL DESCRIPTION <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <textarea class="form-control" placeholder="Placeholder"></textarea>
+            </div>
+
+            <div class="form-field">
+              <label class="field-label">
+                DEPUTY OWNER <span class="required">*</span>
+                <span class="info-icon">i</span>
+              </label>
+              <select class="form-control">
+                <option>Select...</option>
+                <option>Barre, Yasmin</option>
+                <option>Dolinska, Monika J</option>
+                <option>Kelly, Frances</option>
+                <option>Mengwasser, John H</option>
+                <option>Munsterman, Erwin H</option>
+                <option>O Breham, Gandalf</option>
+                <option>Plonka, Marta M</option>
+                <option>Son, Edward E</option>
+                <option>Szablicka, Monika</option>
+                <option>Smith, Alastair G</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        </div>
+        <!-- Classification Section -->
+        <div id="section-classification" class="form-section" style="display: none;">
+          <div class="section-header">
+            <h2><span class="p1-badge">P1</span>Classification</h2>
+            <button class="section-expand-btn">⤢</button>
+          </div>
+
+          <div class="form-grid">
+            <!-- Left Column -->
+            <div>
+              <div class="form-field">
+                <label class="field-label">
+                  PRODUCT CLASSIFICATION <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                  <option>Alcohols (Generic)</option>
+                  <option>Alkylate</option>
+                  <option>Base Chemicals</option>
+                  <option>Base Oil Under Preparation</option>
+                  <option>Benzene</option>
+                  <option>Bio CNG</option>
+                  <option>Bio LNG</option>
+                  <option>Bio LNG (1)</option>
+                  <option>Bio-esters (2)</option>
+                  <option>Bio-mass to Liquids (BTL) (3)</option>
+                  <option>Biomethane</option>
+                  <option>Bitumen Components</option>
+                  <option>Butane (2)</option>
+                  <option>Calcined Coke (Own Use - Not Bought or Sold)</option>
+                  <option>Calcined Coke (Sold)</option>
+                  <option>Catalytic Cracked Gasoline</option>
+                  <option>Catalytic Cracker Feedstock</option>
+                  <option>Chemical By-products RFO</option>
+                  <option>Chemical Return Products</option>
+                  <option>Chemical Returns Gasoil</option>
+                  <option>CNG</option>
+                  <option>Deasphalted Oil</option>
+                  <option>Dimethyl ether</option>
+                  <option>Ethanol (fuel mixture)</option>
+                  <option>Ethanol (not mixed with fuel)</option>
+                  <option>Flushing Oil for use by Mnf (3)</option>
+                  <option>For Aromatics</option>
+                  <option>For Chemicals</option>
+                  <option>For Own Use</option>
+                  <option>Fuel Oil Feedstock</option>
+                  <option>Full Range Hydrotreated Naphtha</option>
+                  <option>Full Range Straight Run Naphtha</option>
+                  <option>Gas Oils (to meet emission regulations)</option>
+                  <option>Gas to Liquids (GTL) (3)</option>
+                  <option>Gaseous Refinery Fuel</option>
+                  <option>Gaseous Refinery Fuel - Own Use (Not bought or sold)</option>
+                  <option>Green Coke (Own Use - Not Bought or Sold)</option>
+                  <option>Green Coke (Sold)</option>
+                  <option>Heavy Catalytic Cracked Oil and Slurry</option>
+                  <option>Heavy Hydrotreated Naphtha</option>
+                  <option>Heavy Straight Run Naphtha</option>
+                  <option>Hydro Cracker Feedstock</option>
+                  <option>Hydro Desulphurised Gasoil</option>
+                  <option>Hydrocracked Gasoil</option>
+                  <option>Hydrogen Fuel Downstream</option>
+                  <option>Hydrogen Refinery</option>
+                  <option>Hydrogen Sulphide</option>
+                  <option>Hydrotreated Vegetable Oil</option>
+                  <option>Industrial Gas Oil</option>
+                  <option>Industrial Heavy Distillate (2)</option>
+                  <option>Isobutane (2)</option>
+                  <option>Isomerate</option>
+                  <option>Iso-Pentane</option>
+                  <option>Isopropane (2)</option>
+                  <option>Light Cycle Oil</option>
+                  <option>Light Hydrotreated Naphtha</option>
+                  <option>Light Straight Run Naphtha</option>
+                  <option>Liquid Refinery Fuel  - Own Use (Not bought or sold)</option>
+                  <option>LNG (3)</option>
+                  <option>Low Carbon Bio-Components (1)</option>
+                  <option>Low Carbon Bio-fuels</option>
+                  <option>Low Carbon Natural Gas</option>
+                  <option>Methanol</option>
+                  <option>Mixed / Untreated LPG</option>
+                  <option>Mixed Aromatics</option>
+                  <option>Olefins for Chemicals</option>
+                  <option>Other - Gasoline Component</option>
+                  <option>Other Benzene Derivatives (2)</option>
+                  <option>Other Bio-Components (2)</option>
+                  <option>Other Gasoil Components</option>
+                  <option>Other General Purpose Feedstock</option>
+                  <option>Other Kero</option>
+                  <option>Other LPG (3)</option>
+                  <option>Other Refinery Fuel</option>
+                  <option>Other Refinery Fuel - Own Use (Not bought or sold)</option>
+                  <option>Other RFO components</option>
+                  <option>Oxygenate</option>
+                  <option>Platformate</option>
+                  <option>Premium mixture (2)</option>
+                  <option>Propane (2)</option>
+                  <option>Propane Deasphalting Unit feed</option>
+                  <option>Propane/Butane mixture (2)</option>
+                  <option>Raffinate</option>
+                  <option>Renewable Natural Gas</option>
+                  <option>Short/Long Residue</option>
+                  <option>Slack WaX</option>
+                  <option>Slops</option>
+                  <option>Solid Refinery Fuel</option>
+                  <option>Solid Refinery Fuel - Own Use (Not bought or sold)</option>
+                  <option>Solvents</option>
+                  <option>Steam</option>
+                  <option>Steam Cracker Feedstock</option>
+                  <option>Straight Run Gasoil</option>
+                  <option>Straight Run Kerosine</option>
+                  <option>Sulphur</option>
+                  <option>Thermal Cracker Feedstock</option>
+                  <option>Thermally Cracked Gasoil</option>
+                  <option>Toluene</option>
+                  <option>Visbreaker/Thermally Cracked Residue</option>
+                  <option>Water</option>
+                  <option>Waxy Distillate</option>
+                  <option>Waxy Raffinate</option>
+                  <option>Xylene</option>
+                  <option>Low Sulphur Local Inland Fuel Oil (2)</option>
+                  <option>Low Sulphur Local RFO Bunker</option>
+                  <option>Losses</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  SUB-CLASS <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" placeholder="Autofilled" disabled />
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  SUB-GROUP <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" placeholder="Autofilled" disabled />
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  EPC PRODUCT HIERARCHY CLASS 2 <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" placeholder="Autofilled" disabled />
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  GRADE <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                  <option>Jet A</option>
+                  <option>Jet A-1</option>
+                  <option>Jet B</option>
+                  <option>JP4</option>
+                  <option>JP5</option>
+                  <option>JP8</option>
+                  <option>79 RON</option>
+                  <option>80 RON</option>
+                  <option>81 RON</option>
+                  <option>82 RON</option>
+                  <option>83 RON</option>
+                  <option>83.5 RON</option>
+                  <option>84 RON</option>
+                  <option>85 RON</option>
+                  <option>85.5 RON</option>
+                  <option>86 RON</option>
+                  <option>87 RON</option>
+                  <option>87.5 RON</option>
+                  <option>88 RON</option>
+                  <option>88.5 RON</option>
+                  <option>89 RON</option>
+                  <option>89.5 RON</option>
+                  <option>89.6 RON</option>
+                  <option>90 RON</option>
+                  <option>90.5 RON</option>
+                  <option>91 RON</option>
+                  <option>90.6 RON</option>
+                  <option>91 RON</option>
+                  <option>91.6 RON</option>
+                  <option>92 RON</option>
+                  <option>92.5 RON</option>
+                  <option>93 RON</option>
+                  <option>93.5 RON</option>
+                  <option>94 RON</option>
+                  <option>95 RON</option>
+                  <option>95.4 RON</option>
+                  <option>96 RON</option>
+                  <option>97 RON</option>
+                  <option>97.4 RON</option>
+                  <option>98 RON</option>
+                  <option>98.2 RON</option>
+                  <option>99 RON</option>
+                  <option>100 RON</option>
+                  <option>0 to 15 ppm S</option>
+                  <option>16 to 50 ppm S</option>
+                  <option>51 to 150 ppm S</option>
+                  <option>151 to 350 ppm S</option>
+                  <option>351 to 500 ppm S</option>
+                  <option>501 to 1000 ppm S</option>
+                  <option>501 to 2000 ppm S</option>
+                  <option>2001 to 5000 ppm S</option>
+                  <option>5001 to 10000 ppm S</option>
+                  <option>10001 to 15000 ppm S</option>
+                  <option>10001 to 20000 ppm S</option>
+                  <option>20001+ ppm S</option>
+                  <option>E Grade</option>
+                  <option>H Grade</option>
+                  <option>Penetration Grade</option>
+                  <option>Premium Grade</option>
+                  <option>R Grade</option>
+                  <option>Superpave Performance Grade</option>
+                  <option>Viscosity Grade</option>
+                  <option>Other (Unspecified)</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  RVP GROUP <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                  <option>N/A - Not Applicable</option>
+                  <option>CHVP - Conventional High Vapor Pressure</option>
+                  <option>CLVP - Conventional Low Vapor Pressure</option>
+                  <option>RFG - Reformulated Gasoline</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  OAS GRADE GROUP <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                  <option>Alternate Fuels (300)</option>
+                  <option>Base Oil Stock (280)</option>
+                  <option>Base Oils (270)</option>
+                  <option>Bitumen (260)</option>
+                  <option>Cat Cracker Feed (210)</option>
+                  <option>Chemicals (290)</option>
+                  <option>Crude - Arabian (130)</option>
+                  <option>Crude - Domestic (110)</option>
+                  <option>Crude - International (120)</option>
+                  <option>Diesel (170)</option>
+                  <option>Distillate Components (180)</option>
+                  <option>Fuel By-Products (240)</option>
+                  <option>Gasoline (140)</option>
+                  <option>Gasoline Components (150)</option>
+                  <option>Jet Fuel (160)</option>
+                  <option>LPG (190)</option>
+                  <option>Naphtha (200)</option>
+                  <option>Other Feedstock (220)</option>
+                  <option>Residual Fuel Oil (230)</option>
+                  <option>Sulfur (250)</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  OAS EIA GRADE ID <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" value="EIA_010" disabled />
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  CUSTOMS TARIFF NUMBER <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" placeholder="Placeholder" />
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  REACH SCC <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                  <option>Reach non-SCC</option>
+                  <option>Reach SCC</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  TIERING CLASSIFICATION <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                  <option selected>Maingrade – Commodity</option>
+                  <option>Differentiated</option>
+                  <option>Maingrade – Extra</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  GRADE TYPE <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" value="Other (Unspecified)" disabled />
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  US EPA CATEGORY CODE <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                  <option>(00) - N/A (NOT APPLICABLE)</option>
+                  <option>(01) - CONVENTIONAL MOGAS</option>
+                  <option>(02) - OXY (NON-RFG) MOGAS</option>
+                  <option>(03) - RFG MOGAS</option>
+                  <option>(04) - RBOB MOGAS</option>
+                  <option>(05) - OPRG MOGAS</option>
+                  <option>(06) - CARB 2 MOGAS</option>
+                  <option>(07) - CARBOB MOGAS</option>
+                  <option>(10) - LS DIESEL</option>
+                  <option>(11) - HS DIESEL</option>
+                  <option>(12) - CARB DIESEL</option>
+                  <option>(21) - CONV N/ATTAIN REG 1</option>
+                  <option>(22) - CONV ATTAIN &amp; REG 2 ASTM</option>
+                  <option>(23) - RFG NON-VOC NON-OPRG</option>
+                  <option>(24) - RFG NON-VOC OPRG</option>
+                  <option>(25) - RFG VOC-REG 1 NON-OPRG</option>
+                  <option>(26) - RFG VOC-REG 2 NON-OPRG</option>
+                  <option>(27) - RFG VOC-REG 2 OPRG</option>
+                  <option>(99) - OTHER</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  DEX GRADE for STi <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" placeholder="Placeholder text" />
+              </div>
+
+            </div>
+
+            <!-- Right Column -->
+            <div>
+              <div class="form-field">
+                <label class="field-label">
+                  CLASS <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" placeholder="Autofilled" disabled />
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  GROUP <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" placeholder="Autofilled" disabled />
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  SUB-SUB-GROUP <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" placeholder="Autofilled" disabled />
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  EPC PRODUCT HIERARCHY CLASS 3 <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" placeholder="Autofilled" disabled />
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  OXYGENATE/BIO-FUEL CONTENT <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                  <option>0</option>
+                  <option>B0</option>
+                  <option>B01</option>
+                  <option>B01s</option>
+                  <option>B02</option>
+                  <option>B02R05</option>
+                  <option>B02s</option>
+                  <option>B03s</option>
+                  <option>B04</option>
+                  <option>B04s</option>
+                  <option>B05</option>
+                  <option>B05R05</option>
+                  <option>B05s</option>
+                  <option>B07</option>
+                  <option>B10</option>
+                  <option>B11</option>
+                  <option>B20</option>
+                  <option>B30</option>
+                  <option>B35</option>
+                  <option>B40</option>
+                  <option>B50</option>
+                  <option>B99</option>
+                  <option>B100</option>
+                  <option>E0</option>
+                  <option>E01</option>
+                  <option>E02</option>
+                  <option>E05</option>
+                  <option>E10</option>
+                  <option>E12</option>
+                  <option>E20</option>
+                  <option>E70</option>
+                  <option>E85</option>
+                  <option>E95</option>
+                  <option>E100</option>
+                  <option>R05</option>
+                  <option>R98</option>
+                  <option>R99</option>
+                  <option>R100</option>
+                  <option>N/A</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  IS THIS PRODUCT AT A REFINERY IN THE US/CA* <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                  <option>Yes</option>
+                  <option>No</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  OAS EIA GRADE GROUP <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                  <option>Asphalt and Road Oil</option>
+                  <option>Aviation Gasoline</option>
+                  <option>Crude Oil</option>
+                  <option>Distillate Fuel Oil, TOTAL</option>
+                  <option>Finished Motor Gasoline</option>
+                  <option>Hydrogen</option>
+                  <option>Inputs (gain) or Production (loss)</option>
+                  <option>Kerosene</option>
+                  <option>Kerosene-Type Jet Fuel, TOTAL</option>
+                  <option>Liquefied Refinery Gases (LRG's)</option>
+                  <option>Lubricants, TOTAL</option>
+                  <option>Miscellaneous Products</option>
+                  <option>Motor Gasoline Blending Components</option>
+                  <option>Other Hydrocarbons</option>
+                  <option>Oxygenates (excluding Fuel Ethanol), TOTAL</option>
+                  <option>Petroleum Coke</option>
+                  <option>Petroleum Feedstocks</option>
+                  <option>Renewable Fuels, TOTAL</option>
+                  <option>Residual Fuel Oil, TOTAL</option>
+                  <option>Special Naphthas (solvents)</option>
+                  <option>Still Gas</option>
+                  <option>Unfinished Oils</option>
+                  <option>Wax</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  IS IT EXCLUSIVELY 3RD PARTY PRODUCT <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                  <option>Yes</option>
+                  <option>No</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  CURRENT STATUS <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                  <option>Active - Customer Specific</option>
+                  <option>Active - Generic</option>
+                  <option>Active - Pilot/Trial</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  SECURITY CLASSIFICATION <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                  <option>Fuel standard ground… Shell only</option>
+                  <option>Other product standard… Shell only</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  IS PRODUCT TO BE SOLD TO CUSTOMER <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                  <option>Yes</option>
+                  <option>No</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  US ODE PRODUCT CODE <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                  <option>(111) - FINISHED AVIATION GAS</option>
+                  <option>(153) - REFORMULATED REGULAR</option>
+                  <option>(154) - REFORMULATED MIDGRADE</option>
+                  <option>(155) - REFORMULATED PREMIUM</option>
+                  <option>(156) - OXYGENATED REGULAR</option>
+                  <option>(157) - OXYGENATED MIDGRADE</option>
+                  <option>(158) - OXYGENATED PREMIUM</option>
+                  <option>(159) - CONVENTIONAL REGULAR</option>
+                  <option>(160) - CONVENTIONAL MIDGRADE</option>
+                  <option>(161) - CONVENTIONAL PREMIUM</option>
+                  <option>(213) - KEROSENE-TYPE JET FUEL</option>
+                  <option>(311) - KEROSENE</option>
+                  <option>(467) - NO. 1 DISTILLATE</option>
+                  <option>(468) - GREATER THAN 15 PPM TO 500 PPM</option>
+                  <option>(468) - NO. 2 DIESEL &lt;= .05 % SULFUR</option>
+                  <option>(469) - GREATER THAN 500 PPM SULFUR</option>
+                  <option>(469) - NO. 2 DIESEL  &gt; .05 % SULFUR</option>
+                  <option>(470) - NO. 2 FUEL OIL</option>
+                  <option>(471) - NO. 4 FUEL</option>
+                  <option>(472) - 15 PPM SULFUR AND UNDER</option>
+                  <option>(501) - RESIDUAL FUEL OIL &lt;= 1% SULFUR</option>
+                  <option>(510) - RESIDUAL FUEL OIL  &gt; 1% SULFUR</option>
+                  <option>(624) - PROPANE CONSUMER GRADE</option>
+                  <option>N/A - NOT APPLICABLE</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label">
+                  LIFO POOL <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                  <option>10 - CRUDE LIGHT - LOW SULFUR</option>
+                  <option>20 - CRUDE MED - LOW SULFUR</option>
+                  <option>30 - CRUDE HEAVY - LOW SULFUR</option>
+                  <option>40 - CRUDE LIGHT - MED SULFUR</option>
+                  <option>50 - CRUDE MED - MED SULFUR</option>
+                  <option>60 - CRUDE HEAVY - MED SULFUR</option>
+                  <option>70 - CRUDE LIGHT - HIGH SULFUR</option>
+                  <option>80 - CRUDE MED - HIGH SULFUR</option>
+                  <option>90 - CRUDE HEAVY - HIGH SULFUR</option>
+                  <option>1010 - GASOLINE/AVGAS ADDITIVES/DYES</option>
+                  <option>1020 - OXYGENATES</option>
+                  <option>1030 - DIESEL FUEL ADDITIVES</option>
+                  <option>1040 - DIESEL FUEL DYES</option>
+                  <option>1045 - AVJET ADDITIVES</option>
+                  <option>1050 - COMPOUNDING STOCKS</option>
+                  <option>2010 - FUEL FEEDSTOCKS</option>
+                  <option>2020 - PETROCHEMICAL FEEDSTOCKS</option>
+                  <option>2030 - DISTILLATE BLENDSTOCKS</option>
+                  <option>2040 - GASOLINE BLENDING STOCK</option>
+                  <option>2050 - ALKYLATE BLENDING STOCK</option>
+                  <option>3010 - CONVENTIONAL UNLEADED REGULAR</option>
+                  <option>3020 - CONVENTIONAL UNLEADED MIDGRADE</option>
+                  <option>3030 - CONVENTIONAL UNLEADED PREMIUM</option>
+                  <option>3040 - OXY CONVENTIONAL REGULAR</option>
+                  <option>3050 - OXY CONVENTIONAL MIDGRADE</option>
+                  <option>3060 - OXY CONVENTIONAL PREMIUM</option>
+                  <option>3070 - OXY RFG REGULAR</option>
+                  <option>3080 - OXY RFG MIDGRADE</option>
+                  <option>3090 - OXY RFG PREMIUM</option>
+                  <option>3100 - CARB UNLEADED REGULAR</option>
+                  <option>3110 - CARB UNLEADED MIDGRADE</option>
+                  <option>3120 - CARB UNLEADED PREMIUM</option>
+                  <option>3130 - LOW SULFUR DIESEL</option>
+                  <option>3140 - HIGH SULFUR DIESEL</option>
+                  <option>3150 - CARB DIESEL</option>
+                  <option>3160 - AVIATION GASOLINE</option>
+                  <option>3170 - AVJET</option>
+                  <option>3180 - OTHER MIDDLE DISTILLATES</option>
+                  <option>3190 - ASPHALTS</option>
+                  <option>3200 - RESIDUALS</option>
+                  <option>3210 - PROPANE</option>
+                  <option>3220 - BUTANES</option>
+                  <option>3230 - ISOBUTANE</option>
+                  <option>4010 - MOTOR OILS</option>
+                  <option>4040 - LUBE BASE OILS</option>
+                  <option>4050 - BRIGHT STOCKS</option>
+                  <option>4060 - TEXTRACTS</option>
+                  <option>4070 - LUBE FEEDSTOCKS</option>
+                  <option>4080 - LUBE ADDITIVES</option>
+                  <option>4620 - GLYCOL</option>
+                  <option>4700 - WAXES</option>
+                  <option>5000 - FLUID COKE</option>
+                  <option>5100 - SULFUR</option>
+                  <option>5200 - SULFURIC ACID</option>
+                  <option>5300 - CHEMICALS</option>
+                  <option>5500 - AMMONIA</option>
+                  <option>9999 - NON-LIFO RELATED MATERIAL</option>
+                </select>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Country Specific Section -->
+        <div id="section-country-specific" class="form-section" style="display: none;">
+          <div class="section-header">
+            <h2><span class="p1-badge">P1</span>Country Specific</h2>
+            <button class="section-expand-btn">⤢</button>
+          </div>
+
+          <div class="form-grid">
+            <!-- Left Column -->
+            <div>
+              <div class="form-field">
+                <label class="field-label">
+                  COMMODITY GRADE <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option>Select...</option>
+                  <option>Grade A</option>
+                  <option>Grade B</option>
+                  <option>Grade C</option>
+                  <option>Grade D</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Right Column -->
+            <div></div>
+          </div>
+        </div>
+
+        <!-- Technical Properties Section -->
+        <div id="section-technical-properties" class="form-section" style="display: none;">
+          <div class="section-header">
+            <h2><span class="p1-badge">P1</span>Technical Properties</h2>
+            <button class="section-expand-btn">⤢</button>
+          </div>
+
+          <div class="form-field" style="grid-column: 1 / -1; margin-bottom: 40px;">
+            <label class="field-label">
+              EXACT COMPOSITION <span class="required">*</span>
+              <span class="info-icon">i</span>
+            </label>
+            <table class="composition-table">
+              <thead>
+                <tr>
+                  <th>Exact Composition</th>
+                  <th>Min % <span class="required">*</span></th>
+                  <th>Max % <span class="required">*</span></th>
+                  <th>Typical</th>
+                  <th style="width: 40px; text-align: center;">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><select class="form-control">
+
+<option value="">Select</option>
+<option value="Benzene" selected>Benzene</option>
+</select></td>
+                  <td><input type="number" class="form-control" value="5" /></td>
+                  <td><input type="number" class="form-control" value="10" /></td>
+                  <td><select class="form-control">
+
+<option value="">Select</option>
+<option value="7" selected>7</option>
+</select></td>
+                  <td class="action-cell"><button type="button" class="delete-row-btn" title="Delete row">✕</button></td>
+                </tr>
+                <tr>
+                  <td><select class="form-control">
+
+<option value="">Select</option>
+<option value="Ethanol" selected>Ethanol</option>
+</select></td>
+                  <td><input type="number" class="form-control" value="1" /></td>
+                  <td><input type="number" class="form-control" value="5" /></td>
+                  <td><select class="form-control">
+
+<option value="">Select</option>
+<option value="3" selected>3</option>
+</select></td>
+                  <td class="action-cell"><button type="button" class="delete-row-btn" title="Delete row">✕</button></td>
+                </tr>
+                <tr>
+                  <td><select class="form-control">
+
+<option value="">Select</option>
+<option value="Toluene" selected>Toluene</option>
+</select></td>
+                  <td><input type="number" class="form-control" value="20" /></td>
+                  <td><input type="number" class="form-control" value="40" /></td>
+                  <td><select class="form-control">
+
+<option value="">Select</option>
+<option value="30" selected>30</option>
+</select></td>
+                  <td class="action-cell"><button type="button" class="delete-row-btn" title="Delete row">✕</button></td>
+                </tr>
+                <tr class="add-row">
+                  <td colspan="5">
+                    <button type="button" class="add-ingredient-btn">+ Add Ingredient</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="form-field" style="grid-column: 1 / -1; margin-bottom: 40px;">
+            <label class="field-label">
+              CONSTITUENTS OF CONCERN <span class="required">*</span>
+              <span class="info-icon">i</span>
+            </label>
+            <table class="composition-table">
+              <thead>
+                <tr>
+                  <th>Constituent of Concern</th>
+                  <th>Min % <span class="required">*</span></th>
+                  <th>Max % <span class="required">*</span></th>
+                  <th>Typical</th>
+                  <th style="width: 40px; text-align: center;">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><select class="form-control">
+
+<option value="">Select</option>
+</select></td>
+                  <td><input type="number" class="form-control" placeholder="Min %" /></td>
+                  <td><input type="number" class="form-control" placeholder="Max %" /></td>
+                  <td><select class="form-control">
+
+<option value="">Select</option>
+</select></td>
+                  <td class="action-cell"><button type="button" class="delete-row-btn" title="Delete row">✕</button></td>
+                </tr>
+                <tr class="add-row">
+                  <td colspan="5">
+                    <button type="button" class="add-constituent-btn">+ Add Constituent</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="form-field" style="grid-column: 1 / -1; margin-bottom: 40px;">
+            <label class="field-label">
+              PROPERTIES <span class="required">*</span>
+              <span class="info-icon">i</span>
+            </label>
+            <table class="composition-table">
+              <thead>
+                <tr>
+                  <th>Property</th>
+                  <th>Min <span class="required">*</span></th>
+                  <th>Max <span class="required">*</span></th>
+                  <th>Typical</th>
+                  <th>Test Method <span class="required">*</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Boiling Range [°C]</td>
+                  <td><input type="number" class="form-control" value="10" /></td>
+                  <td><input type="number" class="form-control" value="100" /></td>
+                  <td><input type="number" class="form-control" /></td>
+                  <td><select class="form-control">
+<option value="">Select</option>
+<option selected>Dropdown</option>
+</select></td>
+                </tr>
+                <tr>
+                  <td>Flash Point [°C]</td>
+                  <td><input type="number" class="form-control" value="0" /></td>
+                  <td><input type="number" class="form-control" value="23" /></td>
+                  <td><input type="number" class="form-control" /></td>
+                  <td><select class="form-control">
+<option value="">Select</option>
+<option selected>Dropdown</option>
+</select></td>
+                </tr>
+                <tr>
+                  <td>Freezing Point [°C]</td>
+                  <td><input type="number" class="form-control" value="0" /></td>
+                  <td><input type="number" class="form-control" value="0" /></td>
+                  <td><input type="number" class="form-control" /></td>
+                  <td><select class="form-control">
+<option value="">Select</option>
+<option selected>Unspecified</option>
+</select></td>
+                </tr>
+                <tr>
+                  <td>Pour Point [°C]</td>
+                  <td><input type="number" class="form-control" value="-50" /></td>
+                  <td><input type="number" class="form-control" value="35" /></td>
+                  <td><input type="number" class="form-control" /></td>
+                  <td><input type="text" class="form-control" value="ASTM D5950 / ISO 3016" /></td>
+                </tr>
+                <tr>
+                  <td>Vapour Pressure [kPa @ 38°C]</td>
+                  <td><input type="number" class="form-control" value="0" /></td>
+                  <td><input type="number" class="form-control" value="0" /></td>
+                  <td><input type="number" class="form-control" /></td>
+                  <td><select class="form-control">
+<option value="">Select</option>
+<option selected>Unspecified</option>
+</select></td>
+                </tr>
+                <tr>
+                  <td>Vapour Pressure [kPa @ 50°C]</td>
+                  <td><input type="number" class="form-control" value="0" /></td>
+                  <td><input type="number" class="form-control" value="0" /></td>
+                  <td><input type="number" class="form-control" /></td>
+                  <td><select class="form-control">
+<option value="">Select</option>
+<option selected>Unspecified</option>
+</select></td>
+                </tr>
+                <tr>
+                  <td>Viscosity [mm²/s @ 20°C]</td>
+                  <td><input type="number" class="form-control" value="3" /></td>
+                  <td><input type="number" class="form-control" value="8" /></td>
+                  <td><input type="number" class="form-control" /></td>
+                  <td><select class="form-control">
+<option value="">Select</option>
+<option selected>Unspecified</option>
+</select></td>
+                </tr>
+                <tr>
+                  <td>Viscosity [mm²/s @ 40°C]</td>
+                  <td><input type="number" class="form-control" value="3" /></td>
+                  <td><input type="number" class="form-control" value="1000" /></td>
+                  <td><input type="number" class="form-control" /></td>
+                  <td><select class="form-control">
+<option value="">Select</option>
+<option selected>Unspecified</option>
+</select></td>
+                </tr>
+                <tr>
+                  <td>Viscosity [mm²/s @ 50°C]</td>
+                  <td><input type="number" class="form-control" value="0" /></td>
+                  <td><input type="number" class="form-control" value="0" /></td>
+                  <td><input type="number" class="form-control" /></td>
+                  <td><select class="form-control">
+<option value="">Select</option>
+<option selected>Unspecified</option>
+</select></td>
+                </tr>
+                <tr>
+                  <td>Total Aromatic Content %</td>
+                  <td><input type="number" class="form-control" value="0" /></td>
+                  <td><input type="number" class="form-control" value="0" /></td>
+                  <td><input type="number" class="form-control" /></td>
+                  <td><select class="form-control">
+<option value="">Select</option>
+<option selected>Unspecified</option>
+</select></td>
+                </tr>
+                <tr>
+                  <td>Colour</td>
+                  <td><input type="text" class="form-control" value="Brown to Black" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><select class="form-control">
+<option value="">Select</option>
+<option selected>Unspecified</option>
+</select></td>
+                </tr>
+                <tr>
+                  <td>Odour</td>
+                  <td><input type="text" class="form-control" value="Hydrocarbon" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><select class="form-control">
+<option value="">Select</option>
+<option selected>Unspecified</option>
+</select></td>
+                </tr>
+                <tr>
+                  <td>State of Matter (Ambient)</td>
+                  <td><input type="text" class="form-control" value="Liquid" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><select class="form-control">
+<option value="">Select</option>
+<option selected>Unspecified</option>
+</select></td>
+                </tr>
+                <tr>
+                  <td>Form (Delivered)</td>
+                  <td><input type="text" class="form-control" value="Liquid" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><select class="form-control">
+<option value="">Select</option>
+<option selected>Unspecified</option>
+</select></td>
+                </tr>
+                <tr>
+                  <td>Density [kg/m³ @ 15°C]</td>
+                  <td><input type="number" class="form-control" value="800" /></td>
+                  <td><input type="number" class="form-control" value="800" /></td>
+                  <td><input type="number" class="form-control" /></td>
+                  <td><select class="form-control">
+<option value="">Select</option>
+<option selected>Unspecified</option>
+</select></td>
+                </tr>
+                <tr>
+                  <td>Density [kg/m³ @ 70°C]</td>
+                  <td><input type="text" class="form-control" placeholder="Value" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><select class="form-control">
+<option value="">Select</option>
+<option selected>Unspecified</option>
+</select></td>
+                </tr>
+                <tr>
+                  <td>Relative Vapour Density (air = 1)</td>
+                  <td><input type="text" class="form-control" placeholder="Value" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><select class="form-control">
+<option value="">Select</option>
+<option selected>Unspecified</option>
+</select></td>
+                </tr>
+                <tr>
+                  <td>RON Number</td>
+                  <td><input type="text" class="form-control" placeholder="Value" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><select class="form-control">
+<option value="">Select</option>
+<option selected>Unspecified</option>
+</select></td>
+                </tr>
+                <tr>
+                  <td>Crystalizing Point</td>
+                  <td><input type="text" class="form-control" placeholder="Value" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><select class="form-control">
+<option value="">Select</option>
+<option selected>Unspecified</option>
+</select></td>
+                </tr>
+                <tr>
+                  <td>Softening Point</td>
+                  <td><input type="text" class="form-control" placeholder="Value" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><select class="form-control">
+<option value="">Select</option>
+<option selected>Unspecified</option>
+</select></td>
+                </tr>
+                <tr>
+                  <td>Needle Penetration (0.1mm) EN 1426</td>
+                  <td><input type="text" class="form-control" placeholder="Value" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><select class="form-control">
+<option value="">Select</option>
+<option selected>Unspecified</option>
+</select></td>
+                </tr>
+                <tr>
+                  <td>Density [kg/m³ @ 15°C] (User Input)</td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- SKU & Country Details Section - Updated 1783271657 -->
+        <div id="section-sku-country-details" class="form-section" style="display: none;">
+          <div class="section-header">
+            <h2><span class="p1-badge">P1</span>SKU & Country Details</h2>
+            <button class="section-expand-btn">⤢</button>
+          </div>
+
+          <div class="form-grid">
+            <!-- Row 1: Brand Status | Pack Type -->
+            <div>
+              <div class="form-field">
+                <label class="field-label">
+                  BRAND STATUS <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" value="Autofilled" disabled style="background-color: #F5F5F5;" />
+              </div>
+            </div>
+
+            <div>
+              <div class="form-field">
+                <label class="field-label">
+                  PACK TYPE <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option value="">Select...</option>
+                  <option>Bag</option>
+                  <option>Bale</option>
+                  <option>Block</option>
+                  <option>Bottle</option>
+                  <option>Can</option>
+                  <option>Carton</option>
+                  <option>Crumb</option>
+                  <option>Drum</option>
+                  <option>IBC</option>
+                  <option>Keg</option>
+                  <option>Pail</option>
+                  <option>Bulk</option>
+                  <option>Others</option>
+                  <option>Bottle 25 L Jerrycan Plastic Colourless (1)</option>
+                  <option>Bottle 5 L Local (Carix) Plastic Transparent (3)</option>
+                  <option>Bottle 25 L Jerrycan Plastic Red (1)</option>
+                  <option>Bottle 5 L Local Sinol Y (1)</option>
+                  <option>Drum 170 L T/H RY (1)</option>
+                  <option>Drum 190 L O/H RYR 7 (1)</option>
+                  <option>Drum 195 L T/H Steel Light Blue, White (1)</option>
+                  <option>Drum 200 L Dobatex T/H Blue (1)</option>
+                  <option>Drum 210 L T/H Plastic White (1)</option>
+                  <option>Drum 200 L T/H R (1)</option>
+                  <option>Drum 200 L T/H Steel GyBlGy (1)</option>
+                  <option>Drum 200 L T/H Steel Reconditioned Shell Red (1)</option>
+                  <option>Drum 205 L T/H Blue (1)</option>
+                  <option>Drum 205 L T/H RYR (1)</option>
+                  <option>Drum 209 L T/H RYtop (1)</option>
+                  <option>Drum 210 L T/H Blue (1)</option>
+                  <option>Drum Recon 200 L T/H R (1)</option>
+                  <option>IBC 1000 L Plastic T (1)</option>
+                  <option>IBC 1000 kg Local Plastic Transparent (1)</option>
+                  <option>IBC 1000 L Steel Silver (1)</option>
+                  <option>Pail 18 L Steel T/H W (1)</option>
+                  <option>Pail 18 L Tinplate T/H Y (1)</option>
+                  <option>Pail 23 KG Open head Steel Shell Yellow (1)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Row 2: SKU Code | Density Type -->
+            <div>
+              <div class="form-field">
+                <label class="field-label">
+                  SKU CODE <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" value="001176" disabled style="background-color: #F5F5F5;" />
+              </div>
+            </div>
+
+            <div>
+              <div class="form-field">
+                <label class="field-label">
+                  DENSITY TYPE <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+<option value="">Select</option>
+<option value="density-25">Density [kg/m³ @ 25°C]</option>
+<option value="api-gravity">API Gravity</option>
+</select>
+              </div>
+            </div>
+
+            <!-- Row 3: Density Value -->
+            <div>
+              <div class="form-field">
+                <label class="field-label">
+                  DENSITY VALUE <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="number" class="form-control" placeholder="Numeric value" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Country of Sale Section -->
+        <div id="section-country-of-sale" class="form-section" style="display: none;">
+          <div class="section-header">
+            <h2><span class="p1-badge">P1</span>Country of Sale</h2>
+            <button class="section-expand-btn">⤢</button>
+          </div>
+
+          <div class="form-grid">
+            <!-- Row 1: Country of Sale | Language -->
+            <div>
+              <div class="form-field">
+                <label class="field-label">
+                  COUNTRY OF SALE <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option value="">Select...</option>
+                  <option>EU</option>
+                  <option>Global, Not US</option>
+                  <option>Global</option>
+                  <option>Afghanistan</option>
+                  <option>Albania</option>
+                  <option>Algeria</option>
+                  <option>American Samoa</option>
+                  <option>Andorra</option>
+                  <option>Angola</option>
+                  <option>Anguilla</option>
+                  <option>Antarctica</option>
+                  <option>Antigua and Barbuda</option>
+                  <option>Argentina</option>
+                  <option>Armenia</option>
+                  <option>Aruba</option>
+                  <option>Australia</option>
+                  <option>Austria</option>
+                  <option>Azerbaijan</option>
+                  <option>Bahamas</option>
+                  <option>Bahrain</option>
+                  <option>Bangladesh</option>
+                  <option>Barbados</option>
+                  <option>Belarus</option>
+                  <option>Belgium</option>
+                  <option>Belize</option>
+                  <option>Benin</option>
+                  <option>Bermuda</option>
+                  <option>Bhutan</option>
+                  <option>Bolivia</option>
+                  <option>Bosnia and Herzegovina</option>
+                  <option>Botswana</option>
+                  <option>Bouvet Island</option>
+                  <option>Brazil</option>
+                  <option>British Indian Ocean Territory</option>
+                  <option>British Virgin Islands</option>
+                  <option>Brunei Darussalam</option>
+                  <option>Bulgaria</option>
+                  <option>Burkina Faso</option>
+                  <option>Burundi</option>
+                  <option>Cambodia</option>
+                  <option>Cameroon</option>
+                  <option>Canada</option>
+                  <option>Cape Verde</option>
+                  <option>Cayman Islands</option>
+                  <option>Central African Republic</option>
+                  <option>Chad</option>
+                  <option>Chile</option>
+                  <option>China</option>
+                  <option>Christmas Island</option>
+                  <option>Cocos (Keeling) Islands</option>
+                  <option>Colombia</option>
+                  <option>Comoros</option>
+                  <option>Costa Rica</option>
+                  <option>Cote D'Ivoire</option>
+                  <option>Croatia</option>
+                  <option>Cuba</option>
+                  <option>Cyprus</option>
+                  <option>Czech Republic</option>
+                  <option>Denmark</option>
+                  <option>Djibouti</option>
+                  <option>Dominica</option>
+                  <option>Dominican Republic</option>
+                  <option>East Timor</option>
+                  <option>Ecuador</option>
+                  <option>Egypt</option>
+                  <option>El Salvador</option>
+                  <option>Equatorial Guinea</option>
+                  <option>Eritrea</option>
+                  <option>Estonia</option>
+                  <option>Ethiopia</option>
+                  <option>Falkland Islands (Malvinas)</option>
+                  <option>Faroe Islands</option>
+                  <option>Federated States of Micronesia</option>
+                  <option>Fiji</option>
+                  <option>Finland</option>
+                  <option>France</option>
+                  <option>French Guiana</option>
+                  <option>French Polynesia</option>
+                  <option>French Southern Territories</option>
+                  <option>Gabon</option>
+                  <option>Gambia</option>
+                  <option>Georgia</option>
+                  <option>Germany</option>
+                  <option>Ghana</option>
+                  <option>Gibraltar</option>
+                  <option>Greece</option>
+                  <option>Grenada</option>
+                  <option>Heard Island and McDonald Islands</option>
+                  <option>Honduras</option>
+                  <option>Hong Kong</option>
+                  <option>Hungary</option>
+                  <option>Iceland</option>
+                  <option>India</option>
+                  <option>Indonesia</option>
+                  <option>Ireland</option>
+                  <option>Islamic Republic of Iran</option>
+                  <option>Italy</option>
+                  <option>Jamaica</option>
+                  <option>Japan</option>
+                  <option>Jordan</option>
+                  <option>Kazakhstan</option>
+                  <option>Kenya</option>
+                  <option>Kiribati</option>
+                  <option>Kuwait</option>
+                  <option>Kyrgyzstan</option>
+                  <option>Latvia</option>
+                  <option>Lebanon</option>
+                  <option>Lesotho</option>
+                  <option>Liberia</option>
+                  <option>Libyan Arab Jamahiriya</option>
+                  <option>Liechtenstein</option>
+                  <option>Lithuania</option>
+                  <option>Luxembourg</option>
+                  <option>Macau</option>
+                  <option>Madagascar</option>
+                  <option>Malawi</option>
+                  <option>Malaysia</option>
+                  <option>Maldives</option>
+                  <option>Mali</option>
+                  <option>Malta</option>
+                  <option>Marshall Islands</option>
+                  <option>Martinique</option>
+                  <option>Mauritania</option>
+                  <option>Mauritius</option>
+                  <option>Mayotte</option>
+                  <option>Mexico</option>
+                  <option>Monaco</option>
+                  <option>Mongolia</option>
+                  <option>Montserrat</option>
+                  <option>Morocco</option>
+                  <option>Mozambique</option>
+                  <option>Myanmar</option>
+                  <option>Namibia</option>
+                  <option>Nauru</option>
+                  <option>Nepal</option>
+                  <option>Netherlands</option>
+                  <option>Netherlands Antilles</option>
+                  <option>New Caledonia</option>
+                  <option>New Zealand</option>
+                  <option>Nicaragua</option>
+                  <option>Niger</option>
+                  <option>Nigeria</option>
+                  <option>Niue</option>
+                  <option>Norfolk Island</option>
+                  <option>Northern Mariana Islands</option>
+                  <option>Norway</option>
+                  <option>Oman</option>
+                  <option>Pakistan</option>
+                  <option>Palau</option>
+                  <option>Panama</option>
+                  <option>Papua New Guinea</option>
+                  <option>Paraguay</option>
+                  <option>Peoples's Democratic Rebulic of Laos</option>
+                  <option>Peru</option>
+                  <option>Philippines</option>
+                  <option>Pitcairn Island</option>
+                  <option>Poland</option>
+                  <option>Portugal</option>
+                  <option>Puerto Rico</option>
+                  <option>Qatar</option>
+                  <option>Republic of Korea</option>
+                  <option>Republic of Moldova</option>
+                  <option>Reunion</option>
+                  <option>Romania</option>
+                  <option>Russian Federation</option>
+                  <option>Rwanda</option>
+                  <option>Saint Helena</option>
+                  <option>Samoa</option>
+                  <option>Sao Tome and Principe</option>
+                  <option>Saudi Arabia</option>
+                  <option>Senegal</option>
+                  <option>Seychelles</option>
+                  <option>Sierra Leone</option>
+                  <option>Singapore</option>
+                  <option>Slovakia</option>
+                  <option>Slovenia</option>
+                  <option>Solomon Islands</option>
+                  <option>Somalia</option>
+                  <option>South Africa</option>
+                  <option>South Georgia and The South Sandwich Islands</option>
+                  <option>Spain</option>
+                  <option>Sri Lanka</option>
+                  <option>St. Kitts and Nevis</option>
+                  <option>St. Lucia</option>
+                  <option>St. Pierre and Miquelon</option>
+                  <option>St. Vincent and The Grenadines</option>
+                  <option>Sudan</option>
+                  <option>Suriname</option>
+                  <option>Svalbard and Jan Mayen</option>
+                  <option>Swaziland</option>
+                  <option>Sweden</option>
+                  <option>Switzerland</option>
+                  <option>Syrian Arab Republic</option>
+                  <option>Taiwan, Province Of China</option>
+                  <option>Tajikistan</option>
+                  <option>Thailand</option>
+                  <option>The Former Yugoslav Republic of Macedonia</option>
+                  <option>Togo</option>
+                  <option>Tokelau</option>
+                  <option>Tonga</option>
+                  <option>Trading</option>
+                  <option>Trinidad and Tobago</option>
+                  <option>Tunisia</option>
+                  <option>Turkey</option>
+                  <option>Turkmenistan</option>
+                  <option>Tuvalu</option>
+                  <option>Uganda</option>
+                  <option>Ukraine</option>
+                  <option>United Arab Emirates</option>
+                  <option>United Kingdom</option>
+                  <option>United Republic of Tanzania</option>
+                  <option>United States</option>
+                  <option>United States Minor Outlying Islands</option>
+                  <option>Uruguay</option>
+                  <option>US Virgin Islands</option>
+                  <option>Uzbekistan</option>
+                  <option>Vanuatu</option>
+                  <option>Venezuela</option>
+                  <option>Vietnam</option>
+                  <option>Wallis and Fortuna Islands</option>
+                  <option>Western Sahara</option>
+                  <option>Yemen</option>
+                  <option>Zambia</option>
+                  <option>Zimbabwe</option>
+                  <option>FOD ONLY - IO COPY FROM</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <div class="form-field">
+                <label class="field-label">
+                  LANGUAGE <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option value="">Select...</option>
+                  <option>1P</option>
+                  <option>AF</option>
+                  <option>AR</option>
+                  <option>BG</option>
+                  <option>BN</option>
+                  <option>CA</option>
+                  <option>CS</option>
+                  <option>DA</option>
+                  <option>DE</option>
+                  <option>EL</option>
+                  <option>EN</option>
+                  <option>ES</option>
+                  <option>ET</option>
+                  <option>FI</option>
+                  <option>FR</option>
+                  <option>HE</option>
+                  <option>HR</option>
+                  <option>HU</option>
+                  <option>ID</option>
+                  <option>IS</option>
+                  <option>IT</option>
+                  <option>JA</option>
+                  <option>KK</option>
+                  <option>KO</option>
+                  <option>LT</option>
+                  <option>LV</option>
+                  <option>MK</option>
+                  <option>MS</option>
+                  <option>NL</option>
+                  <option>NO</option>
+                  <option>PL</option>
+                  <option>PT</option>
+                  <option>RO</option>
+                  <option>RU</option>
+                  <option>SH</option>
+                  <option>SK</option>
+                  <option>SL</option>
+                  <option>SQ</option>
+                  <option>SR</option>
+                  <option>SV</option>
+                  <option>TH</option>
+                  <option>TR</option>
+                  <option>UK</option>
+                  <option>UR</option>
+                  <option>VI</option>
+                  <option>ZF</option>
+                  <option>ZH</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Row 2: Product Country Owner | Sales Text -->
+            <div>
+              <div class="form-field">
+                <label class="field-label">
+                  PRODUCT COUNTRY OWNER <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" value="Autofilled" disabled style="background-color: #F5F5F5;" />
+              </div>
+            </div>
+
+            <div>
+              <div class="form-field">
+                <label class="field-label">
+                  SALES TEXT <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" placeholder="Enter sales text" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Standard Data Section -->
+        <div id="section-standard-data" class="form-section" style="display: none;">
+          <div class="section-header">
+            <h2><span class="p1-badge">P1</span>Standard Data</h2>
+            <button class="section-expand-btn">⤢</button>
+          </div>
+
+          <div class="form-grid">
+            <!-- Row 1: Country of Sale | Standard Type | Standard -->
+            <div>
+              <div class="form-field">
+                <label class="field-label">
+                  COUNTRY OF SALE <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" value="United States" disabled style="background-color: #F5F5F5;" />
+              </div>
+            </div>
+
+            <div>
+              <div class="form-field">
+                <label class="field-label">
+                  STANDARD TYPE <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option value="">Select...</option>
+                  <option>International</option>
+                  <option>Country Specific</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <div class="form-field">
+                <label class="field-label">
+                  STANDARD <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option value="">Select...</option>
+                  <option>International</option>
+                  <option>EU</option>
+                  <option>Country Specific</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Region Section -->
+        <div id="section-region" class="form-section" style="display: none;">
+          <div class="section-header">
+            <h2><span class="p1-badge">P1</span>Region</h2>
+            <button class="section-expand-btn">⤢</button>
+          </div>
+
+          <div class="form-grid">
+            <div>
+              <div class="form-field">
+                <label class="field-label">
+                  COUNTRY OF SALE <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <input type="text" class="form-control" value="Autofilled" disabled style="background-color: #F5F5F5;" />
+              </div>
+            </div>
+
+            <div>
+              <div class="form-field">
+                <label class="field-label">
+                  REGION TYPE <span class="required">*</span>
+                  <span class="info-icon">i</span>
+                </label>
+                <select class="form-control">
+                  <option value="">Select...</option>
+                  <option>Afghanistan..All country</option>
+                  <option>Albania..All country</option>
+                  <option>Algeria..All country</option>
+                  <option>American Samoa..All country</option>
+                  <option>Andorra..All country</option>
+                  <option>Angola..All country</option>
+                  <option>Anguilla..All country</option>
+                  <option>Antarctica..All country</option>
+                  <option>Antigua and Barbuda..All country</option>
+                  <option>Argentina..All country</option>
+                  <option>Argentina..Center area</option>
+                  <option>Argentina..North area</option>
+                  <option>Argentina..South area</option>
+                  <option>Armenia..All country</option>
+                  <option>Aruba..All country</option>
+                  <option>Australia..AGO AC</option>
+                  <option>Australia..AGO AN</option>
+                  <option>Australia..AGO NS</option>
+                  <option>Australia..AGO QC</option>
+                  <option>Australia..AGO QN</option>
+                  <option>Australia..AGO QS</option>
+                  <option>Australia..AGO QT</option>
+                  <option>Australia..AGO SA</option>
+                  <option>Australia..AGO TS</option>
+                  <option>Australia..AGO VW</option>
+                  <option>Australia..AGO VC</option>
+                  <option>Australia..AGO WC</option>
+                  <option>Australia..AGO WS</option>
+                  <option>Australia..All country</option>
+                  <option>Australia..North</option>
+                  <option>Australia..South</option>
+                  <option>Australia..ULG NC</option>
+                  <option>Australia..ULG NL</option>
+                  <option>Australia..ULG NT</option>
+                  <option>Australia..ULG QN</option>
+                  <option>Australia..ULG QS</option>
+                  <option>Australia..ULG SA</option>
+                  <option>Australia..ULG TS</option>
+                  <option>Australia..ULG VC</option>
+                  <option>Australia..ULG WC</option>
+                  <option>Australia..ULG WN</option>
+                  <option>Australia..ULG WP</option>
+                  <option>Australia..ULG WS</option>
+                  <option>Austria..All country</option>
+                  <option>Azerbaijan..All country</option>
+                  <option>Bahamas..All country</option>
+                  <option>Bahrain..All country</option>
+                  <option>Bangladesh..All country</option>
+                  <option>Barbados..All country</option>
+                  <option>Belarus..All country</option>
+                  <option>Belgium..All country</option>
+                  <option>Belize..All country</option>
+                  <option>Benin..All country</option>
+                  <option>Bermuda..All country</option>
+                  <option>Bhutan..All country</option>
+                  <option>Bolivia..All country</option>
+                  <option>Bosnia and Herzegovina..All country</option>
+                  <option>Botswana..All country</option>
+                  <option>Bouvet Island..All country</option>
+                  <option>Brazil..All country</option>
+                  <option>Brazil..All Country excluding Central-West area</option>
+                  <option>Brazil..All Country excluding Northern area</option>
+                  <option>Brazil..All Country excluding Southern area</option>
+                  <option>Brazil..Centro-Oeste</option>
+                  <option>Brazil..Countryside</option>
+                  <option>Brazil..Metropolitan area</option>
+                  <option>Brazil..Nordeste</option>
+                  <option>Brazil..Norte</option>
+                  <option>Brazil..Rest of the country</option>
+                  <option>Brazil..Rio de Janeiro and São Paulo</option>
+                  <option>Brazil..Southern area</option>
+                  <option>Brazil..Sudeste</option>
+                  <option>Brazil..Sul</option>
+                  <option>Brazil..Sul / Sudeste</option>
+                  <option>Brazil..Sul / Sudeste / Nordeste</option>
+                  <option>Brazil..São Paulo</option>
+                  <option>British Indian Ocean Territory..All country</option>
+                  <option>British Virgin Islands..All country</option>
+                  <option>Brunei Darussalam..All country</option>
+                  <option>Bulgaria..All country</option>
+                  <option>Bulgaria..South</option>
+                  <option>Burkina Faso..All country</option>
+                  <option>Burundi..All country</option>
+                  <option>Cambodia..All country</option>
+                  <option>Cameroon..All country</option>
+                  <option>Canada..All country</option>
+                  <option>Cape Verde..All country</option>
+                  <option>Cayman Islands..All country</option>
+                  <option>Central African Republic..All country</option>
+                  <option>Chad..All country</option>
+                  <option>Chile..All country</option>
+                  <option>Chile..All Country excluding Region XI &amp; XII</option>
+                  <option>Chile..Countryside</option>
+                  <option>Chile..Metropolitan area</option>
+                  <option>Chile..Region XI &amp; XII</option>
+                  <option>Chile..South (Regions VI-X)</option>
+                  <option>China..All country</option>
+                  <option>Christmas Island..All country</option>
+                  <option>Cocos (Keeling) Islands..All country</option>
+                  <option>Colombia..All country</option>
+                  <option>Comoros..All country</option>
+                  <option>Congo..All country</option>
+                  <option>Cook Islands..All country</option>
+                  <option>Costa Rica..All country</option>
+                  <option>Cote d'Ivoire..All country</option>
+                  <option>Croatia..All country</option>
+                  <option>Cuba..All country</option>
+                  <option>Cyprus..All country</option>
+                  <option>Czech Republic..All country</option>
+                  <option>Denmark..All country</option>
+                  <option>Denmark..Depot Fredericia</option>
+                  <option>Denmark..Exchange Depots</option>
+                  <option>Denmark..Jylland and Fyn</option>
+                  <option>Denmark..Sjælland</option>
+                  <option>Djibouti..All country</option>
+                  <option>Dominica..All country</option>
+                  <option>Dominican Republic..All country</option>
+                  <option>East Timor..All country</option>
+                  <option>Ecuador..All country</option>
+                  <option>Egypt..All country</option>
+                  <option>El Salvador..All country</option>
+                  <option>Equatorial Guinea..All country</option>
+                  <option>Eritrea..All country</option>
+                  <option>Estonia..All country</option>
+                  <option>Ethiopia..All country</option>
+                  <option>Falkland Islands (Malvinas)..All country</option>
+                  <option>Faroe Islands..All country</option>
+                  <option>Federated States of Micronesia..All country</option>
+                  <option>Fiji..All country</option>
+                  <option>Finland..All country</option>
+                  <option>France..All country</option>
+                  <option>French Guiana..All country</option>
+                  <option>French Polynesia..All country</option>
+                  <option>French Southern Territories..All country</option>
+                  <option>Gabon..All country</option>
+                  <option>Gambia..All country</option>
+                  <option>Georgia..All country</option>
+                  <option>Germany..All country</option>
+                  <option>Ghana..All country</option>
+                  <option>Gibraltar..All country</option>
+                  <option>Greece..All country</option>
+                  <option>Grenada..All country</option>
+                  <option>Guadeloupe..All country</option>
+                  <option>Guam..All country</option>
+                  <option>Guatemala..All country</option>
+                  <option>Guinea-Bissau..All country</option>
+                  <option>Guinea..All country</option>
+                  <option>Guyana..All country</option>
+                  <option>Haiti..All country</option>
+                  <option>Heard Island and McDonald Islands..All country</option>
+                  <option>Honduras..All country</option>
+                  <option>Hong Kong..All country</option>
+                  <option>Hong Kong..South</option>
+                  <option>Hungary..All country</option>
+                  <option>Iceland..All country</option>
+                  <option>India..All country</option>
+                  <option>Indonesia..All country</option>
+                  <option>Ireland..All country</option>
+                  <option>Islamic Republic of Iran..All country</option>
+                  <option>Italy..All country</option>
+                  <option>Jamaica..All country</option>
+                  <option>Jamaica..North Latin America</option>
+                  <option>Japan..All country</option>
+                  <option>Jordan..All country</option>
+                  <option>Kazakhstan..All country</option>
+                  <option>Kenya..All country</option>
+                  <option>Kiribati..All country</option>
+                  <option>Kuwait..All country</option>
+                  <option>Kyrgyzstan..All country</option>
+                  <option>Latvia..All country</option>
+                  <option>Lebanon..All country</option>
+                  <option>Lesotho..All country</option>
+                  <option>Liberia..All country</option>
+                  <option>Libyan Arab Jamahiriya..All country</option>
+                  <option>Liechtenstein..All country</option>
+                  <option>Lithuania..All country</option>
+                  <option>Luxembourg..All country</option>
+                  <option>Macau..All country</option>
+                  <option>Madagascar..All country</option>
+                  <option>Malawi..All country</option>
+                  <option>Malaysia..All country</option>
+                  <option>Malaysia..East</option>
+                  <option>Malaysia..Everywhere (except Klang Valley)</option>
+                  <option>Malaysia..Klang Valley</option>
+                  <option>Malaysia..Peninsular</option>
+                  <option>Malaysia..Port Dickson</option>
+                  <option>Malaysia..Sandakan</option>
+                  <option>Maldives..All country</option>
+                  <option>Mali..All country</option>
+                  <option>Malta..All country</option>
+                  <option>Marshall Islands..All country</option>
+                  <option>Martinique..All country</option>
+                  <option>Mauritania..All country</option>
+                  <option>Mauritius..All country</option>
+                  <option>Mayotte..All country</option>
+                  <option>Mexico..All country</option>
+                  <option>Monaco..All country</option>
+                  <option>Mongolia..All country</option>
+                  <option>Montserrat..All country</option>
+                  <option>Morocco..All country</option>
+                  <option>Mozambique..All country</option>
+                  <option>Myanmar..All country</option>
+                  <option>Namibia..All country</option>
+                  <option>Nauru..All country</option>
+                  <option>Nepal..All country</option>
+                  <option>Netherlands Antilles..All country</option>
+                  <option>Netherlands..All country</option>
+                  <option>New Caledonia..All country</option>
+                  <option>New Zealand..All country</option>
+                  <option>New Zealand..Central</option>
+                  <option>New Zealand..Central North Island</option>
+                  <option>New Zealand..Central South Island</option>
+                  <option>New Zealand..Deep South</option>
+                  <option>New Zealand..New Zealand apart from North North Island</option>
+                  <option>New Zealand..North North Island</option>
+                  <option>New Zealand..Rest North Island</option>
+                  <option>New Zealand..Rest of South Island</option>
+                  <option>New Zealand..South Island</option>
+                  <option>Nicaragua..All country</option>
+                  <option>Niger..All country</option>
+                  <option>Nigeria..All country</option>
+                  <option>Niue..All country</option>
+                  <option>Norfolk Island..All country</option>
+                  <option>Northern Ireland</option>
+                  <option>Northern Mariana Islands..All country</option>
+                  <option>Norway..All country</option>
+                  <option>Norway..East/Mid</option>
+                  <option>Norway..North</option>
+                  <option>Norway..Norway except Stavanger</option>
+                  <option>Norway..South</option>
+                  <option>Norway..South except Stavanger</option>
+                  <option>Norway..Stavanger</option>
+                  <option>Norway..West</option>
+                  <option>Oman..All country</option>
+                  <option>Pakistan..All country</option>
+                  <option>Palau..All country</option>
+                  <option>Panama..All country</option>
+                  <option>Papua New Guinea..All country</option>
+                  <option>Paraguay..All country</option>
+                  <option>Peoples's Democratic Rebulic of Laos..All country</option>
+                  <option>Peru..All country</option>
+                  <option>Philippines..All country</option>
+                  <option>Pitcairn Island..All country</option>
+                  <option>Poland..All country</option>
+                  <option>Portugal..All country</option>
+                  <option>Puerto Rico..All country</option>
+                  <option>Qatar..All country</option>
+                  <option>Republic of Korea..All country</option>
+                  <option>Republic of Moldova..All country</option>
+                  <option>Reunion..All country</option>
+                  <option>Romania..All country</option>
+                  <option>Russian Federation..All country</option>
+                  <option>Rwanda..All country</option>
+                  <option>Saint Helena..All country</option>
+                  <option>Samoa..All country</option>
+                  <option>San Merino..All country</option>
+                  <option>Sao Tome and Principe..All country</option>
+                  <option>Saudi Arabia..All country</option>
+                  <option>Senegal..All country</option>
+                  <option>Seychelles..All country</option>
+                  <option>Sierra Leone..All country</option>
+                  <option>Singapore..All country</option>
+                  <option>Slovakia..All country</option>
+                  <option>Slovenia..All country</option>
+                  <option>Solomon Islands..All country</option>
+                  <option>Somalia..All country</option>
+                  <option>South Africa..All country</option>
+                  <option>South Africa..Coastal</option>
+                  <option>South Africa..Inland</option>
+                  <option>South Africa..Midland Areas below -4 degC</option>
+                  <option>South Georgia and The South Sandwich Islands..All country</option>
+                  <option>Spain..All country</option>
+                  <option>Sri Lanka..All country</option>
+                  <option>St. Kitts and Nevis..All country</option>
+                  <option>St. Lucia..All country</option>
+                  <option>St. Pierre and Miquelon..All country</option>
+                  <option>St. Vincent and The Grenadines..All country</option>
+                  <option>Sudan..All country</option>
+                  <option>Suriname..All country</option>
+                  <option>Svalbard and Jan Mayen..All country</option>
+                  <option>Swaziland..All country</option>
+                  <option>Sweden..All country</option>
+                  <option>Switzerland..All country</option>
+                  <option>Syrian Arab Republic..All country</option>
+                  <option>Taiwan, Province of China..All country</option>
+                  <option>Tajikistan..All country</option>
+                  <option>Thailand..All country</option>
+                  <option>Thailand..Thai Sea</option>
+                  <option>The Former Yugoslav Republic of Macedonia..All country</option>
+                  <option>Togo..All country</option>
+                  <option>Tokelau..All country</option>
+                  <option>Tonga..All country</option>
+                  <option>Trinidad and Tobago..All country</option>
+                  <option>Tunisia..All country</option>
+                  <option>Turkey..All country</option>
+                  <option>Turkmenistan..All country</option>
+                  <option>Turks and Caicos Islands..All country</option>
+                  <option>Tuvalu..All country</option>
+                  <option>Uganda..All country</option>
+                  <option>Ukraine..All country</option>
+                  <option>United Arab Emirates..All country</option>
+                  <option>United Kingdom..All country</option>
+                  <option>United Republic of Tanzania..All country</option>
+                  <option>United States Minor Outlying Islands..All country</option>
+                  <option>United States..All country</option>
+                  <option>Uruguay..All country</option>
+                  <option>US Virgin Islands..All country</option>
+                  <option>Uzbekistan..All country</option>
+                  <option>Vanuatu..All country</option>
+                  <option>Vatican City State (Holy See)..All country</option>
+                  <option>Venezuela..All country</option>
+                  <option>Vietnam..All country</option>
+                  <option>Wallis and Fortuna Islands..All country</option>
+                  <option>Western Sahara..All country</option>
+                  <option>Yemen..All country</option>
+                  <option>Yugoslavia..All country</option>
+                  <option>Zaire..All country</option>
+                  <option>Zambia..All country</option>
+                  <option>Zimbabwe..All country</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Product button click handlers
+    const productButtons = document.querySelectorAll('.product-btn');
+
+    productButtons.forEach((button, index) => {
+      button.addEventListener('click', function() {
+        // Remove active class from all buttons
+        productButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // Add active class to clicked button
+        this.classList.add('active');
+        
+        // Query all badge elements fresh and update them
+        const badgeElements = document.querySelectorAll('.p1-badge');
+        badgeElements.forEach(badge => {
+          badge.textContent = `P${index + 1}`;
+        });
+      });
+    });
+
+    // Sidebar section switching
+    const sidebarItems = document.querySelectorAll('.sidebar-item');
+    const formSections = document.querySelectorAll('.form-section');
+
+    sidebarItems.forEach((item, index) => {
+      item.addEventListener('click', function() {
+        // Remove active class from all sidebar items
+        sidebarItems.forEach(sidebarItem => sidebarItem.classList.remove('active'));
+        
+        // Add active class to clicked item
+        this.classList.add('active');
+        
+        // Hide all sections
+        formSections.forEach(section => {
+          section.style.display = 'none';
+        });
+
+        // Show the selected section (index + 1 = section number)
+        const sectionNames = ['naming', 'classification', 'country-specific', 'technical-properties', 'sku-country-details', 'country-of-sale', 'standard-data', 'region'];
+        const targetSection = document.getElementById(`section-${sectionNames[index]}`);
+        if (targetSection) {
+          targetSection.style.display = '';
+        }
+      });
+    });
+
+    // Function to attach delete handlers to delete buttons
+    function attachDeleteHandlers() {
+      const deleteButtons = document.querySelectorAll('.delete-row-btn');
+      deleteButtons.forEach(btn => {
+        // Remove existing listeners by cloning
+        const newBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(newBtn, btn);
+      });
+      
+      // Re-query and attach new listeners
+      document.querySelectorAll('.delete-row-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const row = this.closest('tr');
+          row.remove();
+        });
+      });
+    }
+
+    // Add Ingredient button handler
+    const addIngredientBtn = document.querySelector('.add-ingredient-btn');
+    if (addIngredientBtn) {
+      addIngredientBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const table = this.closest('table');
+        const tbody = table.querySelector('tbody');
+        const addRow = table.querySelector('.add-row');
+        
+        // Create new row with empty inputs and delete button
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+          <td><select class="form-control">
+<option value="">Select</option>
+</select></td>
+          <td><input type="number" class="form-control" placeholder="Min %" /></td>
+          <td><input type="number" class="form-control" placeholder="Max %" /></td>
+          <td><select class="form-control">
+<option value="">Select</option>
+</select></td>
+          <td class="action-cell"><button type="button" class="delete-row-btn" title="Delete row">✕</button></td>
+        `;
+        
+        // Insert before the add row
+        tbody.insertBefore(newRow, addRow);
+        
+        // Attach delete handlers to all buttons
+        attachDeleteHandlers();
+      });
+    }
+
+    // Add Constituent button handler
+    const addConstituentBtn = document.querySelector('.add-constituent-btn');
+    if (addConstituentBtn) {
+      addConstituentBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const table = this.closest('table');
+        const tbody = table.querySelector('tbody');
+        const addRow = table.querySelector('.add-row');
+        
+        // Create new row with empty inputs and delete button
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+          <td><select class="form-control">
+<option value="">Select</option>
+</select></td>
+          <td><input type="number" class="form-control" placeholder="Min %" /></td>
+          <td><input type="number" class="form-control" placeholder="Max %" /></td>
+          <td><select class="form-control">
+<option value="">Select</option>
+</select></td>
+          <td class="action-cell"><button type="button" class="delete-row-btn" title="Delete row">✕</button></td>
+        `;
+        
+        // Insert before the add row
+        tbody.insertBefore(newRow, addRow);
+        
+        // Attach delete handlers to all buttons
+        attachDeleteHandlers();
+      });
+    }
+
+    // Initial attachment of delete handlers
+    attachDeleteHandlers();
+
+    // Product Name to Product Family & Brand Category Mapping
+    const productMapping = {
+      "ACT": { family: "Active Clean Technology", category: "Shell Branded Products" },
+      "AeroJet": { family: "Aerojet", category: "Shell Branded Products" },
+      "Asphalt Resurfacer": { family: "Flintkote", category: "Shell Branded Products" },
+      "AVCAT Military Aviation Kerosine": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "AVTAG Military Aviation Kerosine": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "AVTUR Military Aviation Kerosine": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Bitumen": { family: "Unbranded Products (Bitumen)", category: "Unbranded Products" },
+      "Bitumen Emulsion": { family: "Unbranded Products (Bitumen)", category: "Unbranded Products" },
+      "Bitumen Paints & Primer": { family: "Unbranded Products (Bitumen)", category: "Unbranded Products" },
+      "Bituseal": { family: "Bituseal", category: "Shell Branded Products" },
+      "Caribit": { family: "Caribit", category: "Shell Branded Products" },
+      "Cariphalte": { family: "Cariphalte", category: "Shell Branded Products" },
+      "Cariphalte DA": { family: "Cariphalte", category: "Shell Branded Products" },
+      "Cariphalte DM": { family: "Cariphalte", category: "Shell Branded Products" },
+      "Cariphalte Fuelsafe": { family: "Cariphalte", category: "Shell Branded Products" },
+      "Cariphalte OPA": { family: "Cariphalte", category: "Shell Branded Products" },
+      "Cariphalte PG": { family: "Cariphalte", category: "Shell Branded Products" },
+      "Caritop CB": { family: "Caritop", category: "Unbranded Products" },
+      "Cutback": { family: "Unbranded Products (Bitumen)", category: "Unbranded Products" },
+      "Diesel Extra": { family: "Diesel Extra", category: "Shell Branded Products" },
+      "Diesoline": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Diesoline Ultra": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Dual Purpose Civil Aviation Kerosine": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Emulsion": { family: "Unbranded Products (Bitumen)", category: "Unbranded Products" },
+      "Factory Fill - Generic Fuels": { family: "Factory Fill - Generic Fuels", category: "Factory Fill Products" },
+      "Flintkote": { family: "Flintkote", category: "Shell Branded Products" },
+      "Flintkote 3": { family: "Flintkote", category: "Shell Branded Products" },
+      "Flintkote 5": { family: "Flintkote", category: "Shell Branded Products" },
+      "Flintkote Aluminium": { family: "Flintkote", category: "Shell Branded Products" },
+      "Flintkote Colourflex": { family: "Flintkote", category: "Shell Branded Products" },
+      "Flintkote Decoralt": { family: "Flintkote", category: "Shell Branded Products" },
+      "Flintkote Hydroguard": { family: "Flintkote", category: "Shell Branded Products" },
+      "Flintkote Primer": { family: "Flintkote", category: "Shell Branded Products" },
+      "Flintkote Ultra": { family: "Flintkote", category: "Shell Branded Products" },
+      "FreshAir": { family: "FreshAir", category: "Shell Branded Products" },
+      "Fuel Economy Diesel (or FED)": { family: "Fuel Economy", category: "Shell Branded Products" },
+      "Fuel Economy Mogas (or FEM)": { family: "Fuel Economy", category: "Shell Branded Products" },
+      "FuelSave Diesel": { family: "FuelSave", category: "Shell Branded Products" },
+      "FuelSave Unleaded": { family: "FuelSave", category: "Shell Branded Products" },
+      "High Lead, High Octane Aviation Gasoline": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Jet A": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Jet A-1": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Jet B": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Lead Replacement Petrol": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "LNG": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Local Marine Diesel Bunker": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Local Branded Products (Fuels)": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Local Marine High Sulphur RFO Bunker": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Local Marine Low Sulphur RFO Bunker": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Low Lead High Octane Aviation Gasoline": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Low Lead, Low Octane Aviation Gasoline": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "LPG Generic": { family: "Generic Products (LPG)", category: "Shell Branded Products" },
+      "Mellowphalt": { family: "Mellowphalt", category: "Shell Branded Products" },
+      "Mexphalte": { family: "Mexphalte", category: "Shell Branded Products" },
+      "Mexphalte AM2": { family: "Mexphalte", category: "Shell Branded Products" },
+      "Mexphalte C": { family: "Mexphalte", category: "Shell Branded Products" },
+      "Mexphalte CP2": { family: "Mexphalte", category: "Shell Branded Products" },
+      "Mexphalte Fuelsafe": { family: "Mexphalte", category: "Shell Branded Products" },
+      "Mexphalte HVS": { family: "Mexphalte", category: "Shell Branded Products" },
+      "Mexphalte P3": { family: "Mexphalte", category: "Shell Branded Products" },
+      "Multiphalte": { family: "Multiphalte", category: "Shell Branded Products" },
+      "Multiphalte HM": { family: "Multiphalte", category: "Shell Branded Products" },
+      "No Brand": { family: "Unbranded NOT SOLD", category: "Unbranded Products" },
+      "NovaChip": { family: "Unbranded Products (Bitumen)", category: "Unbranded Products" },
+      "Other": { family: "Unbranded Products (Bitumen)", category: "Unbranded Products" },
+      "Pura": { family: "Pura", category: "Shell Branded Products" },
+      "Shell BioLNG": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Shell Butagas": { family: "Shell", category: "Shell Branded Products" },
+      "Shell Butagaz": { family: "Shell", category: "Shell Branded Products" },
+      "Shell Gas": { family: "Shell", category: "Shell Branded Products" },
+      "Shell GTL Fuel": { family: "Shell GTL Fuel", category: "Shell Branded Products" },
+      "Shell GTL Fuel Alpine": { family: "Shell GTL Fuel", category: "Shell Branded Products" },
+      "Shell GTL Fuel Heating": { family: "Shell GTL Fuel", category: "Shell Branded Products" },
+      "Shell GTL Fuel Marine": { family: "Shell GTL Fuel", category: "Shell Branded Products" },
+      "Shell GTL Fuel Off-Road": { family: "Shell GTL Fuel", category: "Shell Branded Products" },
+      "Shell Indoor Kart Fuel": { family: "Shell Racing Fuels", category: "Shell Branded Products" },
+      "Shell International Diesel Bunker": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Shell International RFO Bunker": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Shell LNG": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Shell Moto Cross Fuel": { family: "Shell Racing Fuels", category: "Shell Branded Products" },
+      "Shell Motorcycle GP Fuel": { family: "Shell Racing Fuels", category: "Shell Branded Products" },
+      "Shell Propagas": { family: "Shell", category: "Shell Branded Products" },
+      "Shell Propagaz": { family: "Shell", category: "Shell Branded Products" },
+      "Shell Race Car Fuel": { family: "Shell Racing Fuels", category: "Shell Branded Products" },
+      "Shell Racing Fuels": { family: "Shell Racing Fuels", category: "Shell Branded Products" },
+      "Shell Racing Kart Fuel": { family: "Shell Racing Fuels", category: "Shell Branded Products" },
+      "Shell Superbike Fuel": { family: "Shell Racing Fuels", category: "Shell Branded Products" },
+      "Special Application Gasoline": { family: "Generic Products (Fuels)", category: "Shell Branded Products" },
+      "Spramex": { family: "Spramex", category: "Shell Branded Products" },
+      "Spramul": { family: "Spramul", category: "Shell Branded Products" },
+      "Thermo": { family: "Thermo", category: "Shell Branded Products" },
+      "Thermo Eco Ultra": { family: "Thermo", category: "Shell Branded Products" },
+      "Thermo Premium": { family: "Thermo", category: "Shell Branded Products" },
+      "Third Party Branded": { family: "Third Party Branded", category: "Third Party Branded" },
+      "Tixophalte": { family: "Tixophalte", category: "Shell Branded Products" },
+      "Tixophalte Wet": { family: "Tixophalte", category: "Shell Branded Products" },
+      "Unbranded Products (Bitumen)": { family: "Unbranded Products (Bitumen)", category: "Unbranded Products" },
+      "Unbranded Products (Fuels) Generic": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "Unleaded Extra (or ULX)": { family: "Unleaded Extra", category: "Shell Branded Products" },
+      "Unleaded, Low Octane Aviation Gasoline": { family: "Unbranded Products (Fuels)", category: "Unbranded Products" },
+      "V-Power": { family: "V-Power", category: "Shell Branded Products" },
+      "V-Power Diesel": { family: "V-Power", category: "Shell Branded Products" },
+      "V-Power Racing": { family: "V-Power Racing", category: "Shell Branded Products" }
+    };
+
+    // Handle Product Name change
+    const productNameSelects = document.querySelectorAll('select.form-control');
+    
+    productNameSelects.forEach(select => {
+      // Find if this is the PRODUCT NAME select by checking its label
+      const label = select.closest('.form-field')?.querySelector('.field-label');
+      if (label && label.textContent.includes('PRODUCT NAME')) {
+        select.addEventListener('change', function() {
+          const selectedProduct = this.value;
+          if (selectedProduct && productMapping[selectedProduct]) {
+            const mapping = productMapping[selectedProduct];
+            
+            // Find Product Family and Brand Category dropdowns
+            const formFields = document.querySelectorAll('.form-field');
+            let productFamilySelect = null;
+            let brandCategorySelect = null;
+            
+            formFields.forEach(field => {
+              const fieldLabel = field.querySelector('.field-label');
+              if (fieldLabel) {
+                if (fieldLabel.textContent.includes('PRODUCT FAMILY')) {
+                  productFamilySelect = field.querySelector('select.form-control');
+                }
+                if (fieldLabel.textContent.includes('BRAND CATEGORY')) {
+                  brandCategorySelect = field.querySelector('select.form-control');
+                }
+              }
+            });
+            
+            // Update Product Family
+            if (productFamilySelect) {
+              productFamilySelect.value = mapping.family;
+              productFamilySelect.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+            
+            // Update Brand Category
+            if (brandCategorySelect) {
+              brandCategorySelect.value = mapping.category;
+              brandCategorySelect.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+          }
+        });
+      }
+    });
+
+    // Country Name Row Management
+    const countryRowsContainer = document.getElementById('countryRowsContainer');
+    if (countryRowsContainer) {
+      const countryOptions = Array.from(document.querySelector('.country-select').options).map(opt => ({
+        value: opt.value,
+        text: opt.text
+      }));
+
+      function updateRemoveButtons() {
+        const rows = countryRowsContainer.querySelectorAll('.country-row');
+        rows.forEach((row, index) => {
+          const removeBtn = row.querySelector('.remove-field-btn');
+          if (rows.length === 1) {
+            removeBtn.disabled = true;
+          } else {
+            removeBtn.disabled = false;
+          }
+        });
+      }
+
+      function attachCountryRowHandlers() {
+        countryRowsContainer.querySelectorAll('.add-field-btn').forEach(btn => {
+          btn.removeEventListener('click', addCountryRow);
+          btn.addEventListener('click', addCountryRow);
+        });
+
+        countryRowsContainer.querySelectorAll('.remove-field-btn').forEach(btn => {
+          btn.removeEventListener('click', removeCountryRow);
+          btn.addEventListener('click', removeCountryRow);
+        });
+      }
+
+      function addCountryRow(e) {
+        e.preventDefault();
+        const newRow = document.createElement('div');
+        newRow.className = 'country-row';
+        newRow.innerHTML = `
+          <select class="form-control country-select">
+            ${countryOptions.map(opt => `<option value="${opt.value}">${opt.text}</option>`).join('')}
+          </select>
+          <div class="field-buttons">
+            <button type="button" class="add-field-btn" title="Add field">+</button>
+            <button type="button" class="remove-field-btn" title="Remove field">−</button>
+          </div>
+        `;
+        countryRowsContainer.appendChild(newRow);
+        attachCountryRowHandlers();
+        updateRemoveButtons();
+      }
+
+      function removeCountryRow(e) {
+        e.preventDefault();
+        const rows = countryRowsContainer.querySelectorAll('.country-row');
+        if (rows.length > 1) {
+          e.target.closest('.country-row').remove();
+          attachCountryRowHandlers();
+          updateRemoveButtons();
+        }
+      }
+
+      attachCountryRowHandlers();
+      updateRemoveButtons();
+    }
+  </script>
+</body>
+</html>
+<!-- refresh -->
+
+<!-- Cache bust: 1783355109 -->
+<!-- Force rebuild: 1783355454 -->
+<!-- Force rebuild: 1783355668 -->
+<!-- Force rebuild: 1783355969 -->
+<!-- Force rebuild: 1783356102 -->
+<!-- Force rebuild: 1783356571 -->
+<!-- Force rebuild: 1783357218 -->
+<!-- Force rebuild: 1783359402 -->
+<!-- Force rebuild: 1783359633 -->
+<!-- Force rebuild: 1783359808 -->
+<!-- Force rebuild: 1783360115 -->
+<!-- Force rebuild: 1783360539 -->
+<!-- Force rebuild: 1783360840 -->
+<!-- Force rebuild: 1783362070 -->
+<!-- Force rebuild: 1783529726 -->
