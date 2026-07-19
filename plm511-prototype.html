@@ -805,18 +805,26 @@
           </div>
 
           <div style="padding: 20px 0;">
-            <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 20px;">Saleable Product Introduction</h3>
-            
-            <div style="display: flex; gap: 12px; margin-bottom: 30px;">
-              <button class="btn-save" style="background-color: #28a745; border: none; padding: 10px 24px; border-radius: 4px; cursor: pointer; font-weight: 500;">Approve</button>
-              <button class="btn-save" style="background-color: #dc3545; border: none; padding: 10px 24px; border-radius: 4px; cursor: pointer; font-weight: 500;">Reject</button>
+            <!-- Row 1: Saleable Product Introduction with Status -->
+            <div style="margin-bottom: 30px;">
+              <label class="field-label" style="font-size: 1rem; font-weight: 600;">
+                Saleable Product Introduction
+              </label>
+              <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: #666;">Status: Pending approval</p>
             </div>
 
-            <div class="form-field">
+            <!-- Row 2: Comments Text Field -->
+            <div class="form-field" style="margin-bottom: 30px;">
               <label class="field-label">
                 Comments
               </label>
               <textarea class="form-control" placeholder="Enter your comments here..." style="min-height: 120px;"></textarea>
+            </div>
+
+            <!-- Row 3: Approve and Reject Buttons -->
+            <div style="display: flex; gap: 12px;">
+              <button class="btn-approve" style="background-color: #FFC600; color: #292929; border: none; padding: 10px 24px; border-radius: 4px; cursor: pointer; font-weight: 500;">Approve</button>
+              <button class="btn-reject" style="background-color: transparent; color: #DD1D21; border: 2px solid #DD1D21; padding: 8px 22px; border-radius: 4px; cursor: pointer; font-weight: 500;">Reject</button>
             </div>
           </div>
         </div>
