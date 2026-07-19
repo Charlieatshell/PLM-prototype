@@ -807,7 +807,7 @@
               <label class="field-label" style="margin-bottom: 0;">
                 SALEABLE PRODUCT INTRODUCTION STATUS
               </label>
-              <span id="status-badge" class="status-badge-pending" style="padding: 2px 8px; border-radius: 3px; font-size: 0.7rem; font-weight: 600; background-color: rgba(178, 95, 0, 0.3); color: #B25F00;">Pending approval</span>
+              <span id="status-badge" class="status-badge-pending" style="padding: 2px 8px; border-radius: 3px; font-size: 0.7rem; font-weight: 600; background-color: rgba(178, 95, 0, 0.85); color: #B25F00;">Pending approval</span>
             </div>
 
             <!-- Row 2: Comments Text Field -->
@@ -848,7 +848,7 @@
       const statusBadge = document.getElementById('status-badge');
       statusBadge.textContent = 'Approved';
       statusBadge.className = 'status-badge-approved';
-      statusBadge.style.backgroundColor = 'rgba(46, 125, 50, 0.3)';
+      statusBadge.style.backgroundColor = 'rgba(46, 125, 50, 0.85)';
       statusBadge.style.color = '#2e7d32';
       statusBadge.style.fontWeight = '600';
       commentsField.value = '';
@@ -862,7 +862,7 @@
       const statusBadge = document.getElementById('status-badge');
       statusBadge.textContent = 'Rejected';
       statusBadge.className = 'status-badge-rejected';
-      statusBadge.style.backgroundColor = 'rgba(198, 40, 40, 0.3)';
+      statusBadge.style.backgroundColor = 'rgba(198, 40, 40, 0.85)';
       statusBadge.style.color = '#c62828';
       statusBadge.style.fontWeight = '600';
       commentsField.value = '';
