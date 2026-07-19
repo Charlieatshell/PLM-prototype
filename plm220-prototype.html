@@ -792,7 +792,7 @@
       <div class="sidebar-section">
         <div class="sidebar-item active">
           <span>1</span>
-          <span>CTN</span>
+          <span>EDG</span>
         </div>
       </div>
 
@@ -808,10 +808,10 @@
     <div class="main-content">
       <!-- Form Content -->
       <div class="form-content">
-        <!-- CTN Section -->
-        <div id="section-ctn" class="form-section">
+        <!-- EDG Section -->
+        <div id="section-edg" class="form-section">
           <div class="section-header">
-            <h2><span class="p1-badge">P1</span>CTN</h2>
+            <h2><span class="p1-badge">P1</span>EDG</h2>
             <button class="section-expand-btn">⤢</button>
           </div>
 
@@ -820,7 +820,7 @@
             <div>
               <div class="form-field">
                 <label class="field-label">FORM STATUS <span class="required">*</span></label>
-                <input type="text" class="form-control" value="Complete CTN/ED Codes" disabled style="background-color: #F5F5F5;" />
+                <input type="text" class="form-control" value="Complete EDG Codes" disabled style="background-color: #F5F5F5;" />
               </div>
               <div class="form-field">
                 <label class="field-label">SP CODES IF NOT AUTOMATED <span class="required">*</span></label>
@@ -1069,11 +1069,11 @@
 
         // Show the selected page container and section
         if (index === 0) {
-          // CTN tab - show first page container and CTN section
+          // EDG tab - show first page container and EDG section
           pageContainers[0].style.display = '';
-          const ctnSection = document.getElementById('section-ctn');
-          if (ctnSection) {
-            ctnSection.style.display = '';
+          const edgSection = document.getElementById('section-edg');
+          if (edgSection) {
+            edgSection.style.display = '';
           }
         } else if (index === 1) {
           // Country Coverage tab - show first page container and country coverage section
@@ -1086,10 +1086,10 @@
       });
     });
 
-    // Initialize: show CTN by default
-    const firstCtnSection = document.getElementById('section-ctn');
-    if (firstCtnSection) {
-      firstCtnSection.style.display = '';
+    // Initialize: show EDG by default
+    const firstEdgSection = document.getElementById('section-edg');
+    if (firstEdgSection) {
+      firstEdgSection.style.display = '';
     }
     const countryCoverageSection = document.getElementById('section-country-coverage');
     if (countryCoverageSection) {
